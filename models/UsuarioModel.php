@@ -6,22 +6,18 @@ class UsuarioModel extends Model{
         parent::__construct();
     }
     
-    public function isExiste($email, $senha = '') {
-        if (!empty($senha)) {
-            $sql = "Select * From usuarios WHERE email = '$email' AND senha = MD5('$senha')";
-        } else {
-            $sql = "Select * From usuarios WHERE email = '$email'";
-        }
+    public function verificaLoginSenha($email, $senha) {
+        $array = array();
+        $sql = "SELECT id_usuario, nome, email, senha FROM tb_usuario WHERE email = '$email' AND senha = MD5('$senha')";
         $sql = $this->db->query($sql);
         if ($sql->rowCount() > 0) {
-            return true;
-        } else {
-            return false;
-        }        
+            $array = $sql->fetchALL(PDO::FETCH_ASSOC);
+        }
+        return $array;
     }
   
     public function criar($nome, $email, $senha) {
-        $sql = "Insert Into usuarios SET nome = '$nome', email = '$email', senha = MD5('$senha')";
+        $sql = "Insert Into tb_usuario SET nome = '$nome', email = '$email', senha = MD5('$senha')";
         $this->db->query($sql);
         return $this->db->lastInsertId();
     }        
