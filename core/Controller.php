@@ -8,6 +8,7 @@ class Controller {
         global $config;
 		try {
 			$this->db = new PDO("mysql:dbname=".$config['dbname'].";host=".$config['host'], $config['dbuser'], $config['dbpass']);
+			$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $ex) {
 			if ($ex->getCode() == 1049) {
 				echo "O Banco de Dados <b>".$config['dbname']."</b> não Existe...";
@@ -17,7 +18,6 @@ class Controller {
     }
 
     public function loadTemplate($viewName, $viewData = array()) {
-
         include 'views/template.php';
     }
     

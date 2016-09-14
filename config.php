@@ -5,6 +5,7 @@ require 'environment.php';
 $hostname = getenv("USERNAME");
 
 global $config;
+
 $config = array();
 if (ENVIRONMENT == 'development' && $hostname == 'JORGITO-NB') {
     $config['dbname'] = 'conta';
@@ -13,7 +14,7 @@ if (ENVIRONMENT == 'development' && $hostname == 'JORGITO-NB') {
     $config['dbpass'] = '!Camelo69';
 	$config['ambiente'] = ENVIRONMENT;
 	$config['hostname'] = $hostname;
-} elseif (ENVIRONMENT == 'development' && $hostname == 'Jorgito') {
+} elseif (ENVIRONMENT == 'development' && $hostname == 'JORGITO-PC') {
     $config['dbname'] = 'conta';
     $config['host'] = 'localhost';
     $config['dbuser'] = 'root';
@@ -28,18 +29,4 @@ if (ENVIRONMENT == 'development' && $hostname == 'JORGITO-NB') {
 	$config['ambiente'] = ENVIRONMENT;
 	$config['hostname'] = $hostname;
 }
-
-
-/*
-    Configuraçao do Virtual Host do Apache
-
-    C:\xampp\apache\conf\extra\httpd-vhosts.conf
-
-    ##NameVirtualHost localhost:80
-    ##<VirtualHost *:80>
-    ##ServerName sistema
-    ##DocumentRoot "C:/XAMPP/htdocs/sistema"
-    ##</VirtualHost>
-
-*/
 

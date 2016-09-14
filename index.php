@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require 'config.php';
 define('HELPERS','core/helpers/');
 header("Content-Type: text/html;  charset=utf-8", true);
