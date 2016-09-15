@@ -1,6 +1,6 @@
 
 	<div class="container-login login-body">
-		<form class="form-login" id="" action="/conta/logar" method="post">    
+		<form class="form-login" id="" action="" method="post">    
 			<h2 class="form-login-heading">Sistema de Controle Financeiro</h2>
 			
 			<div class="login-wrap">
@@ -12,7 +12,7 @@
 				<?php echo !empty($erroSenha) ? $erroSenha : "" ?>
 				<br/>	
 				<button class="btn btn-login btn-block" type="submit">Acessar</button>
-				<a class="btn btn-cadastro btn-block" style="height: 35px" href="/conta/cadastro" title="Cadastrar">Cadastrar</a>
+				<a class="btn btn-cadastro btn-block" style="height: 35px" href="/cadastro" title="Cadastrar">Cadastrar</a>
 			</div>
 			<?php echo !empty($erro_login) ? $erro_login : "" ?>
 			

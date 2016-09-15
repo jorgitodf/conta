@@ -5,7 +5,7 @@ class LoginHelper {
     public static function isLoogedUser() {
         $logado = new LoginModel();
         if ($logado->isLogged() == false) {
-            header("Location: /conta/login");
+            header("Location: /login");
         }
     }
 

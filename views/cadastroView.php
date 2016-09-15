@@ -4,7 +4,7 @@
     <div class="row-fluid">
         
         <form method="POST" action="/cadastro/salvar" id="form_cadastro_usuario">
-            <div class="panel panel-info">
+            <div class="panel panel-info" id="panel_cadastro">
                 <div class="panel-heading" id="panel_heading_cadastro">
                     <h3 class="panel-title">Cadastro de Novo Usuário</h3>
                 </div>

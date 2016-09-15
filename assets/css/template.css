@@ -139,7 +139,147 @@
 }	
 
 
+@media (min-width: 1440px) {
+	
+    html, body {
+        margin: 0;
+        height: 100%;
+    }
+    main {
+        height: 100%;
+        background-color: #f1f2f7;
+    }
+    
+	/*LOGIN PAGE*/
 
+	.login-body {
+	    background-color: #f1f2f7;
+	}
+	
+	.container-login {
+		margin-left: 18%;
+	}	
+
+	.form-login {
+	    max-width: 45%;
+	    height: 390px;
+	    margin: 100px auto 0;
+	    background: #fff;
+	    border-radius: 5px;
+	    -webkit-border-radius: 5px;
+	}
+
+	.form-login h2.form-login-heading {
+	    margin: 0;
+	    padding:20px 15px;
+	    text-align: center;
+	    background: #41cac0;
+	    border-radius: 5px 5px 0 0;
+	    -webkit-border-radius: 5px 5px 0 0;
+	    color: #fff;
+	    font-size: 18px;
+	    text-transform: uppercase;
+	    font-weight: 300;
+	    font-family: 'Open Sans', sans-serif;
+	}
+
+	.form-login .form-control {
+	    position: relative;
+	    font-size: 16px;
+	    height: auto;
+	    padding: 10px;
+	    -webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    box-sizing: border-box;
+	}
+	.form-login .form-control:focus {
+	    z-index: 2;
+	}
+	.form-login input[type="text"], .form-login input[type="password"] {
+	    margin-bottom: 15px;
+	    border-radius: 5px;
+	    -webkit-border-radius: 5px;
+	    border: 1px solid #eaeaea;
+	    box-shadow: none;
+	    font-size: 12px;
+	}
+	
+	.form-login .btn-login {
+	    background: #f67a6e;
+	    color: #fff;
+	    text-transform: uppercase;
+	    font-weight: 200;
+	    font-family: 'Open Sans', sans-serif;
+	    box-shadow: 0 4px #e56b60;
+	    margin-bottom: 15px;
+	    padding: 1.5%;
+	}
+	.form-login .btn-cadastro {
+	    background: #6767fe;
+	    color: #fff;
+	    text-transform: uppercase;
+	    font-weight: 200;
+	    font-family: 'Open Sans', sans-serif;
+	    box-shadow: 0 4px #4545fe;
+	    margin-bottom: 15px;
+	    padding: 2%;
+	}
+
+	.btn-cadastro {
+		width: 700px;		
+	}
+
+	.form-login p {
+	    text-align: center;
+	    color: #b6b6b6;
+	    font-size: 16px;
+	    font-weight: 300;
+	}
+
+	.form-login a {
+	    color: #41cac0;
+	}
+
+	.form-login a:hover {
+	    color: #b6b6b6;
+	}
+
+	.login-wrap {
+	    padding: 20px;
+	}
+	
+	#erro_login {
+		margin-left: 23%;
+		padding: 2%;
+	}
+	
+	/*CADASTRO DE USUÁRIO*/
+	
+	.container_cadastro_usuario {
+        margin-left: 40%;
+        margin-top: 10%;
+	}
+	#nomeCompleto, #email, #senha {
+		width: 100%;
+	}
+	#form_cadastro_usuario {
+		width: 40%;
+	}
+	#panel_heading_cadastro {
+		background-color: #3935ce;
+		color: white;
+	}
+	.erro_nome_completo{
+		color: red;
+		font-size: 11px;
+	}
+	#panel_cadastro {
+		width: 100%;
+		border: solid 0 white;
+	}
+	
+	
+}	
 
 
 

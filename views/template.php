@@ -3,9 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Conta</title>
-    <link rel="stylesheet" href="assets/css/template.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all" />
-    <link rel="stylesheet" href="assets/fonts/glyphicons-halflings-regular.ttf" media="all" />
+    <link rel="stylesheet" href="/assets/css/template.css" />
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" media="all" />
+    <link rel="stylesheet" href="/assets/fonts/glyphicons-halflings-regular.ttf" media="all" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -61,8 +61,8 @@
 
 </main>
 
-<script src="assets/js/jquery-3.1.0.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery-3.1.0.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
 
 </body>
 </html>
