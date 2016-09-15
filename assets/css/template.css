@@ -113,31 +113,43 @@
 		margin-left: 23%;
 		padding: 2%;
 	}
+	.erro_email, .erro_senha {
+		color: red;
+		font-size: 11px;
+		padding: 0;
+	}
 	
 	/*CADASTRO DE USUÁRIO*/
 	
 	.container_cadastro_usuario {
-        margin-left: 25%;
+        margin-left: 38%;
         margin-top: 10%;
 	}
 	#nomeCompleto, #email, #senha {
-		width: 55%;
+		width: 100%;
 	}
 	#form_cadastro_usuario {
-		width: 60%;
+		width: 40%;
 	}
 	#panel_heading_cadastro {
 		background-color: #3935ce;
 		color: white;
 	}
-	.erro_nome_completo{
+	.erro_nome_completo, .erro_senha_cadastro, .erro_email_cadastro{
 		color: red;
 		font-size: 11px;
+	}
+	#panel_cadastro {
+		width: 100%;
+		border: solid 0 white;
+	}
+	#msg_sucesso {
+		margin-left: 14%;
+		padding: 2%;
 	}
 	
 	
 }	
-
 
 @media (min-width: 1440px) {
 	
