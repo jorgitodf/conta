@@ -59,9 +59,8 @@ class loginController extends Controller {
 	}
     
     public function logout() {
-        
-        unset($_SESSION['cliente']);
-        header("Location: /login");
-  
-    }    
+        unset($_SESSION['userLogin']);
+        header("Location: /home");
+    } 
+       
 }

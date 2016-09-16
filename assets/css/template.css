@@ -10,7 +10,19 @@
         height: 100%;
         background-color: #f1f2f7;
     }
-    
+	.navbar .navbar-nav {
+	    display: inline-block;
+	    float: none;
+	    margin:0 auto;
+	    margin: 0.5%;
+	}
+	.navbar .navbar-collapse {
+	    text-align: center;
+	}
+	#navbar-nav {
+		margin-left: -70%;
+	}
+  
 	/*LOGIN PAGE*/
 
 	.login-body {
@@ -116,7 +128,7 @@
 	.erro_email, .erro_senha {
 		color: red;
 		font-size: 11px;
-		padding: 0;
+		margin-left: 10%;
 	}
 	
 	/*CADASTRO DE USUÁRIO*/
@@ -147,7 +159,19 @@
 		margin-left: 14%;
 		padding: 2%;
 	}
+	.div_erro {
+		padding: 0;
+	}
 	
+	.erro_conta {
+		font-size: 14px;
+		margin-left: 5%;
+	}
+	
+	.body_home, .body_cadastro_conta {
+		margin-top: 8%;
+		
+	}
 	
 }	
 

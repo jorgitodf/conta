@@ -10,11 +10,9 @@
 </head>
 <body>
 <main>
-
     <header class="">
-	<?php if (isset($_SESSION['userLogin'])) { ?>
-	
-        <nav class="navbar navbar-default navbar-fixed-top">
+<?php if (isset($_SESSION['userLogin'])) { ?>
+        <nav class="navbar navbar-default navbar-fixed-top" id="barra_nav">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -25,40 +23,37 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
+                
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li class="active"><a href="">Link <span class="sr-only">(current)</span></a></li>
+                    <ul class="nav navbar-nav" id="navbar-nav">
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Minha Conta<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Extrato</a></li>
+                                <li><a href="">Extrato por Período</a></li>
+                                <li><a href="">Painel de Contas</a></li>
+                            </ul>
+                        </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
+                            <a href="/login/logout">Deslogar</a>
+    
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>	
-        	
-	<?php }?>
-	
-
+<?php }?>
     </header>
 
     <section class="col-md-10 col-xs-12">
-        <?php $this->loadViewInTemplate($viewName, $viewData); ?>
-        
+        <?php $this->loadViewInTemplate($viewName, $viewData); ?>        
     </section>
 
     <footer>
     </footer>
-
 </main>
 
 <script src="/assets/js/jquery-3.1.0.min.js"></script>
