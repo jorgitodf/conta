@@ -36,21 +36,64 @@ class contaController extends Controller {
         } else
             $dados['codAgencia'] = $_POST['cod_agencia'];    
  
-        if (isset($_POST['dig_agencia']) && !empty($_POST['dig_agencia'])) {
-        	$dados['digAgencia'] = (int)$_POST['dig_agencia'];
+        //if (isset($_POST['dig_agencia']) && !empty($_POST['dig_agencia'])) {
+        	//$dados['digAgencia'] = $_POST['dig_agencia'];
             //$dados['erroDigVerificador'] = "<span class='erro_dig_verificador'>Campo Dígito Verificador Obrigatório <br/></span>";
             //$status = false;
-        } //else
-            //$dados['digAgencia'] = $_POST['dig_agencia'];           
-            
+        //} //else
+            //$dados['digAgencia'] = $_POST['dig_agencia'];      
             
         if (isset($_POST['tipo_conta']) && empty($_POST['tipo_conta'])) {
             $dados['erroTipoConta'] = "<span class='erro_tipo_conta'>Campo Tipo de Conta Obrigatório <br/></span>";
             $status = false;
         } else
-            $dados['tipo_conta'] = $_POST['tipo_conta'];
+            $dados['tipo_conta'] = $_POST['tipo_conta'];     
 
-		$this->loadTemplate('cadastroContaView', $dados);            
-    }
+        if (isset($_POST['num_conta']) && empty($_POST['num_conta'])) {
+            $dados['erroNumConta'] = "<span class='erro_num_conta'>Campo Número da Conta Obrigatório <br/></span>";
+            $status = false;
+        } else
+            $dados['numConta'] = $_POST['num_conta'];      
+            
+        if (isset($_POST['dig_conta']) && empty($_POST['dig_conta'])) {
+            $dados['erroDigConta'] = "<span class='erro_num_conta'>Campo Dígito Verificador da Conta Obrigatório <br/></span>";
+            $status = false;
+        } else
+            $dados['digConta'] = $_POST['dig_conta'];   
+            
+        if (isset($_POST['cod_operacao']) && !empty($_POST['cod_operacao'])) {
+        	$codOperacao = trim(addslashes($_POST['cod_operacao']));
+            //$dados['erroCodOperacao'] = "<span class='erro_cod_operacao'>Campo Código de Operação <br/></span>";
+            //$status = false;
+        }// else
+           // $dados['codOperacao'] = $_POST['cod_operacao'];  
+                      
+        if ($status == true) {
+        	
+			$nomeBanco = trim(addslashes($_POST['nome_banco']));
+			$codAgencia = trim(addslashes($_POST['cod_agencia']));
+			$digAgencia = trim(addslashes($_POST['dig_agencia']));
+			$tipoConta = trim(addslashes($_POST['tipo_conta']));
+			$numConta = trim(addslashes($_POST['num_conta']));
+			$digConta = trim(addslashes($_POST['dig_conta']));
+			$idUser = $_SESSION['userLogin']['idUser'];
+			
+			if ($this->contaModel->verificaContaCadastrada($idUser, $numConta, $codAgencia) > 0) {
+				$dados['msg_conta_cadastrada'] = "<span class='alert alert-danger' role='alert' id='msg_conta_cadastrada'>Conta {$numConta} pertecente a Agência {$codAgencia} já cadastrada no Sistema!</span>";
+			} elseif ($this->contaModel->cadastrarConta($nomeBanco, $codAgencia, $digAgencia, $tipoConta, $numConta, $digConta, $codOperacao, $idUser) == true) {
+				$retorno = $this->contaModel->getContaUsuario($idUser);
+	            $dadosSucesso = array(
+	            	'retorno' => $retorno, 
+	            	'msg_sucesso' => "<span class='alert alert-success' role='alert' id='msg_sucesso_conta'>Conta Cadastrada com Sucesso!</span>");
+	            $this->loadTemplate('cadastroContaSucessoView', $dadosSucesso);
+	            die();					
+			} else {
+	            $dados['msg_erro'] = "<span class='alert alert-danger' role='alert' id='msg_erro'>Não foi possível cadastrar essa Conta!</span>";
+	        } 
+    
+    	}
+    	
+    $this->loadTemplate('cadastroContaView', $dados);      
+    }	
     
 }

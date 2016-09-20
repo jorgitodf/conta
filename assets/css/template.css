@@ -176,11 +176,11 @@
 	/*CADASTRO DE CONTA*/
 	.body_cadastro_conta {
 		margin-top: 9%;
-		left: 30%;
-		
+		left: 10%;
 	}
 	#form_cadastro_conta {
 		width: 60%;
+		margin-left: 20%;
 	}
 	.div_cad_conta_esq {
 		width: 48%;
@@ -194,9 +194,17 @@
 	.div_button {
 		clear: both;
 	}
-	.erro_banco, .erro_cod_agencia, .erro_dig_verificador, .erro_tipo_conta {
+	.erro_banco, .erro_cod_agencia, .erro_dig_verificador, .erro_tipo_conta, .erro_num_conta {
 		color: red;
 		font-size: 11px;
+	}
+	#msg_conta_cadastrada {
+		margin-left: 5%;
+		padding: 1.6%;
+	}
+	#msg_sucesso_conta {
+		margin-left: 40%;
+		padding: 1.6%;
 	}
 	
 }	

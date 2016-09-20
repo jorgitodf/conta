@@ -53,14 +53,15 @@
 	                        <?php echo !empty($erroNomeBanco) ? $erroNomeBanco : "" ?>
 	                        <?php echo !empty($erroCodAgencia) ? $erroCodAgencia : "" ?>
 	                        <?php echo !empty($erroDigVerificador) ? $erroDigVerificador : "" ?>
-	                        <?php echo !empty($erroNumConta) ? $erroNumConta : "" ?>
-	                        <?php echo !empty($erroCodOperacao) ? $erroCodOperacao : "" ?>
 	                        <?php echo !empty($erroTipoConta) ? $erroTipoConta : "" ?>
+	                        <?php echo !empty($erroNumConta) ? $erroNumConta : "" ?>
 	                        <?php echo !empty($erroDigConta) ? $erroDigConta : "" ?>
+	                        
 	                    </div>
                     </div> 
 		        	<div class="form-group div_button">
-		            	<button type="submit" class="btn btn-primary">Salvar</button>
+		            	<button type="" class="btn btn-primary">Salvar</button>
+		            	<?php echo !empty($msg_conta_cadastrada) ? $msg_conta_cadastrada : "" ?>
 		            </div>
                 </div>
 
