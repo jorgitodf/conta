@@ -95,5 +95,24 @@ class contaController extends Controller {
     	
     $this->loadTemplate('cadastroContaView', $dados);      
     }	
+
+	public function ver() {
+		
+        if (isset($_POST['radio_conta']) && !empty($_POST['radio_conta'])) {
+        	$dados = array();
+            $dados['idConta'] = $radio_conta = $_POST['radio_conta'];
+
+            $this->loadTemplate('homePrincipalContaView', $dados);       
+        }
+		
+	}
+
+	public function extrato($idConta) {
+		
+        if (is_numeric($idConta)) {
+  			echo $idConta; 
+        }
+		
+	}
     
 }

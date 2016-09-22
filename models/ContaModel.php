@@ -8,20 +8,15 @@ class ContaModel extends Model {
     
     public function verificaConta($idUser) {
     	if (isset($idUser) && !empty($idUser)) {
-			$stmt = $this->db->prepare("SELECT * FROM tb_conta WHERE fk_id_usuario = ?");
+			$stmt = $this->db->prepare("SELECT tb_conta.id_conta AS 'IdConta', tb_conta.codigo_agencia AS 'CodAgencia', tb_banco.nome_banco  AS 'NomeBanco', tb_conta.digito_verificador_agencia AS 'DigVerAgencia', tb_tipo_conta.tipo_conta AS 'TipoConta', tb_conta.numero_conta AS 'NumeroConta', tb_conta.digito_verificador_conta AS 'DigVerConta', tb_conta.codigo_operacao AS 'CodOperacao', date_format(tb_conta.data_cadastro, '%d/%m/%Y') AS 'DataCadastro' FROM tb_conta LEFT JOIN tb_banco ON (tb_conta.fk_cod_banco = tb_banco.cod_banco) LEFT JOIN tb_tipo_conta ON (tb_conta.fk_tipo_conta = tb_tipo_conta.id_tipo_conta) WHERE tb_conta.fk_id_usuario = ? ORDER BY tb_conta.id_conta DESC");
 			$stmt->bindValue(1, $idUser, PDO::PARAM_INT);
 			$stmt->execute();
-			$stmt->fetchAll(PDO::FETCH_ASSOC);    		
-			if (!empty($stmt->fetchAll(PDO::FETCH_ASSOC))) {
-				return true;				
-			} else {
-				return false;
-			}
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
 	}
 	
 	public function getContaUsuario($idUser) {
-		$stmt = $this->db->prepare("SELECT tb_conta.codigo_agencia AS 'CodAgencia', tb_banco.nome_banco  AS 'NomeBanco', tb_conta.digito_verificador_agencia AS 'DigVerAgencia', tb_tipo_conta.tipo_conta AS 'TipoConta', tb_conta.numero_conta AS 'NumeroConta', tb_conta.digito_verificador_conta AS 'DigVerConta', tb_conta.codigo_operacao AS 'CodOperacao', date_format(tb_conta.data_cadastro, '%d/%m/%Y') AS 'DataCadastro' FROM tb_conta LEFT JOIN tb_banco ON (tb_conta.fk_cod_banco = tb_banco.cod_banco) LEFT JOIN tb_tipo_conta ON (tb_conta.fk_tipo_conta = tb_tipo_conta.id_tipo_conta) WHERE tb_conta.fk_id_usuario = ? ORDER BY tb_conta.id_conta DESC");
+		$stmt = $this->db->prepare("SELECT tb_conta.id_conta AS 'IdConta', tb_conta.codigo_agencia AS 'CodAgencia', tb_banco.nome_banco  AS 'NomeBanco', tb_conta.digito_verificador_agencia AS 'DigVerAgencia', tb_tipo_conta.tipo_conta AS 'TipoConta', tb_conta.numero_conta AS 'NumeroConta', tb_conta.digito_verificador_conta AS 'DigVerConta', tb_conta.codigo_operacao AS 'CodOperacao', date_format(tb_conta.data_cadastro, '%d/%m/%Y') AS 'DataCadastro' FROM tb_conta LEFT JOIN tb_banco ON (tb_conta.fk_cod_banco = tb_banco.cod_banco) LEFT JOIN tb_tipo_conta ON (tb_conta.fk_tipo_conta = tb_tipo_conta.id_tipo_conta) WHERE tb_conta.fk_id_usuario = ? ORDER BY tb_conta.id_conta DESC");
 		$stmt->bindValue(1, $idUser, PDO::PARAM_INT);
 		$stmt->execute();
 		return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -68,11 +63,11 @@ class ContaModel extends Model {
 		$statement->bindParam(':fk_cod_banco', $nomeBanco);
 		$statement->bindParam(':fk_tipo_conta', $tipoConta);
 
-			if (!$statement->execute()) {
-				return false;
-			} else {
-				return true;
-			}
+		if (!$statement->execute()) {
+			return false;
+		} else {
+			return true;
+		}
 
 		}
 	

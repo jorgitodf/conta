@@ -207,6 +207,47 @@
 		padding: 1.6%;
 	}
 	
+	
+	/*PÁGINA HOME*/
+	.tipo_conta_home, .ag_conta_home {
+		font-weight: bold;
+	}
+	.num_conta_home, .nome_banco_home {
+		font-weight: bold;
+		color: #0531fe;
+	}
+	.div_button_home {
+		margin-left: 1.5%;
+		left: 1.5%;
+	}
+	#panel_home {
+		width: 100%;
+		border: solid 0 white;
+		height: 200px;
+	}
+	#form_home {
+		margin-left: 23%;
+		margin-top: 2%;
+	}
+	
+	
+	/*PÁGINA HOME CONTA*/
+	.body_home_conta {
+		margin-top: 8%;
+	}
+	.panel_home_conta {
+		margin-left: 20%;
+		margin-top: 6%;
+	}
+	#btn_extrato {
+		height: 80px;
+		border-radius: 10px 0 0 10px;
+	}
+	#btn_extrato_1 {
+		height: 80px;
+		border-radius: 0 10px 10px 0;
+	}
+	
 }	
 
 @media (min-width: 1440px) {

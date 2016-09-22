@@ -16,10 +16,12 @@ class homeController extends Controller {
     	$dados = array();
     	
     	if (isset($_SESSION['userLogin'])) {
-			$idUser = (int)$_SESSION['userLogin']['idUser'];
+			$idUser = $_SESSION['userLogin']['idUser'];
 			if($this->contaModel->verificaConta($idUser) == false) {
 				$dados['erroConta'] = "<span class='erro_conta'>Sr. {$_SESSION['userLogin']['nome']} você não possui nenhuma Conta Cadastrada no momento! <a href='../conta'>Clique aqui para cadastrar</a> </span>";
 
+			} else {
+				$dados['contas'] = $this->contaModel->verificaConta($idUser);
 			}
 		}
         $this->loadTemplate('homeView', $dados);
