@@ -108,9 +108,15 @@ class contaController extends Controller {
 	}
 
 	public function extrato($idConta) {
-		
+		$dados = array();
         if (is_numeric($idConta)) {
-  			echo $idConta; 
+  			if ($this->contaModel->verExtratoAtual($idConta) == false) {
+  				$dados['extrato_erro'] = "<span class='alert alert-danger' role='alert' id='extrato_erro'>Não existe movimentação nesse mês!</span>";
+				$this->loadTemplate('extratoView', $dados);  				
+  			} else {
+  				$dados['extrato'] = $this->contaModel->verExtratoAtual($idConta);
+				$this->loadTemplate('extratoView', $dados);				
+			}
         }
 		
 	}

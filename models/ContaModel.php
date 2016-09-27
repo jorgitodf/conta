@@ -81,5 +81,21 @@ class ContaModel extends Model {
 		$stmt->execute();
 		return $stmt->rowCount();
 	}
+
+	public function verExtratoAtual($idConta) {
+		if (isset($idConta) && !empty($idConta)) {
+			date_default_timezone_set('America/Sao_Paulo'); 
+			$dataAtual = date("m");
+			$dataMovimentacaoInicial = "2016-{$dataAtual}-01";
+			$dataMovimentacaoFinal = "2016-{$dataAtual}-31";
+			
+			$stmt = $this->db->prepare("SELECT Ext.data_movimentacao AS 'DatMov', Ext.movimentacao AS 'Mov', Cat.nome_categoria AS 'Cat', Ext.tipo_operacao AS 'Op', Ext.valor AS 'Val', Ext.saldo AS 'Sal', Ext.despesa_fixa AS 'Dp' FROM tb_extrato AS Ext LEFT JOIN tb_categoria AS Cat ON (Ext.fk_id_categoria = Cat.id_categoria) WHERE Ext.fk_id_conta = ? AND Ext.data_movimentacao BETWEEN ? AND ?");
+			$stmt->bindValue(1, $idConta, PDO::PARAM_INT);		
+			$stmt->bindValue(2, "2016-06-01");
+			$stmt->bindValue(3, "2016-06-31");
+			$stmt->execute();	
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+	}
     
 }    
