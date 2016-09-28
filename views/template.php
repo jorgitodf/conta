@@ -49,7 +49,7 @@
 <?php }?>
     </header>
 
-    <section class="col-md-10 col-xs-12">
+    <section class="col-md-12 col-xs-12 col-sm-12">
         <?php $this->loadViewInTemplate($viewName, $viewData); ?>        
     </section>
 
@@ -58,7 +58,13 @@
 </main>
 
 <script src="/assets/js/jquery-3.1.0.min.js"></script>
+<script src="/assets/js/jquery.maskMoney.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+          $("#valor").maskMoney({showSymbol:true, symbol:"R$ ", decimal:",", thousands:"."});
+    });
+</script>
 
 </body>
 </html>

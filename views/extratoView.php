@@ -1,12 +1,13 @@
 
 	<aside class="row body_extrato col-md-12 col-lg-12 col-sm-10 col-xs-10">
+	<div id="div_extrato">
 		<?php if (isset($extrato) && !empty($extrato)): ?>
 		<div class="panel panel-primary" id="table_extrato">
-			<div class="panel-heading">
+			<div class="panel-heading" id="">
 	            <h3 class="panel-title">Extrato</h3>
 	        </div>
 	        <div class="panel-body">
-	        	<table class="table table-hover">
+	        	<table class="table table-hover" id="">
 		        	<thead>
 	                    <tr>
 	                        <th class="data_mov_cab">Data de Movimentação</th>
@@ -44,5 +45,5 @@
 		<?php else: ?>
 		<h4><?php echo !empty($extrato_erro) ? $extrato_erro : ""  ?></h4>
 		<?php endif; ?>
-		
+	</div>	
 	</aside>

@@ -256,8 +256,10 @@
 		margin-left: 45%;
 	}
 	#table_extrato {
-		margin-left: 20%;
-
+		width: 80%;
+	}
+	#div_extrato {
+		margin-left: 18%;
 	}
 	.td_extrato_cre {
 		color: #0902fd;
@@ -281,6 +283,32 @@
 	}
 	.data_mov_cab, .valor_mov_cab, .saldo_mov_cab {
 		text-align: center;
+	}
+	
+	/*PÁGINA DÉBITO*/
+	.body_debito {
+		margin-top: 8%;
+	}
+	#div_form_debito {
+		margin-left: 30%;
+		margin-right: 30%;
+	}
+	.erro_debito, .erro_movimentacao, .erro_nome_categoria {
+		color: red;
+		font-size: 11px;
+		margin-left: 10%;
+	}
+	.erro_valor {
+		color: red;
+		font-size: 11px;
+		margin-left: 24.7%;	
+	}
+	.div_button_debito {
+		float: left;
+	}
+	#msg_sucesso_deb {
+		margin-left: 8%;
+		padding: 2%;
 	}
 	
 }	

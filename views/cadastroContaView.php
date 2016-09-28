@@ -59,6 +59,7 @@
 	                        
 	                    </div>
                     </div> 
+
 		        	<div class="form-group div_button">
 		            	<button type="" class="btn btn-primary">Salvar</button>
 		            	<?php echo !empty($msg_conta_cadastrada) ? $msg_conta_cadastrada : "" ?>
