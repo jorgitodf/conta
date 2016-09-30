@@ -30,13 +30,13 @@
 	}
 	
 	.container-login {
-		margin-left: 18%;
+		margin-left: 0;
 	}	
 
 	.form-login {
-	    max-width: 45%;
+	    max-width: 36%;
 	    height: 390px;
-	    margin: 100px auto 0;
+	    margin: 7% auto 0;
 	    background: #fff;
 	    border-radius: 5px;
 	    -webkit-border-radius: 5px;
@@ -221,12 +221,10 @@
 		left: 1.5%;
 	}
 	#panel_home {
-		width: 100%;
+		width: 70%;
 		border: solid 0 white;
 		height: 200px;
-	}
-	#form_home {
-		margin-left: 23%;
+		margin-left: 16%;
 		margin-top: 2%;
 	}
 	
@@ -331,7 +329,7 @@
 	}
 	
 	.container-login {
-		margin-left: 18%;
+		margin-left: 13%;
 	}	
 
 	.form-login {

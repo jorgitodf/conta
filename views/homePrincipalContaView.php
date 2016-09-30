@@ -9,7 +9,7 @@
 			    <span class="sr-only">Toggle Dropdown</span>
 			  </button>
 			  <ul class="dropdown-menu">
-			    <li><a href="/conta/extrato/<?php echo $idConta; ?>">Extrato Mês Atual</a></li>
+			    <li><a href="/conta/extrato/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Extrato Mês Atual</a></li>
 			    <li><a href="#">Extrato Por Período</a></li>
 			  </ul>
 			</div>
@@ -21,7 +21,7 @@
 			    <span class="sr-only">Toggle Dropdown</span>
 			  </button>
 			  <ul class="dropdown-menu">
-			    <li><a href="/conta/debitar/<?php echo $idConta; ?>">Debitar</a></li>
+			    <li><a href="/conta/debitar/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Debitar</a></li>
 			    <li><a href="#">Creditar</a></li>
 			  </ul>
 			</div>		

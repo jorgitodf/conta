@@ -8,6 +8,19 @@
         <div class="panel-heading" id="panel_heading_cadastro">
             <h3 class="panel-title">Contas Cadastradas</h3>
         </div>
+        <?php if(isset($_SESSION['conta'])): ?>
+        <div class="panel-body">
+			<div class="radio">
+			  <label>
+			    <input type="radio" name="radio_conta" id="radio_conta" checked="checked" value="">
+				<?php echo "<span class='tipo_conta_home'>{$_SESSION['conta']['TipoConta']}</span> - <span class='num_conta_home'>Número:</span> {$_SESSION['conta']['numConta']}-{$_SESSION['conta']['DigVerConta']} - <span class='ag_conta_home'>Agência:</span> {$_SESSION['conta']['codConta']} - <span class='nome_banco_home'>Banco:</span> {$_SESSION['conta']['nomeBanco']}";  ?>  
+			  </label>
+			</div>
+		</div>	
+		<div class="div_button_home">
+        	<a class="btn btn-primary" style="height: 35px" href="/conta/trocar" title="Trocar de Conta">Trocar de Conta</a>
+        </div>
+		<?php else: ?>
         <div class="panel-body">
         	<?php if(!empty($contas)): ?>
 			<?php foreach ($contas as $conta): ?>
@@ -21,10 +34,12 @@
 			<?php else: ?>
 			<?php echo ""; ?>
 			<?php endif; ?>
-		</div>	
+		</div>
 		<div class="div_button_home">
         	<button type="submit" class="btn btn-primary">Acessar</button>
         </div>
+		<?php endif; ?>
+
 	</div>	
 	</form>	
 	<?php endif; ?>

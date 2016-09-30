@@ -199,5 +199,15 @@ class ContaModel extends Model {
 		$stmt->execute();	
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
+
+	public function getConta($idUser, $idConta) {
+		if (!empty($idUser) && !empty($idConta)) {
+			$stmt = $this->db->prepare("SELECT tb_conta.id_conta AS 'IdConta', tb_conta.codigo_agencia AS 'CodAgencia', tb_banco.nome_banco  AS 'NomeBanco', tb_conta.digito_verificador_agencia AS 'DigVerAgencia', tb_tipo_conta.tipo_conta AS 'TipoConta', tb_conta.numero_conta AS 'NumeroConta', tb_conta.digito_verificador_conta AS 'DigVerConta', tb_conta.codigo_operacao AS 'CodOperacao' FROM tb_conta LEFT JOIN tb_banco ON (tb_conta.fk_cod_banco = tb_banco.cod_banco) LEFT JOIN tb_tipo_conta ON (tb_conta.fk_tipo_conta = tb_tipo_conta.id_tipo_conta) WHERE tb_conta.fk_id_usuario = ? AND tb_conta.id_conta = ? ORDER BY tb_conta.id_conta DESC");
+			$stmt->bindValue(1, $idConta, PDO::PARAM_INT);
+			$stmt->bindValue(2, $idUser, PDO::PARAM_INT);	
+			$stmt->execute();	
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);			
+		}
+	}
     
 }    

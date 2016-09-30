@@ -100,10 +100,20 @@ class contaController extends Controller {
 
 	public function ver() {
         if (isset($_POST['radio_conta']) && !empty($_POST['radio_conta'])) {
-         	$dados = array();
-        	$radio_conta = (int)$_POST['radio_conta'];
-            $dados['idConta'] = $radio_conta;
-            $this->loadTemplate('homePrincipalContaView', $dados);   
+        	$idUser = $_SESSION['userLogin']['idUser'];
+        	$idConta = (int)$_POST['radio_conta'];
+        	$_SESSION['conta'] = array('idConta'=>'', 'codConta'=>'', 'nomeBanco'=>'', 'DigVerAgencia'=>'', 'TipoConta'=>'' ,'numConta'=>'', 'DigVerConta'=>'', 'idUser'=>'');
+        	$dados = $this->contaModel->getConta($idUser, $idConta);
+        	foreach ($dados as $linha) {
+				$_SESSION['conta']['idConta'] = $linha['IdConta'];
+				$_SESSION['conta']['codConta'] = $linha['CodAgencia'];
+				$_SESSION['conta']['nomeBanco'] = $linha['NomeBanco'];
+				$_SESSION['conta']['DigVerAgencia'] = $linha['DigVerAgencia'];
+				$_SESSION['conta']['TipoConta'] = $linha['TipoConta'];
+				$_SESSION['conta']['numConta'] = $linha['NumeroConta'];
+				$_SESSION['conta']['DigVerConta'] = $linha['DigVerConta'];
+			}
+            $this->loadTemplate('homePrincipalContaView');   
         }
 	}
 
@@ -183,5 +193,10 @@ class contaController extends Controller {
 		}
 
 	}
+
+    public function trocar() {
+        unset($_SESSION['conta']);
+        header("Location: /home");
+    } 
     
 }

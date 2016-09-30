@@ -30,9 +30,9 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Minha Conta<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                             	<li><a href="/home">Página Inicial</a></li>
-                                <li><a href="">Extrato</a></li>
+                                <li><a href="/conta/extrato/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Extrato</a></li>
                                 <li><a href="">Extrato por Período</a></li>
-                                <li><a href="">Painel de Contas</a></li>
+                                <li><a href="/conta/debitar/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Transação Debitar</a></li>
                             </ul>
                         </li>
                     </ul>
