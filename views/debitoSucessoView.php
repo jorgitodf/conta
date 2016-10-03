@@ -26,12 +26,13 @@
                     
                     <div class="form-group form-group-sm">
                         <label for="valor" class="control-label">Valor:</label>
-                        <input type="text" name="valor" id="valor" class="form-control input-sm" readonly="true" value="<?php echo $deb['Val']; ?>"/>
+                        <input type="text" name="valor" id="valor" class="form-control input-sm" readonly="true" value="<?php echo number_format($deb['Val'], 2, ',', '.'); ?>"/>
                     </div>  
                 </div> 
 				<?php endforeach; ?>
 	        	<div class="form-group div_button_debito col-sm-12">
                     <a class="btn btn-primary" style="height: 35px" href="/conta/extrato/<?php echo $idConta; ?>" title="Ver Extrato">Ver Extrato</a>
+                    <a class="btn btn-primary" style="height: 35px" href="/conta/debitar/<?php echo $idConta; ?>" title="Novo Pagamento">Novo Pagamento</a>
                     <?php echo !empty($msg_sucesso) ? $msg_sucesso : "" ?>
                     
 	            </div>

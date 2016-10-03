@@ -4,7 +4,7 @@
 		<?php if (isset($extrato) && !empty($extrato)): ?>
 		<div class="panel panel-primary" id="table_extrato">
 			<div class="panel-heading" id="">
-	            <h3 class="panel-title">Extrato</h3>
+	            <h3 class="panel-title">Extrato período: <?php echo !empty($data_inicial) ? date("d/m/Y", strtotime($data_inicial)) : '' ; ?> a <?php echo !empty($data_final) ? date("d/m/Y", strtotime($data_final)) : '' ; ?></h3>
 	        </div>
 	        <div class="panel-body">
 	        	<table class="table table-hover" id="">

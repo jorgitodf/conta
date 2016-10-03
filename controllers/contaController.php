@@ -124,6 +124,12 @@ class contaController extends Controller {
   				$dados['extrato_erro'] = "<span class='alert alert-danger' role='alert' id='extrato_erro'>Não existe movimentação nesse mês!</span>";
   			} else {
   				$dados['extrato'] = $this->contaModel->verExtratoAtual($idConta);
+  				foreach ($dados['extrato'] as $item) {
+					$data_inicial = $item['DatMov'];
+					$data_final = $item['DatMov'];	
+				}
+				$dados['data_inicial'] = $data_inicial;
+				$dados['data_final'] = $data_final;
 			}
         }
         $this->loadTemplate('extratoView', $dados);  

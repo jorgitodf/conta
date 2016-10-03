@@ -36,7 +36,7 @@
                 </div> 
 
 	        	<div class="form-group div_button_debito">
-	            	<button type="" class="btn btn-primary">Debitar</button>
+	            	<button type="submit" class="btn btn-primary">Debitar</button>
 	            </div>
 	        	<div class="div_erros">
 	            	<?php echo !empty($erroDebito) ? $erroDebito : "" ?><br/>

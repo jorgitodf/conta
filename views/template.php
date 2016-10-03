@@ -31,7 +31,7 @@
                             <ul class="dropdown-menu">
                             	<li><a href="/home">Página Inicial</a></li>
                                 <li><a href="/conta/extrato/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Extrato</a></li>
-                                <li><a href="">Extrato por Período</a></li>
+                                <li><a href="/extrato">Extrato por Período</a></li>
                                 <li><a href="/conta/debitar/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Transação Debitar</a></li>
                             </ul>
                         </li>
