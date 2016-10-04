@@ -33,6 +33,8 @@
                                 <li><a href="/conta/extrato/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Extrato</a></li>
                                 <li><a href="/extrato">Extrato por Período</a></li>
                                 <li><a href="/conta/debitar/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Transação Debitar</a></li>
+                                <li><a href="/conta/creditar/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Transação Creditar</a></li>
+                                <li><a href="/conta/agendar/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Agendar Pagamento</a></li>
                             </ul>
                         </li>
                     </ul>

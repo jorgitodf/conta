@@ -309,6 +309,32 @@
 		margin-left: 1%;
 	}
 	
+	/*PÁGINA CRÉDITO*/
+	.body_debito {
+		margin-top: 8%;
+	}
+	#div_form_debito {
+		margin-left: 30%;
+		margin-right: 30%;
+	}
+	.erro_credito, .erro_movimentacao, .erro_nome_categoria {
+		color: red;
+		font-size: 11px;
+		margin-left: 10%;
+	}
+	.erro_valor {
+		color: red;
+		font-size: 11px;
+		margin-left: 25.7%;	
+	}
+	.div_button_debito {
+		float: left;
+	}
+	#msg_sucesso_deb {
+		padding: 3%;
+		margin-left: 1%;
+	}
+	
 	/*PÁGINA EXTRATO PERÍODO*/
 	.body_extrato_periodo {
 		margin-top: 9%;
