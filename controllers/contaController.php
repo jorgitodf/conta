@@ -96,25 +96,6 @@ class contaController extends Controller {
         $this->loadTemplate('cadastroContaView', $dados);
     }
 
-    public function ver() {
-        if (isset($_POST['radio_conta']) && !empty($_POST['radio_conta'])) {
-            $idUser = $_SESSION['userLogin']['idUser'];
-            $idConta = (int) $_POST['radio_conta'];
-            $_SESSION['conta'] = array('idConta' => '', 'codConta' => '', 'nomeBanco' => '', 'DigVerAgencia' => '', 'TipoConta' => '', 'numConta' => '', 'DigVerConta' => '', 'idUser' => '');
-            $dados = $this->contaModel->getConta($idUser, $idConta);
-            foreach ($dados as $linha) {
-                $_SESSION['conta']['idConta'] = $linha['IdConta'];
-                $_SESSION['conta']['codConta'] = $linha['CodAgencia'];
-                $_SESSION['conta']['nomeBanco'] = $linha['NomeBanco'];
-                $_SESSION['conta']['DigVerAgencia'] = $linha['DigVerAgencia'];
-                $_SESSION['conta']['TipoConta'] = $linha['TipoConta'];
-                $_SESSION['conta']['numConta'] = $linha['NumeroConta'];
-                $_SESSION['conta']['DigVerConta'] = $linha['DigVerConta'];
-            }
-            $this->loadTemplate('homePrincipalContaView');
-        }
-    }
-
     public function extrato($idConta) {
         $dados = array();
         if (is_numeric($idConta)) {
