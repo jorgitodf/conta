@@ -11,7 +11,11 @@ class testeController extends Controller {
 
     public function index() {
         $resultado = $this->contaModel->verificaPagamentoAgendado();
-        echo $resultado;
+        if ($resultado == 0) {
+            echo "Não há nenhuma pagamento agendado para pagamento hoje.";
+        } else {
+            echo "Pagamento(s) realizado(s) com Sucesso.";
+        }
     }    
 
 }

@@ -244,7 +244,7 @@
         border-collapse: collapse;
     }
     tfoot {
-        background-color: #FFB90F;
+        background-color: rgb(255,204,0);
         font-weight: bold;
     }
     #cab_table {
@@ -260,7 +260,13 @@
         color: white;
     }
     #table_desp_agendada > tbody > tr > td {
-        background-color: #98FB98;
+        background-color: rgb(204,255,255);
+    }
+    .td_color_pgto {
+        color: red;
+    }
+    .td_color_pgto_sim {
+        color: blue;
     }
     .sec_btn_group {
         width: 45%;

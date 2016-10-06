@@ -45,10 +45,17 @@
                       <?php $total = "" ?>
                       <?php foreach ($contas_agendadas as $linha): ?>
                       <tr>
-                          <td><?php echo ucwords(strtolower(mb_convert_case($linha['mov'], MB_CASE_TITLE))); ?></td>
-                          <td align="left">R$ <?php echo number_format($linha['valor'], 2, ',', '.'); ?></td>
-                          <td><?php echo date("d/m/Y", strtotime($linha['data'])); ?></td>
-                          <td><?php echo ucwords(strtolower(mb_convert_case($linha['pago'], MB_CASE_TITLE))); ?></td>
+                          <?php if ($linha['pago'] == 'Não'): ?>
+                          <td class="td_color_pgto"><?php echo ucwords(strtolower(mb_convert_case($linha['mov'], MB_CASE_TITLE))); ?></td>
+                          <td align="left" class="td_color_pgto">R$ <?php echo number_format($linha['valor'], 2, ',', '.'); ?></td>
+                          <td class="td_color_pgto"><?php echo date("d/m/Y", strtotime($linha['data'])); ?></td>
+                          <td class="td_color_pgto"><?php echo ucwords(strtolower(mb_convert_case($linha['pago'], MB_CASE_TITLE))); ?></td>
+                          <?php else: ?>
+                          <td class="td_color_pgto_sim"><?php echo ucwords(strtolower(mb_convert_case($linha['mov'], MB_CASE_TITLE))); ?></td>
+                          <td align="left" class="td_color_pgto_sim">R$ <?php echo number_format($linha['valor'], 2, ',', '.'); ?></td>
+                          <td class="td_color_pgto_sim"><?php echo date("d/m/Y", strtotime($linha['data'])); ?></td>
+                          <td class="td_color_pgto_sim"><?php echo ucwords(strtolower(mb_convert_case($linha['pago'], MB_CASE_TITLE))); ?></td>                          
+                          <?php endif; ?>
                       </tr>
                       <?php $total += $linha['valor']; ?>
                      <?php endforeach; ?> 
