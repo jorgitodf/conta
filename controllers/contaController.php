@@ -317,12 +317,16 @@ class contaController extends Controller {
                 date_default_timezone_set('America/Sao_Paulo');
                 $data['ano'] = date("Y"); 
                 $data['mes'] = $this->contaModel->verificaMes();
-                $data['mensagem'] = "<span class='alert alert-warning' role='alert'>Não há nenhum pagamento agendado para pagar hoje.</span>";
                 $data['contas_agendadas'] = $this->contaModel->getContasAgendadas($_SESSION['conta']['idConta']);
-                $this->loadTemplate('homePrincipalContaView', $data);                  
+                $data['mensagem'] = "<span class='alert alert-danger' role='alert'>Não há nenhum pagamento agendado para pagar hoje.</span>";
             } else {
-                echo "Pagamento(s) realizado(s) com Sucesso.";
-            }            
+                date_default_timezone_set('America/Sao_Paulo');
+                $data['ano'] = date("Y"); 
+                $data['mes'] = $this->contaModel->verificaMes();
+                $data['contas_agendadas'] = $this->contaModel->getContasAgendadas($_SESSION['conta']['idConta']);
+                $data['mensagem'] = "<span class='alert alert-danger' role='alert'>Pagamento(s) realizado(s) com Sucesso.</span>";
+            }
+            $this->loadTemplate('homePrincipalContaView', $data);    
         }
 
     } 

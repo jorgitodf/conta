@@ -289,14 +289,15 @@ class ContaModel extends Model {
         $stmtSelect->bindValue(1, $dataPagamento, PDO::PARAM_INT);
         $stmtSelect->execute();
         $dados = $stmtSelect->fetchALL(PDO::FETCH_ASSOC);
-        
+
         if (!empty($dados)) {
+            
             foreach ($dados as $value) {
                 $saldo = $this->verSaldoAtual($_SESSION['conta']['idConta']);
                 if ($saldo['saldo'] < $value['valor']) {
                     return 0;
-                } else { 
-                    $novoSaldo = $saldo - $value['valor'];
+                } elseif ($saldo['saldo'] >= $value['valor'] && $value['pago'] == 'Não') {
+                    $novoSaldo = $saldo['saldo'] - $value['valor'];
                     $mes = $this->verificaMes();
                     $checkCategoria = $this->checkCategoria();
                     foreach ($checkCategoria as $linha) {
@@ -306,35 +307,29 @@ class ContaModel extends Model {
                         } else {
                             $despFixa = 'N';
                         }
-                    }
-                    if ($value['pago'] == 'Não') {
-                        $stmt = $this->db->prepare("INSERT INTO tb_extrato (data_movimentacao, mes, tipo_operacao, movimentacao, quantidade,"
-                              . " valor, saldo, fk_id_categoria, fk_id_conta, despesa_fixa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                        $stmt->bindValue(1, $value['data_pagamento'], PDO::PARAM_STR);
-                        $stmt->bindValue(2, $mes, PDO::PARAM_STR);
-                        $stmt->bindValue(3, 'Débito', PDO::PARAM_STR);
-                        $stmt->bindValue(4, $value['movimentacao'], PDO::PARAM_STR);
-                        $stmt->bindValue(5, 1, PDO::PARAM_INT);
-                        $stmt->bindValue(6, $value['valor'], PDO::PARAM_STR);
-                        $stmt->bindValue(7, $novoSaldo, PDO::PARAM_STR);
-                        $stmt->bindValue(8, $value['fk_id_categoria'], PDO::PARAM_INT);
-                        $stmt->bindValue(9, $value['fk_id_conta'], PDO::PARAM_INT);
-                        $stmt->bindValue(10, $despFixa, PDO::PARAM_STR);
-                        $stmt->execute();
+                    }   
+                    $stmt = $this->db->prepare("INSERT INTO tb_extrato (data_movimentacao, mes, tipo_operacao, movimentacao, quantidade,"
+                          . " valor, saldo, fk_id_categoria, fk_id_conta, despesa_fixa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->bindValue(1, $value['data_pagamento'], PDO::PARAM_STR);
+                    $stmt->bindValue(2, $mes, PDO::PARAM_STR);
+                    $stmt->bindValue(3, 'Débito', PDO::PARAM_STR);
+                    $stmt->bindValue(4, $value['movimentacao'], PDO::PARAM_STR);
+                    $stmt->bindValue(5, 1, PDO::PARAM_INT);
+                    $stmt->bindValue(6, $value['valor'], PDO::PARAM_STR);
+                    $stmt->bindValue(7, $novoSaldo, PDO::PARAM_STR);
+                    $stmt->bindValue(8, $value['fk_id_categoria'], PDO::PARAM_INT);
+                    $stmt->bindValue(9, $value['fk_id_conta'], PDO::PARAM_INT);
+                    $stmt->bindValue(10, $despFixa, PDO::PARAM_STR);
+                    $stmt->execute();
 
-                        $stmtUpdate = $this->db->prepare("UPDATE tb_pgto_agendado SET pago = 'Sim' WHERE id_pgto_agendado = ?");
-                        $stmtUpdate->bindValue(1, $value['id_pgto_agendado'], PDO::PARAM_INT);
-                        $stmtUpdate->execute();
-
-                        if (!$stmtUpdate->execute()) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    }                
+                    $stmtUpdate = $this->db->prepare("UPDATE tb_pgto_agendado SET pago = 'Sim' WHERE id_pgto_agendado = ?");
+                    $stmtUpdate->bindValue(1, $value['id_pgto_agendado'], PDO::PARAM_INT);
+                    $stmtUpdate->execute();
+                } else {
+                    return 0;
                 }
-            
             }
+            return 1;
         } else {
             return 0;
         }

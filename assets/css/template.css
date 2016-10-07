@@ -22,6 +22,9 @@
     #navbar-nav {
         margin-left: -70%;
     }
+    .container-erro-404 {
+        margin-top: 8%;
+    }
 
     /*LOGIN PAGE*/
 
@@ -272,6 +275,12 @@
         width: 45%;
         float: left;
     }
+    .div_msg_alert_pgto_agendado {
+        margin-top: 27.5%;
+    }
+    .href_btn_home {
+        color: white;
+    }
     .sec_desp_agendada {
         width: 50%;  
         float: right;
@@ -413,7 +422,49 @@
         width: 240px;
         margin-left: 29%;
     }
-
+    
+    /*PÁGINA RELATÓRIO MOVIMENTAÇÃO*/
+    .body_relatorio_movimentacao {
+        margin-top: 8%;
+    }
+    .div_data_inicial_relatorio {
+        float: left;
+    }
+    .div_data_inicial_relatorio_erro {
+        float: left;
+        margin-left: 28%;
+        margin-top: 6%;
+    }
+    #msg_data_inicial_relatorio_erro {
+        padding: 6px;
+    }
+    .div_data_final_relatorio {
+        clear: both;
+        float: left;
+    }
+    .div_data_final_relatorio_erro {
+        float: left;
+        margin-left: 30%;
+        margin-top: 6%;
+    }
+    #msg_data_final_relatorio_erro, #msg_movimentacao_relatorio_erro {
+        padding: 6px;
+    }
+    .div_movimentacao_relatorio {
+        clear: both;
+        float: left; 
+    }
+    #movimentacao_relatorio {
+        width: 250px;
+    }
+    .div_movimentacao_relatorio_erro {
+        float: left;
+        margin-left: 5%;
+        margin-top: 6%;  
+    }
+    .div_button_relatorio_movimentacao {
+        clear: both;
+    }
 }	
 @media (min-width: 1440px) {
 

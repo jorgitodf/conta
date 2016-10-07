@@ -34,6 +34,16 @@
                     <li><a href="/conta/pagar/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Pagamento Agendado</a></li>
                 </ul>
             </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-success" id="btn_extrato"><a class="href_btn_home" href="/home">Relatórios</a></button>
+                <button type="button" class="btn btn-success dropdown-toggle" id="btn_extrato_1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="/relatorio">Movimentação e Período</a></li>
+                </ul>
+            </div>
             <div class="div_msg_alert_pgto_agendado">
                 <?php echo !empty($mensagem) ? $mensagem : ""; ?>
             </div>
@@ -71,7 +81,7 @@
                           <?php endif; ?>
                       </tr>
                       <?php $total += $linha['valor']; ?>
-                     <?php endforeach; ?> 
+                      <?php endforeach; ?> 
                   </tbody>
                   <tfoot>
                       <tr>
