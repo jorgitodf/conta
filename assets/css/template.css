@@ -415,7 +415,6 @@
     }
 
 }	
-
 @media (min-width: 1440px) {
 
     html, body {
@@ -426,6 +425,18 @@
         height: 100%;
         background-color: #f1f2f7;
     }
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        margin:0 auto;
+        margin: 0.5%;
+    }
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+    #navbar-nav {
+        margin-left: -70%;
+    }
 
     /*LOGIN PAGE*/
 
@@ -434,13 +445,13 @@
     }
 
     .container-login {
-        margin-left: 13%;
+        margin-left: 0;
     }	
 
     .form-login {
-        max-width: 45%;
+        max-width: 36%;
         height: 390px;
-        margin: 100px auto 0;
+        margin: 7% auto 0;
         background: #fff;
         border-radius: 5px;
         -webkit-border-radius: 5px;
@@ -529,11 +540,16 @@
         margin-left: 23%;
         padding: 2%;
     }
+    .erro_email, .erro_senha {
+        color: red;
+        font-size: 11px;
+        margin-left: 10%;
+    }
 
     /*CADASTRO DE USUÁRIO*/
 
     .container_cadastro_usuario {
-        margin-left: 40%;
+        margin-left: 38%;
         margin-top: 10%;
     }
     #nomeCompleto, #email, #senha {
@@ -546,7 +562,7 @@
         background-color: #3935ce;
         color: white;
     }
-    .erro_nome_completo{
+    .erro_nome_completo, .erro_senha_cadastro, .erro_email_cadastro{
         color: red;
         font-size: 11px;
     }
@@ -554,9 +570,273 @@
         width: 100%;
         border: solid 0 white;
     }
+    #msg_sucesso {
+        margin-left: 14%;
+        padding: 2%;
+    }
+    .div_erro {
+        padding: 0;
+    }
 
+    .erro_conta {
+        font-size: 14px;
+        margin-left: 5%;
+    }
+
+    .body_home {
+        margin-top: 8%;
+    }
+
+
+    /*CADASTRO DE CONTA*/
+    .body_cadastro_conta {
+        margin-top: 9%;
+        left: 10%;
+    }
+    #form_cadastro_conta {
+        width: 60%;
+        margin-left: 20%;
+    }
+    .div_cad_conta_esq {
+        width: 48%;
+        float: left
+    }
+    .div_cad_conta_dir {
+        width: 48%;
+        float: left;
+        margin-left: 3.7%;
+    }	
+    .div_button {
+        clear: both;
+    }
+    .erro_banco, .erro_cod_agencia, .erro_dig_verificador, .erro_tipo_conta, .erro_num_conta {
+        color: red;
+        font-size: 11px;
+    }
+    #msg_conta_cadastrada {
+        margin-left: 5%;
+        padding: 1.6%;
+    }
+    #msg_sucesso_conta {
+        margin-left: 40%;
+        padding: 1.6%;
+    }
+
+
+    /*PÁGINA HOME*/
+    .tipo_conta_home, .ag_conta_home {
+        font-weight: bold;
+    }
+    .num_conta_home, .nome_banco_home {
+        font-weight: bold;
+        color: #0531fe;
+    }
+    .div_button_home {
+        margin-left: 1.5%;
+        left: 1.5%;
+    }
+    #panel_home {
+        width: 70%;
+        border: solid 0 white;
+        height: 200px;
+        margin-left: 16%;
+        margin-top: 2%;
+    }
+
+
+    /*PÁGINA HOME CONTA*/
+    .body_home_conta {
+        margin-top: auto;
+    }
+    .panel_home_conta {
+        margin-left: auto;
+        margin-top: 8%;
+    }
+    .bordasimples {
+        border-style: solid;
+        border-color: white;
+        border-width: 1px;
+        border-collapse: collapse;
+    }
+    tfoot {
+        background-color: rgb(255,204,0);
+        font-weight: bold;
+    }
+    #cab_table {
+        color: white;
+        text-align: center;
+        background-color: red;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+    #tr_cab_table {
+        background-color: #0000FF;
+        font-weight: bold;
+        color: white;
+    }
+    #table_desp_agendada > tbody > tr > td {
+        background-color: rgb(204,255,255);
+    }
+    .td_color_pgto {
+        color: red;
+    }
+    .td_color_pgto_sim {
+        color: blue;
+    }
+    .sec_btn_group {
+        width: 45%;
+        float: left;
+    }
+    .div_msg_alert_pgto_agendado {
+        margin-top: 26.5%;
+    }
+    .href_btn_home {
+        color: white;
+    }
+    .sec_desp_agendada {
+        width: 50%;  
+        float: right;
+    }
+    #btn_extrato {
+        height: 80px;
+        border-radius: 10px 0 0 10px;
+    }
+    #btn_extrato_1 {
+        height: 80px;
+        border-radius: 0 10px 10px 0;
+    }
+
+    /*PÁGINA EXTRATO ATUAL*/
+    .body_extrato {
+        margin-top: 9%;
+    }
+    #extrato_erro {
+        margin-left: 25%;
+    }
+    #table_extrato {
+        width: 80%;
+    }
+    #div_extrato {
+        margin-left: 18%;
+    }
+    .td_extrato_cre {
+        color: #0902fd;
+        font-weight: bold;
+    }
+    .td_extrato_deb {
+        color: red;
+        font-weight: bold;
+    }
+    .td_extrato_deb_saldo, .td_extrato_deb_data {
+        color: #837d7c;
+        font-weight: bold;
+    }
+    .td_extrato_deb_data {
+        color: #837d7c;
+        font-weight: bold;
+        text-align: center;
+    }
+    .td_extrato_deb_fixa {
+        color: red;
+    }
+    .data_mov_cab, .valor_mov_cab, .saldo_mov_cab {
+        text-align: center;
+    }
+
+    /*PÁGINA DÉBITO*/
+    .body_debito {
+        margin-top: 8%;
+    }
+    #div_form_debito {
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+    .erro_debito, .erro_movimentacao, .erro_nome_categoria {
+        color: red;
+        font-size: 11px;
+        margin-left: 10%;
+    }
+    .erro_valor {
+        color: red;
+        font-size: 11px;
+        margin-left: 24.7%;	
+    }
+    .div_button_debito {
+        float: left;
+    }
+    #msg_sucesso_deb {
+        padding: 3%;
+        margin-left: 1%;
+    }
+
+    /*PÁGINA CRÉDITO*/
+    .body_debito {
+        margin-top: 8%;
+    }
+    #div_form_debito {
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+    .erro_credito, .erro_movimentacao, .erro_nome_categoria {
+        color: red;
+        font-size: 11px;
+        margin-left: 10%;
+    }
+    .erro_valor {
+        color: red;
+        font-size: 11px;
+        margin-left: 25.7%;	
+    }
+    .div_button_debito {
+        float: left;
+    }
+    #msg_sucesso_deb {
+        padding: 3%;
+        margin-left: 1%;
+    }
+
+    /*PÁGINA EXTRATO PERÍODO*/
+    .body_extrato_periodo {
+        margin-top: 9%;
+    }
+    #panel_extrato_periodo {
+        width: 100%;
+        border: solid 0 white;
+        width: 50%;
+        margin-left: 25%;
+        height: 230px;
+    }
+    .div_data_final {
+        float: left;
+        margin-left: 28%;
+    }
+    .div_data_inicial {
+        float: left;
+        margin-left: 10%;
+    }
+    .btn_extrato {
+        margin-left: 12%;
+        float: left;
+        margin-top: 0.5%;
+    }
+    .erro_data_inicial {
+        color: red;
+        font-size: 11px;
+        margin-left: 20%;		
+    }
+    .erro_data_final {
+        color: red;
+        font-size: 11px;
+        margin-left: 20%;
+    }
+    .div_erro_extrato {
+        float: left;
+        width: 240px;
+        margin-left: 29%;
+    }
 
 }	
+
 
 
 

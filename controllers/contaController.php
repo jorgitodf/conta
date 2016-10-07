@@ -309,5 +309,22 @@ class contaController extends Controller {
         unset($_SESSION['conta']);
         header("Location: /home");
     }
+    
+    public function pagar($idConta) {
+        if (isset($idConta) && !empty($idConta)) {
+            $resultado = $this->contaModel->verificaPagamentoAgendado();
+            if ($resultado == 0) {
+                date_default_timezone_set('America/Sao_Paulo');
+                $data['ano'] = date("Y"); 
+                $data['mes'] = $this->contaModel->verificaMes();
+                $data['mensagem'] = "<span class='alert alert-warning' role='alert'>Não há nenhum pagamento agendado para pagar hoje.</span>";
+                $data['contas_agendadas'] = $this->contaModel->getContasAgendadas($_SESSION['conta']['idConta']);
+                $this->loadTemplate('homePrincipalContaView', $data);                  
+            } else {
+                echo "Pagamento(s) realizado(s) com Sucesso.";
+            }            
+        }
+
+    } 
 
 }

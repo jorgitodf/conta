@@ -3,7 +3,7 @@
     <div class="panel_home_conta">
         <section class="sec_btn_group">
             <div class="btn-group">
-                <button type="button" class="btn btn-success" id="btn_extrato">Extratos</button>
+                <button type="button" class="btn btn-success" id="btn_extrato"><a class="href_btn_home" href="/home">Extratos</a></button>
                 <button type="button" class="btn btn-success dropdown-toggle" id="btn_extrato_1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
@@ -14,16 +14,29 @@
                 </ul>
             </div>
             <div class="btn-group">
-                <button type="button" class="btn btn-success" id="btn_extrato">Transações</button>
+                <button type="button" class="btn btn-success" id="btn_extrato"><a class="href_btn_home" href="/home">Transações</a></button>
                 <button type="button" class="btn btn-success dropdown-toggle" id="btn_extrato_1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a href="/conta/debitar/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Debitar</a></li>
-                    <li><a href="#">Creditar</a></li>
+                    <li><a href="/conta/creditar/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Creditar</a></li>
                 </ul>
-            </div>	    
+            </div>	
+            <div class="btn-group">
+                <button type="button" class="btn btn-success" id="btn_extrato"><a class="href_btn_home" href="/home">Pagamentos</a></button>
+                <button type="button" class="btn btn-success dropdown-toggle" id="btn_extrato_1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="/conta/pagar/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Pagamento Agendado</a></li>
+                </ul>
+            </div>
+            <div class="div_msg_alert_pgto_agendado">
+                <?php echo !empty($mensagem) ? $mensagem : ""; ?>
+            </div>
         </section>
         <section class="sec_desp_agendada">
             
