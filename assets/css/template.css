@@ -336,8 +336,7 @@
         margin-top: 8%;
     }
     #div_form_debito {
-        margin-left: 30%;
-        margin-right: 30%;
+
     }
     .erro_debito, .erro_movimentacao, .erro_nome_categoria {
         color: red;
@@ -347,7 +346,7 @@
     .erro_valor {
         color: red;
         font-size: 11px;
-        margin-left: 24.7%;	
+        margin-left: 24%;	
     }
     .div_button_debito {
         float: left;
@@ -373,7 +372,7 @@
     .erro_valor {
         color: red;
         font-size: 11px;
-        margin-left: 25.7%;	
+        margin-left: 24.7%;	
     }
     .div_button_debito {
         float: left;
@@ -425,7 +424,7 @@
     
     /*PÁGINA RELATÓRIO MOVIMENTAÇÃO*/
     .body_relatorio_movimentacao {
-        margin-top: 8%;
+        margin-top: 7%;
     }
     .div_data_inicial_relatorio {
         float: left;

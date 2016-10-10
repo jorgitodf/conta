@@ -1,5 +1,5 @@
 
-	<aside class="row body_debito col-sm-12 col-lg-12">
+	<aside class="body_debito col-sm-12 col-lg-12">
 	<div id="div_form_debito">
 
 		<div class="panel panel-primary" id="">

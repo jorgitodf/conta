@@ -1,6 +1,6 @@
 
-<aside class="row body_debito col-sm-12 col-lg-12">
-    <div id="">
+<aside class="body_debito col-sm-12 col-lg-12">
+    <div id="div_form_debito">
         <form method="POST" action="/conta/debitar" id="" >
             <div class="panel panel-primary" id="">
                 <div class="panel-heading">

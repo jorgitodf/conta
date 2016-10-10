@@ -11,12 +11,12 @@
                     <table class="table table-condensed table-hover" id="" cellspacing=1 cellpadding=1>
                         <thead>
                             <tr>
-                                <td colspan="3" id="">Extrato de gastos com <?php echo !empty($extrato_relatorio[0]['mov']) ? ucwords(strtolower(mb_convert_case($extrato_relatorio[0]['mov'], MB_CASE_TITLE))) : "" ?> no ano de <?php echo !empty($extrato_relatorio[2]['ano']) ? ucwords(strtolower(mb_convert_case($extrato_relatorio[2]['ano'], MB_CASE_TITLE))) : "" ?></td>
+                                <td colspan="3" id="">Extrato de despesas com <?php echo !empty($extrato_relatorio[0]['mov']) ? ucwords(strtolower(mb_convert_case($extrato_relatorio[0]['mov'], MB_CASE_TITLE))) : "" ?> no ano de <?php echo !empty($extrato_relatorio[2]['ano']) ? ucwords(strtolower(mb_convert_case($extrato_relatorio[2]['ano'], MB_CASE_TITLE))) : "" ?></td>
                             </tr>
                             <tr id="">
                                 <td>Mês</td>
                                 <td>Ano</td>
-                                <td>Valor</td>
+                                <td align="right">Valor</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,7 +25,7 @@
                             <tr>
                                 <td><?php echo ucwords(strtolower(mb_convert_case($linha['mes'], MB_CASE_TITLE))); ?></td>
                                 <td><?php echo ucwords(strtolower(mb_convert_case($linha['ano'], MB_CASE_TITLE))); ?></td>
-                                <td>R$ <?php echo number_format($linha['val'], 2, ',', '.'); ?></td>
+                                <td align="right">R$ <?php echo number_format($linha['val'], 2, ',', '.'); ?></td>
                             </tr>
                         <?php $total += $linha['val']; ?>
                         <?php $mov = $linha['mov']; ?>

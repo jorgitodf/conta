@@ -1,26 +1,30 @@
-SELECT Ext.mes, Ext.movimentacao AS 'Mov', Cat.nome_categoria AS 'Cat', Ext.tipo_operacao AS 'Op', SUM(Ext.valor) AS 'Val'
- FROM tb_extrato AS Ext
- LEFT JOIN tb_categoria AS Cat
- ON (Ext.fk_id_categoria = Cat.id_categoria)
- WHERE Ext.fk_id_conta = 1 AND Ext.movimentacao LIKE '%Gasolina' 
- AND Ext.data_movimentacao BETWEEN '2012-01-01' AND '2012-12-31' 
- GROUP BY Ext.mes ORDER BY Ext.id_extrato;
+SELECT 
+	Ext.movimentacao AS 'mov',
+    Ext.mes AS 'mes',
+    extract(year from ext.data_movimentacao) AS 'ano',
+    SUM(Ext.valor) AS 'val',
+    Cat.nome_categoria AS 'cat'    
+FROM
+    tb_extrato AS ext
+        LEFT JOIN
+    tb_categoria AS cat ON (ext.fk_id_categoria = cat.id_categoria)
+WHERE
+    ext.fk_id_conta = 1
+        AND ext.movimentacao LIKE '%Gasolina%'
+        AND ext.data_movimentacao BETWEEN '2016-01-01' AND '2016-12-31'
+        AND ext.fk_id_conta = 1
+GROUP BY ext.mes
+ORDER BY ext.data_movimentacao;
  
- SELECT Ext.mes, Ext.movimentacao AS 'Mov', Cat.nome_categoria AS 'Cat', Ext.tipo_operacao AS 'Op', Ext.valor AS 'Val', 
-Ext.saldo AS 'Sal', Ext.despesa_fixa AS 'Dp'
- FROM tb_extrato AS Ext
- LEFT JOIN tb_categoria AS Cat
- ON (Ext.fk_id_categoria = Cat.id_categoria)
- WHERE Ext.fk_id_conta = 1 AND Ext.movimentacao LIKE 'Gasolina' 
- AND Ext.data_movimentacao BETWEEN '2012-01-01' AND '2012-12-31' 
- GROUP BY Ext.mes;
- 
-SELECT Ext.data_movimentacao AS 'DatMov', Ext.movimentacao AS 'Mov', Cat.nome_categoria AS 'Cat', Ext.tipo_operacao AS 'Op', Ext.valor AS 'Val', 
-Ext.saldo AS 'Sal', Ext.despesa_fixa AS 'Dp'
- FROM tb_extrato AS Ext, tb_categoria AS Cat
- WHERE Ext.fk_id_categoria = Cat.id_categoria
- AND Ext.fk_id_conta = 1 AND Ext.data_movimentacao BETWEEN '2012-01-01' AND '2016-01-31';
- 
-SHOW INDEX FROM tb_extrato;
+SELECT ext.movimentacao AS 'mov', ext.mes AS 'mes', extract(year from ext.data_movimentacao) AS 'ano', ext.valor AS 'val' 
+FROM tb_categoria AS cat 
+JOIN tb_extrato AS ext ON (cat.id_categoria = ext.fk_id_categoria)
+AND cat.nome_categoria LIKE '%Cartões%' AND ext.data_movimentacao BETWEEN '2016-01-01' AND '2016-03-31'
+ORDER BY ext.data_movimentacao;
 
-SHOW INDEX FROM tb_categoria;
+SELECT SUM(valor) AS 'val' FROM tb_extrato WHERE data_movimentacao BETWEEN '2016-01-01' AND '2016-01-31' AND movimentacao LIKE '%Gasolina%';
+
+SELECT DISTINCT movimentacao FROM tb_extrato ORDER BY movimentacao ASC ;
+ 
+
+ 

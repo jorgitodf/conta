@@ -145,7 +145,7 @@ class contaController extends Controller {
             } else {
                 $dados['valor'] = $_POST['valor'];
             }
-
+            
             if ($status == true) {
                 $idConta = trim(addslashes($_POST['idConta']));
                 $dataDebito = trim(addslashes($_POST['data_debito']));
@@ -167,7 +167,7 @@ class contaController extends Controller {
                     
                 }
             }
-            $dados['idConta'] = $idConta;
+            $dados['idConta'] = trim(addslashes($_POST['idConta']));
             $dados['categorias'] = $this->categoriaModel->getCategorias();
             $this->loadTemplate('debitoView', $dados);
         } else {
