@@ -230,6 +230,10 @@
         margin-left: 16%;
         margin-top: 2%;
     }
+    #td_sem_contas_agendadas {
+        text-align: center;
+        font-weight: bold;
+    }
 
 
     /*PÁGINA HOME CONTA*/

@@ -196,6 +196,50 @@ class ContaModel extends Model {
             return 1;
         }
     }
+    
+    public function verificaMesNumerico() {
+        date_default_timezone_set('America/Sao_Paulo');
+        $mesAtual = date("m");
+        switch ($mesAtual) {
+            case '01':
+                $mesAtual = '01';
+                break;
+            case '02':
+                $mesAtual = '02';
+                break;
+            case '03':
+                $mesAtual = '03';
+                break;
+            case '04':
+                $mesAtual = '04';
+                break;
+            case '05':
+                $mesAtual = '05';
+                break;
+            case '06':
+                $mesAtual = '06';
+                break;
+            case '07':
+                $mesAtual = '07';
+                break;
+            case '08':
+                $mesAtual = '08';
+                break;
+            case '09':
+                $mesAtual = '09';
+                break;
+            case '10':
+                $mesAtual = '10';
+                break;
+            case '11':
+                $mesAtual = '11';
+                break;
+            case '12':
+                $mesAtual = '12';
+                break;
+        }
+        return $mesAtual;
+    }
 
     public function verificaMes() {
         date_default_timezone_set('America/Sao_Paulo');
@@ -273,9 +317,10 @@ class ContaModel extends Model {
     }
     
     public function getContasAgendadas($idConta) {
+        $mes = $this->verificaMesNumerico();
         $stmt = $this->db->prepare("SELECT pgag.id_pgto_agendado AS 'idpgag', pgag.data_pagamento AS 'data', pgag.movimentacao "
               . "AS 'mov', pgag.valor AS 'valor', pgag.pago AS 'pago' FROM tb_pgto_agendado AS pgag WHERE pgag.fk_id_conta = ? "
-              . "ORDER BY data_pagamento ASC");
+              . "AND pgag.data_pagamento >= '2016-$mes-01' ORDER BY data_pagamento ASC");
         $stmt->bindValue(1, $idConta, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);       
