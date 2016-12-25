@@ -61,7 +61,7 @@ class relatorioController extends Controller {
             $dados['idConta'] = $_SESSION['conta']['idConta'];
             $dados['idUser'] = $_SESSION['userLogin']['idUser'];
             $dados['ano'] = $this->extratoModel->listarAnoExtrato();
-            $dados['categoria'] = $this->categoriaModel->getCategorias();
+            $dados['categoria'] = $this->categoriaModel->getCategoriasDespesas();
             $this->loadTemplate('relatorioFormGeralView', $dados);
         }
         if ($_POST) {

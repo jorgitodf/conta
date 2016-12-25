@@ -1,5 +1,5 @@
 
-<div class="container-fluid div_coint">
+<div class="container-fluid div_coint_rel_geral_cat">
     <div class="row">
         <div class="col-md-12" id="div_cab_rel_geral">
             <span>Relatório Geral de Gastos com <?php echo $categoria[0]['nome_categoria'] ?></span>
@@ -20,7 +20,7 @@
                     <thead>
                         <tr>
                             <th>Data</th>
-                            <th>Movimentação</th>
+                            <th>Despesa</th>
                             <th>Valor</th>
                         </tr>
                     </thead>
@@ -29,8 +29,8 @@
                     <?php foreach ($gasto_geral_categoria[$dados[$i]] as $key => $value): ?>    
                         <tr>
                             <td><?php echo !empty($value['data']) ? $value['data'] : "00/00/0000"; ?></td>
-                            <td><?php echo !empty($value['mov']) ? ucwords(strtolower(mb_convert_case($value['mov'], MB_CASE_TITLE))) : "Sem Movimentação" ; ?></td>
-                            <td><?php echo !empty($value['val']) ? $value['val'] : "0,00"; ?></td>
+                            <td><?php echo !empty($value['mov']) ? ucwords(strtolower(mb_convert_case($value['mov'], MB_CASE_TITLE))) : "Sem Despesa" ; ?></td>
+                            <td><?php echo !empty($value['val']) ? number_format($value['val'], 2, ',', '.') : "0,00"; ?></td>
                         </tr>
                         <?php $total += $value['val']; ?>
                     <?php endforeach; ?>    
@@ -54,7 +54,7 @@
                     <thead>
                         <tr>
                             <th>Data</th>
-                            <th>Movimentação</th>
+                            <th>Despesa</th>
                             <th>Valor</th>
                         </tr>
                     </thead>
@@ -63,8 +63,8 @@
                     <?php foreach ($gasto_geral_categoria[$dados[$i]] as $key => $value): ?>    
                         <tr>
                             <td><?php echo !empty($value['data']) ? $value['data'] : ""; ?></td>
-                            <td><?php echo !empty($value['mov']) ? ucwords(strtolower(mb_convert_case($value['mov'], MB_CASE_TITLE))) : "Sem Movimentação" ; ?></td>
-                            <td><?php echo !empty($value['val']) ? $value['val'] : ""; ?></td>
+                            <td><?php echo !empty($value['mov']) ? ucwords(strtolower(mb_convert_case($value['mov'], MB_CASE_TITLE))) : "Sem Despesa" ; ?></td>
+                            <td><?php echo !empty($value['val']) ? number_format($value['val'], 2, ',', '.') : "0,00"; ?></td>
                         </tr>
                         <?php $total += $value['val']; ?>
                     <?php endforeach; ?>    
@@ -88,7 +88,7 @@
                     <thead>
                         <tr>
                             <th>Data</th>
-                            <th>Movimentação</th>
+                            <th>Despesa</th>
                             <th>Valor</th>
                         </tr>
                     </thead>
@@ -98,7 +98,7 @@
                         <tr>
                             <td><?php echo !empty($value['data']) ? $value['data'] : ""; ?></td>
                             <td><?php echo !empty($value['mov']) ? ucwords(strtolower(mb_convert_case($value['mov'], MB_CASE_TITLE))) : "" ; ?></td>
-                            <td><?php echo !empty($value['val']) ? $value['val'] : ""; ?></td>
+                            <td><?php echo !empty($value['val']) ? number_format($value['val'], 2, ',', '.') : "0,00"; ?></td>
                         </tr>
                         <?php $total += $value['val']; ?>
                     <?php endforeach; ?>    
@@ -122,7 +122,7 @@
                     <thead>
                         <tr>
                             <th>Data</th>
-                            <th>Movimentação</th>
+                            <th>Despesa</th>
                             <th>Valor</th>
                         </tr>
                     </thead>
@@ -132,7 +132,7 @@
                         <tr>
                             <td><?php echo !empty($value['data']) ? $value['data'] : ""; ?></td>
                             <td><?php echo !empty($value['mov']) ? ucwords(strtolower(mb_convert_case($value['mov'], MB_CASE_TITLE))) : "" ; ?></td>
-                            <td><?php echo !empty($value['val']) ? $value['val'] : ""; ?></td>
+                            <td><?php echo !empty($value['val']) ? number_format($value['val'], 2, ',', '.') : "0,00"; ?></td>
                         </tr>
                         <?php $total += $value['val']; ?>
                     <?php endforeach; ?>    

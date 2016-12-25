@@ -11,6 +11,11 @@ class CategoriaModel extends Model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public function getCategoriasDespesas() {
+        $stmt = $this->db->query("SELECT * FROM tb_categoria WHERE id_categoria <> 38 ORDER BY nome_categoria");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     public function getCategoriasNome($categoria) {
         if (isset($categoria) && !empty($categoria)) {
             $stmt = $this->db->prepare("SELECT nome_categoria FROM tb_categoria WHERE id_categoria = ?");

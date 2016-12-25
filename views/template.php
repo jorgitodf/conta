@@ -40,10 +40,9 @@
                                     </li>
                                 </ul>
 
-                                <ul class="nav navbar-nav navbar-right">
+                                <ul class="nav navbar-nav navbar-right" id="navbar_deslogar">
                                     <li class="dropdown">
                                         <a href="/login/logout">Deslogar</a>
-
                                     </li>
                                 </ul>
                             </div><!-- /.navbar-collapse -->
@@ -52,7 +51,7 @@
                 <?php } ?>
             </header>
 
-            <section class="col-md-12 col-xs-12 col-sm-12">
+            <section class="col-md-12 col-xs-12 col-sm-12" id="section_load_template">
                 <?php $this->loadViewInTemplate($viewName, $viewData); ?>        
             </section>
 
