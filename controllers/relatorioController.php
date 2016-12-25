@@ -1,19 +1,21 @@
 <?php
 
 class relatorioController extends Controller {
-    
+
     protected $extratoModel;
-     
+    protected $categoriaModel;
+
     public function __construct() {
         parent::__construct(); //executa do contrutor da classe extendida, sou seja, executa o construtor da Classe Controller
         LoginHelper::isLoogedUser();
         $this->extratoModel = new ExtratoModel();
+        $this->categoriaModel = new CategoriaModel();
     }
 
     public function index() {
         $dados = array();
         if (isset($_SESSION['conta']) && $_SESSION['userLogin'] && !$_POST) {
-            $dados['idConta'] = $_SESSION['conta']['idConta'];    
+            $dados['idConta'] = $_SESSION['conta']['idConta'];
             $dados['idUser'] = $_SESSION['userLogin']['idUser'];
             $this->loadTemplate('relatorioMovimentacaoView', $dados);
         }
@@ -37,24 +39,40 @@ class relatorioController extends Controller {
             } else {
                 $dados['movimentacao_relatorio'] = $_POST['movimentacao_relatorio'];
             }
-            
-                if ($status == true) {
-                    $data = array('idConta'=>(int)$_POST['idConta'], 'dataInicial'=>trim(addslashes($_POST['data_inicial'])),
-                        'dataFinal'=>trim(addslashes($_POST['data_final'])), 'movimentacao'=>trim(addslashes($_POST['movimentacao_relatorio'])));
-                    if ($this->extratoModel->listarMovimentacaoPeriodo($data) == true) {
-                        $dados['extrato_relatorio'] = $this->extratoModel->listarMovimentacaoPeriodo($data);
-                        $this->loadTemplate('relatorioMovimentacaoListagemView', $dados);
-                        die();
-                    }
-                    
-                    
+
+            if ($status == true) {
+                $data = array('idConta' => (int) $_POST['idConta'], 'dataInicial' => trim(addslashes($_POST['data_inicial'])),
+                    'dataFinal' => trim(addslashes($_POST['data_final'])), 'movimentacao' => trim(addslashes($_POST['movimentacao_relatorio'])));
+                if ($this->extratoModel->listarMovimentacaoPeriodo($data) == true) {
+                    $dados['extrato_relatorio'] = $this->extratoModel->listarMovimentacaoPeriodo($data);
+                    $this->loadTemplate('relatorioMovimentacaoListagemView', $dados);
+                    die();
                 }
-                
+            }
+
             $dados['idConta'] = $_SESSION['conta']['idConta'];
             $this->loadTemplate('relatorioMovimentacaoView', $dados);
-        } 
-        
+        }
     }
     
-    
-}    
+    public function geral() {
+        $dados = array();
+        if (isset($_SESSION['conta']) && $_SESSION['userLogin'] && !$_POST) {
+            $dados['idConta'] = $_SESSION['conta']['idConta'];
+            $dados['idUser'] = $_SESSION['userLogin']['idUser'];
+            $dados['ano'] = $this->extratoModel->listarAnoExtrato();
+            $dados['categoria'] = $this->categoriaModel->getCategorias();
+            $this->loadTemplate('relatorioFormGeralView', $dados);
+        }
+        if ($_POST) {
+            $categoria = intval($_POST['nome_categoria']);
+            $idUser = intval($_POST['idUser']);
+            $idConta = intval($_POST['idConta']);
+            $ano = intval($_POST['ano']);
+            $dados['categoria'] = $this->categoriaModel->getCategoriasNome($categoria);
+            $dados['gasto_geral_categoria'] = $this->extratoModel->listarRelatorioGastoPorCategoria($categoria, $idUser, $idConta, $ano);
+            $this->loadTemplate('relatorioGastoGeralCategoriaView', $dados);
+        }
+    }
+
+}

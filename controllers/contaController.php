@@ -149,6 +149,12 @@ class contaController extends Controller {
             if ($status == true) {
                 $idConta = trim(addslashes($_POST['idConta']));
                 $dataDebito = trim(addslashes($_POST['data_debito']));
+				if (strpos($dataDebito, "/") !== false) {
+					if ($this->validaData($dataDebito) == true) {
+						$arr = explode('/', $dataDebito);
+						$dataDebito = $arr[2].'-'.$arr[1].'-'.$arr[0];
+					}
+				}	
                 $movimentacao = trim(addslashes($_POST['movimentacao']));
                 $categoria = trim(addslashes($_POST['nome_categoria']));
                 $valor = trim(addslashes($_POST['valor']));
@@ -330,5 +336,20 @@ class contaController extends Controller {
         }
 
     } 
+	
+	public function validaData($dat) {
+		$data = explode("/","$dat"); // fatia a string $dat em pedados, usando / como referência
+		$d = $data[0];
+		$m = $data[1];
+		$y = $data[2];
+	 
+		// verifica se a data é válida!
+		// 1 = true (válida)
+		// 0 = false (inválida)
+		$res = checkdate($m,$d,$y);
+		if ($res == 1){
+		   return true;
+		}
+	}
 
 }

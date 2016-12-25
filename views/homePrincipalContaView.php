@@ -42,6 +42,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a href="/relatorio">Movimentação e Período</a></li>
+                    <li><a href="/relatorio/geral">Relatório Geral</a></li>
                 </ul>
             </div>
             <div class="div_msg_alert_pgto_agendado">

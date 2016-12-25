@@ -7,11 +7,11 @@ $hostname = getenv("USERNAME");
 global $config;
 
 $config = array();
-if (ENVIRONMENT == 'development' && $hostname == 'JORGITO-NB') {
+if (ENVIRONMENT == 'development' && $hostname == 'Jorgito') {
     $config['dbname'] = 'conta';
     $config['host'] = 'localhost';
-    $config['dbuser'] = 'rootnb';
-    $config['dbpass'] = '!Camelo69';
+    $config['dbuser'] = 'root';
+    $config['dbpass'] = 'root';
 	$config['ambiente'] = ENVIRONMENT;
 	$config['hostname'] = $hostname;
 } elseif (ENVIRONMENT == 'development' && $hostname == 'JORGITO-PC') {
