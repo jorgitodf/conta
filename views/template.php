@@ -28,7 +28,7 @@
                                 <ul class="nav navbar-nav" id="navbar-nav">
                                     <li class="dropdown">
                                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Minha Conta<span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
+                                        <ul class="dropdown-menu" id="dropdown-menu">
                                             <li><a href="/home">Página Inicial</a></li>
                                             <li><a href="/conta/extrato/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Extrato</a></li>
                                             <li><a href="/extrato">Extrato por Período</a></li>

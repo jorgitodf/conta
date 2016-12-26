@@ -74,13 +74,13 @@ class ExtratoModel extends Model {
 
 
     public function listarAnoExtrato() {
-        $stmt = $this->db->prepare("SELECT distinct extract(year from data_movimentacao) AS 'ano' FROM tb_extrato");
+        $stmt = $this->db->prepare("SELECT distinct extract(year from data_movimentacao) AS 'ano' FROM tb_extrato ORDER BY ano ASC");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
     public function listarMesAno() {
-        $stmt = $this->db->prepare("SELECT mes_num, mes_nome FROM conta.tb_mes");
+        $stmt = $this->db->prepare("SELECT mes_num, mes_nome FROM tb_mes");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
