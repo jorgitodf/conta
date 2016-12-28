@@ -78,30 +78,36 @@
 				<treenode node="usuarioModel;PHP:Var Name;C:\xampp\htdocs\conta\controllers\cadastroController.php;f14;4;27;4;;;;vpos;;v;;r;;d-1,-1;;b2,0;;m">
 				</treenode>
 			</treenode>
-			<treenode node="CategoriaModel;PHP:Class Name;C:\xampp\htdocs\conta\models\CategoriaModel.php;f0;2;1;13;;;;vpos;;vModel;;c;;r;;d35,2;;b0,0;;m">
+			<treenode node="CategoriaModel;PHP:Class Name;C:\xampp\htdocs\conta\models\CategoriaModel.php;f0;2;1;27;;;;vpos;;vModel;;c;;r;;d35,2;;b0,0;;m">
 				<treenode node="__construct;PHP:Function Name;Codelobster2.php;f11;4;5;6;;C:\xampp\htdocs\conta\models\CategoriaModel.php;f11;4;5;6;;;;vpos;;v;;r;;d34,4;;b1,0;;m">
 				</treenode>
-				<treenode node="getCategorias;PHP:Function Name;Codelobster2.php;f8;8;2;11;;C:\xampp\htdocs\conta\models\CategoriaModel.php;f8;8;2;11;;;;vpos;;v;;r;;d33,8;;b1,0;;m">
+				<treenode node="getCategorias;PHP:Function Name;Codelobster2.php;f8;8;2;11;;C:\xampp\htdocs\conta\models\CategoriaModel.php;f11;8;5;11;;;;vpos;;v;;r;;d36,8;;b1,0;;m">
 					<treenode node="stmt;PHP:Var Name;Codelobster2.php;f2;9;7;9;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 					<treenode node="this;PHP:Var Name;Codelobster2.php;f10;9;15;9;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
+				<treenode node="getCategoriasDespesas;PHP:Function Name;C:\xampp\htdocs\conta\models\CategoriaModel.php;f11;13;5;16;;;;vpos;;v;;r;;d44,13;;b1,0;;m">
+				</treenode>
+				<treenode node="getCategoriasNome;PHP:Function Name;C:\xampp\htdocs\conta\models\CategoriaModel.php;f11;18;5;25;;;;vpos;;v;;r;;d50,18;;b1,0;;mcategoria;;p">
+					<treenode node="categoria;PHP:Var Name;C:\xampp\htdocs\conta\models\CategoriaModel.php;f38;18;48;18;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+				</treenode>
 			</treenode>
-			<treenode node="contaController;PHP:Class Name;C:\xampp\htdocs\conta\controllers\contaController.php;f0;2;1;333;;;;vpos;;vController;;c;;r;;d41,2;;b0,0;;m">
+			<treenode node="contaController;PHP:Class Name;C:\xampp\htdocs\conta\controllers\contaController.php;f0;2;1;354;;;;vpos;;vController;;c;;r;;d41,2;;b0,0;;m">
 				<treenode node="__construct;PHP:Function Name;Codelobster2.php;f11;5;5;8;;Codelobster1.php;f11;7;5;12;;C:\xampp\htdocs\conta\controllers\contaController.php;f11;7;5;12;;;;vpos;;v;;r;;d34,7;;b1,0;;m">
 					<treenode node="this;PHP:Var Name;Codelobster1.php;f8;10;13;10;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
-				<treenode node="agendar;PHP:Function Name;C:\xampp\htdocs\conta\controllers\contaController.php;f11;244;5;305;;;;vpos;;v;;r;;d45,244;;b1,0;;midConta;;p">
-					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\controllers\contaController.php;f28;244;36;244;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+				<treenode node="agendar;PHP:Function Name;C:\xampp\htdocs\conta\controllers\contaController.php;f11;250;5;311;;;;vpos;;v;;r;;d45,250;;b1,0;;midConta;;p">
+					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\controllers\contaController.php;f28;250;36;250;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
-				<treenode node="creditar;PHP:Function Name;C:\xampp\htdocs\conta\controllers\contaController.php;f11;181;5;242;;;;vpos;;v;;r;;d46,181;;b1,0;;midConta;;p">
-					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\controllers\contaController.php;f29;181;37;181;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+				<treenode node="creditar;PHP:Function Name;C:\xampp\htdocs\conta\controllers\contaController.php;f11;187;5;248;;;;vpos;;v;;r;;d46,187;;b1,0;;midConta;;p">
+					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\controllers\contaController.php;f29;187;37;187;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
-				<treenode node="debitar;PHP:Function Name;C:\xampp\htdocs\conta\controllers\contaController.php;f11;118;5;179;;;;vpos;;v;;r;;d45,118;;b1,0;;midConta;;p">
+				<treenode node="debitar;PHP:Function Name;C:\xampp\htdocs\conta\controllers\contaController.php;f11;118;5;185;;;;vpos;;v;;r;;d45,118;;b1,0;;midConta;;p">
 					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\controllers\contaController.php;f28;118;36;118;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
@@ -113,20 +119,24 @@
 					<treenode node="this;PHP:Var Name;Codelobster2.php;f2;12;7;12;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
-				<treenode node="pagar;PHP:Function Name;C:\xampp\htdocs\conta\controllers\contaController.php;f11;312;5;331;;;;vpos;;v;;r;;d36,312;;b1,0;;midConta;;p">
-					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\controllers\contaController.php;f26;312;34;312;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+				<treenode node="pagar;PHP:Function Name;C:\xampp\htdocs\conta\controllers\contaController.php;f11;318;5;337;;;;vpos;;v;;r;;d36,318;;b1,0;;midConta;;p">
+					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\controllers\contaController.php;f26;318;34;318;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
 				<treenode node="salvar;PHP:Function Name;C:\xampp\htdocs\conta\controllers\contaController.php;f11;21;5;96;;;;vpos;;v;;r;;d29,21;;b1,0;;m">
 				</treenode>
-				<treenode node="trocar;PHP:Function Name;C:\xampp\htdocs\conta\controllers\contaController.php;f11;307;5;310;;;;vpos;;v;;r;;d29,307;;b1,0;;m">
+				<treenode node="trocar;PHP:Function Name;C:\xampp\htdocs\conta\controllers\contaController.php;f11;313;5;316;;;;vpos;;v;;r;;d29,313;;b1,0;;m">
+				</treenode>
+				<treenode node="validaData;PHP:Function Name;C:\xampp\htdocs\conta\controllers\contaController.php;f8;339;2;352;;;;vpos;;v;;r;;d34,339;;b1,0;;mdat;;p">
+					<treenode node="dat;PHP:Var Name;C:\xampp\htdocs\conta\controllers\contaController.php;f28;339;32;339;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
 				</treenode>
 				<treenode node="categoriaModel;PHP:Var Name;Codelobster1.php;f14;5;29;5;;C:\xampp\htdocs\conta\controllers\contaController.php;f14;5;29;5;;;;vpos;;v;;r;;d-1,-1;;b2,0;;m">
 				</treenode>
 				<treenode node="contaModel;PHP:Var Name;Codelobster1.php;f14;4;25;4;;C:\xampp\htdocs\conta\controllers\contaController.php;f14;4;25;4;;;;vpos;;v;;r;;d-1,-1;;b2,0;;m">
 				</treenode>
 			</treenode>
-			<treenode node="ContaModel;PHP:Class Name;C:\xampp\htdocs\conta\models\ContaModel.php;f0;2;1;338;;;;vpos;;vModel;;c;;r;;d31,2;;b0,0;;m">
+			<treenode node="ContaModel;PHP:Class Name;C:\xampp\htdocs\conta\models\ContaModel.php;f0;2;1;383;;;;vpos;;vModel;;c;;r;;d31,2;;b0,0;;m">
 				<treenode node="__construct;PHP:Function Name;Codelobster1.php;f11;4;5;6;;Codelobster2.php;f11;4;5;6;;Codelobster3.php;f11;4;5;6;;C:\xampp\htdocs\conta\models\ContaModel.php;f11;4;5;6;;;;vpos;;v;;r;;d34,4;;b1,0;;m">
 				</treenode>
 				<treenode node="cadastrarConta;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;40;5;77;;;;vpos;;v;;r;;d130,40;;b1,0;;mnomeBanco;;pcodAgencia;;pdigAgencia;;ptipoConta;;pnumConta;;pdigConta;;pcodOperacao;;pidUser;;p">
@@ -147,7 +157,7 @@
 					<treenode node="tipoConta;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f73;40;83;40;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
-				<treenode node="checkCategoria;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;243;5;246;;;;vpos;;v;;r;;d37,243;;b1,0;;m">
+				<treenode node="checkCategoria;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;287;5;290;;;;vpos;;v;;r;;d37,287;;b1,0;;m">
 				</treenode>
 				<treenode node="creditarPgto;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;184;5;197;;;;vpos;;v;;r;;d96,184;;b1,0;;midConta;;pdataCredito;;pmovimentacao;;pcategoria;;pnovoValor;;p">
 					<treenode node="categoria;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f72;184;82;184;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
@@ -187,26 +197,26 @@
 				</treenode>
 				<treenode node="getBancos;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;30;5;33;;;;vpos;;v;;r;;d32,30;;b1,0;;m">
 				</treenode>
-				<treenode node="getConta;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;264;5;272;;;;vpos;;v;;r;;d48,264;;b1,0;;midUser;;pidConta;;p">
-					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f38;264;46;264;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+				<treenode node="getConta;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;308;5;316;;;;vpos;;v;;r;;d48,308;;b1,0;;midUser;;pidConta;;p">
+					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f38;308;46;308;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
-					<treenode node="idUser;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f29;264;36;264;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					<treenode node="idUser;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f29;308;36;308;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
-				<treenode node="getContasAgendadas;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;274;5;281;;;;vpos;;v;;r;;d49,274;;b1,0;;midConta;;p">
-					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f39;274;47;274;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+				<treenode node="getContasAgendadas;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;318;5;326;;;;vpos;;v;;r;;d49,318;;b1,0;;midConta;;p">
+					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f39;318;47;318;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
 				<treenode node="getContaUsuario;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;23;5;28;;;;vpos;;v;;r;;d45,23;;b1,0;;midUser;;p">
 					<treenode node="idUser;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f36;23;43;23;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
-				<treenode node="getLastDebito;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;248;5;253;;;;vpos;;v;;r;;d44,248;;b1,0;;midConta;;p">
-					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f34;248;42;248;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+				<treenode node="getLastDebito;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;292;5;297;;;;vpos;;v;;r;;d44,292;;b1,0;;midConta;;p">
+					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f34;292;42;292;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
-				<treenode node="getLastPgtoAgendado;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;255;5;262;;;;vpos;;v;;r;;d50,255;;b1,0;;midConta;;p">
-					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f40;255;48;255;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+				<treenode node="getLastPgtoAgendado;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;299;5;306;;;;vpos;;v;;r;;d50,299;;b1,0;;midConta;;p">
+					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f40;299;48;299;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
 				<treenode node="getTipoConta;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;35;5;38;;;;vpos;;v;;r;;d35,35;;b1,0;;m">
@@ -231,9 +241,11 @@
 					<treenode node="numConta;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f53;79;62;79;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
-				<treenode node="verificaMes;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;199;5;241;;;;vpos;;v;;r;;d34,199;;b1,0;;m">
+				<treenode node="verificaMes;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;243;5;285;;;;vpos;;v;;r;;d34,243;;b1,0;;m">
 				</treenode>
-				<treenode node="verificaPagamentoAgendado;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;283;5;336;;;;vpos;;v;;r;;d49,283;;b1,0;;m">
+				<treenode node="verificaMesNumerico;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;199;5;241;;;;vpos;;v;;r;;d42,199;;b1,0;;m">
+				</treenode>
+				<treenode node="verificaPagamentoAgendado;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;328;5;381;;;;vpos;;v;;r;;d49,328;;b1,0;;m">
 				</treenode>
 				<treenode node="verSaldoAtual;PHP:Function Name;C:\xampp\htdocs\conta\models\ContaModel.php;f11;104;5;111;;;;vpos;;v;;r;;d44,104;;b1,0;;midConta;;p">
 					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\models\ContaModel.php;f34;104;42;104;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
@@ -298,11 +310,31 @@
 				<treenode node="extratoModel;PHP:Var Name;Codelobster1.php;f14;4;27;4;;C:\xampp\htdocs\conta\controllers\extratoController.php;f14;4;27;4;;;;vpos;;v;;r;;d-1,-1;;b2,0;;m">
 				</treenode>
 			</treenode>
-			<treenode node="ExtratoModel;PHP:Class Name;Codelobster3.php;f0;2;1;20;;C:\xampp\htdocs\conta\models\ExtratoModel.php;f0;2;1;38;;;;vpos;;vModel;;c;;r;;d33,2;;b0,0;;m">
+			<treenode node="ExtratoModel;PHP:Class Name;Codelobster3.php;f0;2;1;20;;C:\xampp\htdocs\conta\models\ExtratoModel.php;f0;2;1;87;;;;vpos;;vModel;;c;;r;;d33,2;;b0,0;;m">
 				<treenode node="__construct;PHP:Function Name;Codelobster3.php;f11;4;5;6;;C:\xampp\htdocs\conta\models\ExtratoModel.php;f11;4;5;6;;;;vpos;;v;;r;;d34,4;;b1,0;;m">
+				</treenode>
+				<treenode node="listarAnoExtrato;PHP:Function Name;C:\xampp\htdocs\conta\models\ExtratoModel.php;f11;75;5;79;;;;vpos;;v;;r;;d39,75;;b1,0;;m">
+				</treenode>
+				<treenode node="listarMesAno;PHP:Function Name;C:\xampp\htdocs\conta\models\ExtratoModel.php;f11;81;5;85;;;;vpos;;v;;r;;d35,81;;b1,0;;m">
 				</treenode>
 				<treenode node="listarMovimentacaoPeriodo;PHP:Function Name;C:\xampp\htdocs\conta\models\ExtratoModel.php;f11;22;5;36;;;;vpos;;v;;r;;d53,22;;b1,0;;mdata;;p">
 					<treenode node="data;PHP:Var Name;C:\xampp\htdocs\conta\models\ExtratoModel.php;f46;22;51;22;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+				</treenode>
+				<treenode node="listarRelatorioGastoPorCategoria;PHP:Function Name;C:\xampp\htdocs\conta\models\ExtratoModel.php;f11;56;5;72;;;;vpos;;v;;r;;d90,56;;b1,0;;mcategoria;;pidUser;;pidConta;;pano;;p">
+					<treenode node="ano;PHP:Var Name;C:\xampp\htdocs\conta\models\ExtratoModel.php;f84;56;88;56;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="categoria;PHP:Var Name;C:\xampp\htdocs\conta\models\ExtratoModel.php;f53;56;63;56;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\models\ExtratoModel.php;f74;56;82;56;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="idUser;PHP:Var Name;C:\xampp\htdocs\conta\models\ExtratoModel.php;f65;56;72;56;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+				</treenode>
+				<treenode node="listarRelatorioGeralGasto;PHP:Function Name;C:\xampp\htdocs\conta\models\ExtratoModel.php;f11;38;5;54;;;;vpos;;v;;r;;d71,38;;b1,0;;mmovimentacao;;pidConta;;p">
+					<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\models\ExtratoModel.php;f61;38;69;38;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+					</treenode>
+					<treenode node="movimentacao;PHP:Var Name;C:\xampp\htdocs\conta\models\ExtratoModel.php;f46;38;59;38;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 					</treenode>
 				</treenode>
 				<treenode node="verExtratoPeriodo;PHP:Function Name;Codelobster3.php;f11;8;2;18;;C:\xampp\htdocs\conta\models\ExtratoModel.php;f11;8;5;20;;;;vpos;;v;;r;;d77,8;;b1,0;;mid_conta;;pdata_inicial;;pdata_final;;p">
@@ -378,10 +410,14 @@
 				<treenode node="index;PHP:Function Name;C:\xampp\htdocs\conta\controllers\naoexisteController.php;f11;8;5;10;;;;vpos;;v;;r;;d28,8;;b1,0;;m">
 				</treenode>
 			</treenode>
-			<treenode node="relatorioController;PHP:Class Name;C:\xampp\htdocs\conta\controllers\relatorioController.php;f0;2;1;59;;;;vpos;;vController;;c;;r;;d45,2;;b0,0;;m">
-				<treenode node="__construct;PHP:Function Name;C:\xampp\htdocs\conta\controllers\relatorioController.php;f11;6;5;10;;;;vpos;;v;;r;;d34,6;;b1,0;;m">
+			<treenode node="relatorioController;PHP:Class Name;C:\xampp\htdocs\conta\controllers\relatorioController.php;f0;2;1;77;;;;vpos;;vController;;c;;r;;d45,2;;b0,0;;m">
+				<treenode node="__construct;PHP:Function Name;C:\xampp\htdocs\conta\controllers\relatorioController.php;f11;7;5;12;;;;vpos;;v;;r;;d34,7;;b1,0;;m">
 				</treenode>
-				<treenode node="index;PHP:Function Name;C:\xampp\htdocs\conta\controllers\relatorioController.php;f11;12;5;56;;;;vpos;;v;;r;;d28,12;;b1,0;;m">
+				<treenode node="geral;PHP:Function Name;C:\xampp\htdocs\conta\controllers\relatorioController.php;f11;57;5;75;;;;vpos;;v;;r;;d28,57;;b1,0;;m">
+				</treenode>
+				<treenode node="index;PHP:Function Name;C:\xampp\htdocs\conta\controllers\relatorioController.php;f11;14;5;55;;;;vpos;;v;;r;;d28,14;;b1,0;;m">
+				</treenode>
+				<treenode node="categoriaModel;PHP:Var Name;C:\xampp\htdocs\conta\controllers\relatorioController.php;f14;5;29;5;;;;vpos;;v;;r;;d-1,-1;;b2,0;;m">
 				</treenode>
 				<treenode node="extratoModel;PHP:Var Name;C:\xampp\htdocs\conta\controllers\relatorioController.php;f14;4;27;4;;;;vpos;;v;;r;;d-1,-1;;b2,0;;m">
 				</treenode>
@@ -416,33 +452,37 @@
 					</treenode>
 				</treenode>
 			</treenode>
-			<treenode node="_SESSION;PHP:Var Name;C:\xampp\htdocs\conta\views\template.php;f16;13;25;13;;C:\xampp\htdocs\conta\views\homeView.php;f32;10;41;10;;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f65;11;74;11;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="_SESSION;PHP:Var Name;C:\xampp\htdocs\conta\views\template.php;f32;13;41;13;;C:\xampp\htdocs\conta\views\homeView.php;f32;10;41;10;;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f65;11;74;11;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="ano;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioMovimentacaoListagemView.php;f30;31;34;31;;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f140;57;144;57;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="ano;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioFormGeralView.php;f39;24;43;24;;C:\xampp\htdocs\conta\views\relatorioMovimentacaoListagemView.php;f30;31;34;31;;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f143;58;147;58;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="banco;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f55;14;61;14;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="banco;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f54;14;60;14;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="bancos;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f44;14;51;14;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="bancos;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f43;14;50;14;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="categoria;PHP:Var Name;C:\xampp\htdocs\conta\views\debitoView.php;f62;25;72;25;;C:\xampp\htdocs\conta\views\creditoView.php;f62;25;72;25;;C:\xampp\htdocs\conta\views\agendaPgtoView.php;f62;25;72;25;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="categoria;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioGastoGeralCategoriaView.php;f59;4;69;4;;C:\xampp\htdocs\conta\views\relatorioFormGeralView.php;f39;15;49;15;;C:\xampp\htdocs\conta\views\debitoView.php;f62;25;72;25;;C:\xampp\htdocs\conta\views\creditoView.php;f62;25;72;25;;C:\xampp\htdocs\conta\views\agendaPgtoView.php;f62;25;72;25;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="categorias;PHP:Var Name;C:\xampp\htdocs\conta\views\debitoView.php;f47;25;58;25;;C:\xampp\htdocs\conta\views\creditoView.php;f47;25;58;25;;C:\xampp\htdocs\conta\views\agendaPgtoView.php;f47;25;58;25;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="class;PHP:Var Name;C:\xampp\htdocs\conta\index.php;f32;7;38;7;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="codAgencia;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f135;36;146;36;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="codAgencia;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f133;36;144;36;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="codOperacao;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f137;29;149;29;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="codOperacao;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f135;29;147;29;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="config;PHP:Var Name;C:\xampp\htdocs\conta\config.php;f7;6;14;6;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="conta;PHP:Var Name;C:\xampp\htdocs\conta\views\homeView.php;f54;25;60;25;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
+			<treenode node="contArray;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioGeralView.php;f14;14;24;14;;C:\xampp\htdocs\conta\views\relatorioGastoGeralCategoriaView.php;f18;15;28;15;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			</treenode>
 			<treenode node="contas;PHP:Var Name;C:\xampp\htdocs\conta\views\homeView.php;f41;24;48;24;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="contas_agendadas;PHP:Var Name;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f30;53;47;53;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="contas_agendadas;PHP:Var Name;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f32;54;49;54;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="core;PHP:Var Name;C:\xampp\htdocs\conta\index.php;f0;24;5;24;;;;vposCore;;v;;r;;d-1,-1;;b0,0;;m">
+			</treenode>
+			<treenode node="dados;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioGeralView.php;f16;11;22;11;;C:\xampp\htdocs\conta\views\relatorioGastoGeralCategoriaView.php;f20;12;26;12;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="data_credito;PHP:Var Name;C:\xampp\htdocs\conta\views\creditoView.php;f139;13;152;13;;C:\xampp\htdocs\conta\views\agendaPgtoView.php;f139;13;152;13;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
@@ -456,17 +496,17 @@
 			</treenode>
 			<treenode node="deb;PHP:Var Name;C:\xampp\htdocs\conta\views\debitoSucessoView.php;f40;9;44;9;;C:\xampp\htdocs\conta\views\creditoSucessoView.php;f47;9;51;9;;C:\xampp\htdocs\conta\views\agendaPgtoSucessoView.php;f54;9;58;9;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="digAgencia;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f135;21;146;21;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="digAgencia;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f133;21;144;21;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="digConta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f131;49;140;49;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="digConta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f129;49;138;49;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="email;PHP:Var Name;C:\xampp\htdocs\conta\views\loginView.php;f113;8;119;8;;C:\xampp\htdocs\conta\views\cadastroView.php;f123;20;129;20;;C:\xampp\htdocs\conta\views\cadastroSucessoView.php;f139;18;145;18;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="email;PHP:Var Name;C:\xampp\htdocs\conta\views\loginView.php;f123;8;129;8;;C:\xampp\htdocs\conta\views\cadastroView.php;f123;20;129;20;;C:\xampp\htdocs\conta\views\cadastroSucessoView.php;f139;18;145;18;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="erro_login;PHP:Var Name;C:\xampp\htdocs\conta\views\loginView.php;f22;21;33;21;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="erro_login;PHP:Var Name;C:\xampp\htdocs\conta\views\loginView.php;f25;21;36;21;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="erroCategoria;PHP:Var Name;C:\xampp\htdocs\conta\views\debitoView.php;f41;43;55;43;;C:\xampp\htdocs\conta\views\creditoView.php;f41;43;55;43;;C:\xampp\htdocs\conta\views\agendaPgtoView.php;f41;43;55;43;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="erroCodAgencia;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f43;53;58;53;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="erroCodAgencia;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f41;53;56;53;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="erroConta;PHP:Var Name;C:\xampp\htdocs\conta\views\homeView.php;f20;2;30;2;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
@@ -478,23 +518,23 @@
 			</treenode>
 			<treenode node="erroDebito;PHP:Var Name;C:\xampp\htdocs\conta\views\debitoView.php;f41;41;52;41;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="erroDigConta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f43;57;56;57;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="erroDigConta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f41;57;54;57;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="erroDigVerificador;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f43;54;62;54;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="erroDigVerificador;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f41;54;60;54;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="erroEmail;PHP:Var Name;C:\xampp\htdocs\conta\views\loginView.php;f22;19;32;19;;C:\xampp\htdocs\conta\views\cadastroView.php;f42;21;52;21;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="erroEmail;PHP:Var Name;C:\xampp\htdocs\conta\views\loginView.php;f25;19;35;19;;C:\xampp\htdocs\conta\views\cadastroView.php;f42;21;52;21;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="erroMovimentacao;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioMovimentacaoView.php;f42;30;59;30;;C:\xampp\htdocs\conta\views\debitoView.php;f41;42;58;42;;C:\xampp\htdocs\conta\views\creditoView.php;f41;42;58;42;;C:\xampp\htdocs\conta\views\agendaPgtoView.php;f41;42;58;42;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="erroNomeBanco;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f43;52;57;52;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="erroNomeBanco;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f41;52;55;52;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="erroNomeCompleto;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroView.php;f42;14;59;14;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="erroNumConta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f43;56;56;56;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="erroNumConta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f41;56;54;56;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="erroSenha;PHP:Var Name;C:\xampp\htdocs\conta\views\loginView.php;f22;20;32;20;;C:\xampp\htdocs\conta\views\cadastroView.php;f42;28;52;28;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="erroSenha;PHP:Var Name;C:\xampp\htdocs\conta\views\loginView.php;f25;20;35;20;;C:\xampp\htdocs\conta\views\cadastroView.php;f42;28;52;28;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="erroTipoConta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f43;55;57;55;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="erroTipoConta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f41;55;55;55;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="erroValor;PHP:Var Name;C:\xampp\htdocs\conta\views\debitoView.php;f41;44;51;44;;C:\xampp\htdocs\conta\views\creditoView.php;f41;44;51;44;;C:\xampp\htdocs\conta\views\agendaPgtoView.php;f41;44;51;44;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
@@ -504,21 +544,27 @@
 			</treenode>
 			<treenode node="extrato_relatorio;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioMovimentacaoListagemView.php;f36;9;54;9;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
+			<treenode node="gasto_geral_categoria;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioGastoGeralCategoriaView.php;f20;7;42;7;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			</treenode>
 			<treenode node="hostname;PHP:Var Name;C:\xampp\htdocs\conta\config.php;f0;4;9;4;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\views\homePrincipalConta.php;f45;11;53;11;;C:\xampp\htdocs\conta\views\relatorioMovimentacaoView.php;f74;9;82;9;;C:\xampp\htdocs\conta\views\debitoView.php;f74;9;82;9;;C:\xampp\htdocs\conta\views\debitoSucessoView.php;f100;33;108;33;;C:\xampp\htdocs\conta\views\creditoView.php;f74;9;82;9;;C:\xampp\htdocs\conta\views\creditoSucessoView.php;f100;33;108;33;;C:\xampp\htdocs\conta\views\agendaPgtoView.php;f74;9;82;9;;C:\xampp\htdocs\conta\views\agendaPgtoSucessoView.php;f100;33;108;33;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="i;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioGeralView.php;f19;15;21;15;;C:\xampp\htdocs\conta\views\relatorioGastoGeralCategoriaView.php;f23;16;25;16;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="idUser;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioMovimentacaoView.php;f73;10;80;10;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="idConta;PHP:Var Name;C:\xampp\htdocs\conta\views\homePrincipalConta.php;f45;11;53;11;;C:\xampp\htdocs\conta\views\relatorioFormGeralView.php;f80;11;88;11;;C:\xampp\htdocs\conta\views\relatorioMovimentacaoView.php;f74;9;82;9;;C:\xampp\htdocs\conta\views\debitoView.php;f74;9;82;9;;C:\xampp\htdocs\conta\views\debitoSucessoView.php;f100;33;108;33;;C:\xampp\htdocs\conta\views\creditoView.php;f74;9;82;9;;C:\xampp\htdocs\conta\views\creditoSucessoView.php;f100;33;108;33;;C:\xampp\htdocs\conta\views\agendaPgtoView.php;f74;9;82;9;;C:\xampp\htdocs\conta\views\agendaPgtoSucessoView.php;f100;33;108;33;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			</treenode>
+			<treenode node="idUser;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioFormGeralView.php;f79;10;86;10;;C:\xampp\htdocs\conta\views\relatorioMovimentacaoView.php;f73;10;80;10;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			</treenode>
+			<treenode node="key;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioGeralView.php;f41;10;45;10;;C:\xampp\htdocs\conta\views\relatorioGastoGeralCategoriaView.php;f51;11;55;11;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="last_debito;PHP:Var Name;C:\xampp\htdocs\conta\views\debitoSucessoView.php;f24;9;36;9;;C:\xampp\htdocs\conta\views\creditoSucessoView.php;f31;9;43;9;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="last_pgto_agendado;PHP:Var Name;C:\xampp\htdocs\conta\views\agendaPgtoSucessoView.php;f31;9;50;9;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="linha;PHP:Var Name;C:\xampp\htdocs\conta\views\Codelobster0.php;f44;19;50;19;;C:\xampp\htdocs\conta\views\relatorioMovimentacaoListagemView.php;f61;23;67;23;;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f58;68;64;68;;C:\xampp\htdocs\conta\views\extratoView.php;f55;20;61;20;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="linha;PHP:Var Name;C:\xampp\htdocs\conta\views\Codelobster0.php;f44;19;50;19;;C:\xampp\htdocs\conta\views\relatorioMovimentacaoListagemView.php;f61;23;67;23;;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f68;71;74;71;;C:\xampp\htdocs\conta\views\extratoView.php;f55;20;61;20;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="mensagem;PHP:Var Name;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f34;47;43;47;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="mensagem;PHP:Var Name;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f33;48;42;48;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="mes;PHP:Var Name;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f97;57;101;57;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="mes;PHP:Var Name;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f102;58;106;58;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="mov;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioMovimentacaoListagemView.php;f30;30;34;30;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
@@ -526,39 +572,43 @@
 			</treenode>
 			<treenode node="movimentacao_relatorio;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioMovimentacaoView.php;f156;27;179;27;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="msg_conta_cadastrada;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f33;64;54;64;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="msg_conta_cadastrada;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f37;64;58;64;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="msg_sucesso;PHP:Var Name;C:\xampp\htdocs\conta\views\debitoSucessoView.php;f38;35;50;35;;C:\xampp\htdocs\conta\views\creditoSucessoView.php;f37;35;49;35;;C:\xampp\htdocs\conta\views\cadastroSucessoView.php;f42;30;54;30;;C:\xampp\htdocs\conta\views\cadastroContaSucessoView.php;f33;49;45;49;;C:\xampp\htdocs\conta\views\agendaPgtoSucessoView.php;f37;34;49;34;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="nome;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroSucessoView.php;f152;13;157;13;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="nome_banco;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f59;15;70;15;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="nome_banco;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f58;15;69;15;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="nome_categoria;PHP:Var Name;C:\xampp\htdocs\conta\views\debitoView.php;f62;26;77;26;;C:\xampp\htdocs\conta\views\creditoView.php;f62;26;77;26;;C:\xampp\htdocs\conta\views\agendaPgtoView.php;f62;26;77;26;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="nomeCompleto;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroView.php;f136;13;149;13;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="numConta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f131;25;140;25;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="numConta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f129;25;138;25;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			</treenode>
+			<treenode node="rel_geral_gasto;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioGeralView.php;f20;7;36;7;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="retorno;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaSucessoView.php;f129;12;137;12;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="senha;PHP:Var Name;C:\xampp\htdocs\conta\views\loginView.php;f116;12;122;12;;C:\xampp\htdocs\conta\views\cadastroView.php;f126;27;132;27;;C:\xampp\htdocs\conta\views\cadastroSucessoView.php;f126;24;132;24;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="senha;PHP:Var Name;C:\xampp\htdocs\conta\views\loginView.php;f126;12;132;12;;C:\xampp\htdocs\conta\views\cadastroView.php;f126;27;132;27;;C:\xampp\htdocs\conta\views\cadastroSucessoView.php;f126;24;132;24;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="this;PHP:Var Name;C:\xampp\htdocs\conta\views\template.php;f14;55;19;55;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="this;PHP:Var Name;C:\xampp\htdocs\conta\views\template.php;f22;54;27;54;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="tipo;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f37;42;42;42;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="tipo;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f57;42;62;42;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="tipo_conta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f56;43;67;43;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="tipo_conta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f58;43;69;43;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="tipoConta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f23;42;33;42;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="tipoConta;PHP:Var Name;C:\xampp\htdocs\conta\views\cadastroContaView.php;f43;42;53;42;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="total;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioMovimentacaoListagemView.php;f30;22;36;22;;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f28;67;34;67;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="total;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioGeralView.php;f22;25;28;25;;C:\xampp\htdocs\conta\views\relatorioGastoGeralCategoriaView.php;f26;27;32;27;;C:\xampp\htdocs\conta\views\relatorioMovimentacaoListagemView.php;f30;22;36;22;;C:\xampp\htdocs\conta\views\homePrincipalContaView.php;f38;69;44;69;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 			<treenode node="valor;PHP:Var Name;C:\xampp\htdocs\conta\views\debitoView.php;f125;33;131;33;;C:\xampp\htdocs\conta\views\creditoView.php;f125;33;131;33;;C:\xampp\htdocs\conta\views\agendaPgtoView.php;f125;33;131;33;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="viewData;PHP:Var Name;C:\xampp\htdocs\conta\views\template.php;f51;55;60;55;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="value;PHP:Var Name;C:\xampp\htdocs\conta\views\relatorioGeralView.php;f49;10;55;10;;C:\xampp\htdocs\conta\views\relatorioGastoGeralCategoriaView.php;f59;11;65;11;;C:\xampp\htdocs\conta\views\relatorioFormGeralView.php;f53;15;59;15;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
-			<treenode node="viewName;PHP:Var Name;C:\xampp\htdocs\conta\views\template.php;f40;55;49;55;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			<treenode node="viewData;PHP:Var Name;C:\xampp\htdocs\conta\views\template.php;f59;54;68;54;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
+			</treenode>
+			<treenode node="viewName;PHP:Var Name;C:\xampp\htdocs\conta\views\template.php;f48;54;57;54;;;;vpos;;v;;r;;d-1,-1;;b0,0;;m">
 			</treenode>
 		</phptree>
 		<jstree>
@@ -7851,14 +7901,17 @@
 		</todofile>
 	</todoblock>
 	<filescache>
-		<file name="C:\xampp\htdocs\conta\views\template.php" crc="1475695915"/>
+		<file name="C:\xampp\htdocs\conta\views\template.php" crc="1482767444"/>
 		<file name="C:\xampp\htdocs\conta\views\relatorioMovimentacaoView.php" crc="1475869887"/>
 		<file name="C:\xampp\htdocs\conta\views\relatorioMovimentacaoListagemView.php" crc="1476108965"/>
+		<file name="C:\xampp\htdocs\conta\views\relatorioGeralView.php" crc="1482750390"/>
+		<file name="C:\xampp\htdocs\conta\views\relatorioGastoGeralCategoriaView.php" crc="1482775450"/>
+		<file name="C:\xampp\htdocs\conta\views\relatorioFormGeralView.php" crc="1482750390"/>
 		<file name="C:\xampp\htdocs\conta\views\naoexisteView.php" crc="1475862416"/>
 		<file name="C:\xampp\htdocs\conta\views\naoencontrado.php" crc="1470920135"/>
-		<file name="C:\xampp\htdocs\conta\views\loginView.php" crc="1475844796"/>
+		<file name="C:\xampp\htdocs\conta\views\loginView.php" crc="1482750390"/>
 		<file name="C:\xampp\htdocs\conta\views\homeView.php" crc="1475693899"/>
-		<file name="C:\xampp\htdocs\conta\views\homePrincipalContaView.php" crc="1475874383"/>
+		<file name="C:\xampp\htdocs\conta\views\homePrincipalContaView.php" crc="1482750390"/>
 		<file name="C:\xampp\htdocs\conta\views\extratoView.php" crc="1480088333"/>
 		<file name="C:\xampp\htdocs\conta\views\extratoPeriodoView.php" crc="1475873461"/>
 		<file name="C:\xampp\htdocs\conta\views\debitoView.php" crc="1476107629"/>
@@ -7867,30 +7920,30 @@
 		<file name="C:\xampp\htdocs\conta\views\creditoSucessoView.php" crc="1475605129"/>
 		<file name="C:\xampp\htdocs\conta\views\cadastroView.php" crc="1475844797"/>
 		<file name="C:\xampp\htdocs\conta\views\cadastroSucessoView.php" crc="1475844796"/>
-		<file name="C:\xampp\htdocs\conta\views\cadastroContaView.php" crc="1475844796"/>
+		<file name="C:\xampp\htdocs\conta\views\cadastroContaView.php" crc="1482750390"/>
 		<file name="C:\xampp\htdocs\conta\views\cadastroContaSucessoView.php" crc="1475844796"/>
 		<file name="C:\xampp\htdocs\conta\views\agendaPgtoView.php" crc="1475608903"/>
 		<file name="C:\xampp\htdocs\conta\views\agendaPgtoSucessoView.php" crc="1475677268"/>
-		<file name="C:\xampp\htdocs\conta\nbproject\private\private.xml" crc="1480707598"/>
+		<file name="C:\xampp\htdocs\conta\nbproject\private\private.xml" crc="1482777418"/>
 		<file name="C:\xampp\htdocs\conta\nbproject\project.xml" crc="1475603530"/>
 		<file name="C:\xampp\htdocs\conta\models\UsuarioModel.php" crc="1475844797"/>
 		<file name="C:\xampp\htdocs\conta\models\LoginModel.php" crc="1475844796"/>
-		<file name="C:\xampp\htdocs\conta\models\ExtratoModel.php" crc="1475872856"/>
-		<file name="C:\xampp\htdocs\conta\models\ContaModel.php" crc="1475847886"/>
-		<file name="C:\xampp\htdocs\conta\models\CategoriaModel.php" crc="1475844797"/>
+		<file name="C:\xampp\htdocs\conta\models\ExtratoModel.php" crc="1482775435"/>
+		<file name="C:\xampp\htdocs\conta\models\ContaModel.php" crc="1482508754"/>
+		<file name="C:\xampp\htdocs\conta\models\CategoriaModel.php" crc="1482750390"/>
 		<file name="C:\xampp\htdocs\conta\core\helpers\LoginHelper.php" crc="1475844796"/>
 		<file name="C:\xampp\htdocs\conta\core\helpers\erro404Helper.php" crc="1475844796"/>
 		<file name="C:\xampp\htdocs\conta\core\Model.php" crc="1475844797"/>
 		<file name="C:\xampp\htdocs\conta\core\Core.php" crc="1475844796"/>
 		<file name="C:\xampp\htdocs\conta\core\Controller.php" crc="1475844796"/>
 		<file name="C:\xampp\htdocs\conta\controllers\testeController.php" crc="1475789691"/>
-		<file name="C:\xampp\htdocs\conta\controllers\relatorioController.php" crc="1475873063"/>
+		<file name="C:\xampp\htdocs\conta\controllers\relatorioController.php" crc="1482774966"/>
 		<file name="C:\xampp\htdocs\conta\controllers\naoexisteController.php" crc="1475844797"/>
 		<file name="C:\xampp\htdocs\conta\controllers\naoencontradoController.php" crc="1475844797"/>
 		<file name="C:\xampp\htdocs\conta\controllers\loginController.php" crc="1476130830"/>
 		<file name="C:\xampp\htdocs\conta\controllers\homeController.php" crc="1475695704"/>
 		<file name="C:\xampp\htdocs\conta\controllers\extratoController.php" crc="1475844796"/>
-		<file name="C:\xampp\htdocs\conta\controllers\contaController.php" crc="1476108197"/>
+		<file name="C:\xampp\htdocs\conta\controllers\contaController.php" crc="1482750390"/>
 		<file name="C:\xampp\htdocs\conta\controllers\cadastroController.php" crc="1475844797"/>
 		<file name="C:\xampp\htdocs\conta\assets\js\npm.js" crc="1475844796"/>
 		<file name="C:\xampp\htdocs\conta\assets\js\menu.js" crc="1475844796"/>
@@ -7901,7 +7954,7 @@
 		<file name="C:\xampp\htdocs\conta\assets\js\carrinho.js" crc="1475844796"/>
 		<file name="C:\xampp\htdocs\conta\assets\js\bootstrap.min.js" crc="1475844797"/>
 		<file name="C:\xampp\htdocs\conta\assets\js\bootstrap.js" crc="1475844797"/>
-		<file name="C:\xampp\htdocs\conta\assets\css\template.css" crc="1476108818"/>
+		<file name="C:\xampp\htdocs\conta\assets\css\template.css" crc="1482767506"/>
 		<file name="C:\xampp\htdocs\conta\assets\css\bootstrap.min.css" crc="1475844797"/>
 		<file name="C:\xampp\htdocs\conta\assets\css\bootstrap.css" crc="1475844797"/>
 		<file name="C:\xampp\htdocs\conta\assets\css\bootstrap-theme.min.css" crc="1475844797"/>
@@ -7912,7 +7965,7 @@
 		<file name="C:\xampp\htdocs\conta\.idea\modules.xml" crc="1477582824"/>
 		<file name="C:\xampp\htdocs\conta\index.php" crc="1475844796"/>
 		<file name="C:\xampp\htdocs\conta\environment.php" crc="1475844796"/>
-		<file name="C:\xampp\htdocs\conta\config.php" crc="1475844796"/>
+		<file name="C:\xampp\htdocs\conta\config.php" crc="1482750390"/>
 		<file name="C:\xampp\htdocs\conta\banco.php" crc="1475844797"/>
 		<file name="C:\xampp\htdocs\conta\.htaccess" crc="1475844797"/>
 	</filescache>

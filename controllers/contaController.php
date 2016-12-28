@@ -145,16 +145,16 @@ class contaController extends Controller {
             } else {
                 $dados['valor'] = $_POST['valor'];
             }
-            
+
             if ($status == true) {
                 $idConta = trim(addslashes($_POST['idConta']));
                 $dataDebito = trim(addslashes($_POST['data_debito']));
-				if (strpos($dataDebito, "/") !== false) {
-					if ($this->validaData($dataDebito) == true) {
-						$arr = explode('/', $dataDebito);
-						$dataDebito = $arr[2].'-'.$arr[1].'-'.$arr[0];
-					}
-				}	
+                if (strpos($dataDebito, "/") !== false) {
+                    if ($this->validaData($dataDebito) == true) {
+                        $arr = explode('/', $dataDebito);
+                        $dataDebito = $arr[2] . '-' . $arr[1] . '-' . $arr[0];
+                    }
+                }
                 $movimentacao = trim(addslashes($_POST['movimentacao']));
                 $categoria = trim(addslashes($_POST['nome_categoria']));
                 $valor = trim(addslashes($_POST['valor']));
@@ -247,7 +247,7 @@ class contaController extends Controller {
             }
         }
     }
-    
+
     public function agendar($idConta = null) {
         $dados = array();
 
@@ -315,41 +315,40 @@ class contaController extends Controller {
         unset($_SESSION['conta']);
         header("Location: /home");
     }
-    
+
     public function pagar($idConta) {
         if (isset($idConta) && !empty($idConta)) {
             $resultado = $this->contaModel->verificaPagamentoAgendado();
             if ($resultado == 0) {
                 date_default_timezone_set('America/Sao_Paulo');
-                $data['ano'] = date("Y"); 
+                $data['ano'] = date("Y");
                 $data['mes'] = $this->contaModel->verificaMes();
                 $data['contas_agendadas'] = $this->contaModel->getContasAgendadas($_SESSION['conta']['idConta']);
                 $data['mensagem'] = "<span class='alert alert-danger' role='alert'>Não há nenhum pagamento agendado para pagar hoje.</span>";
             } else {
                 date_default_timezone_set('America/Sao_Paulo');
-                $data['ano'] = date("Y"); 
+                $data['ano'] = date("Y");
                 $data['mes'] = $this->contaModel->verificaMes();
                 $data['contas_agendadas'] = $this->contaModel->getContasAgendadas($_SESSION['conta']['idConta']);
                 $data['mensagem'] = "<span class='alert alert-danger' role='alert'>Pagamento(s) realizado(s) com Sucesso.</span>";
             }
-            $this->loadTemplate('homePrincipalContaView', $data);    
+            $this->loadTemplate('homePrincipalContaView', $data);
         }
+    }
 
-    } 
-	
-	public function validaData($dat) {
-		$data = explode("/","$dat"); // fatia a string $dat em pedados, usando / como referência
-		$d = $data[0];
-		$m = $data[1];
-		$y = $data[2];
-	 
-		// verifica se a data é válida!
-		// 1 = true (válida)
-		// 0 = false (inválida)
-		$res = checkdate($m,$d,$y);
-		if ($res == 1){
-		   return true;
-		}
-	}
+    public function validaData($dat) {
+        $data = explode("/", "$dat"); // fatia a string $dat em pedados, usando / como referência
+        $d = $data[0];
+        $m = $data[1];
+        $y = $data[2];
+
+        // verifica se a data é válida!
+        // 1 = true (válida)
+        // 0 = false (inválida)
+        $res = checkdate($m, $d, $y);
+        if ($res == 1) {
+            return true;
+        }
+    }
 
 }

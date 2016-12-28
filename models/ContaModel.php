@@ -93,7 +93,10 @@ class ContaModel extends Model {
             $dataMovimentacaoInicial = "2016-{$dataAtual}-01";
             $dataMovimentacaoFinal = "2016-{$dataAtual}-31";
 
-            $stmt = $this->db->prepare("SELECT Ext.data_movimentacao AS 'DatMov', Ext.movimentacao AS 'Mov', Cat.nome_categoria AS 'Cat', Ext.tipo_operacao AS 'Op', Ext.valor AS 'Val', Ext.saldo AS 'Sal', Ext.despesa_fixa AS 'Dp' FROM tb_extrato AS Ext LEFT JOIN tb_categoria AS Cat ON (Ext.fk_id_categoria = Cat.id_categoria) WHERE Ext.fk_id_conta = ? AND Ext.data_movimentacao BETWEEN ? AND ?");
+            $stmt = $this->db->prepare("SELECT Ext.data_movimentacao AS 'DatMov', Ext.movimentacao AS 'Mov', Cat.nome_categoria AS "
+                  . "'Cat', Ext.tipo_operacao AS 'Op', Ext.valor AS 'Val', Ext.saldo AS 'Sal', Ext.despesa_fixa AS 'Dp' FROM "
+                  . "tb_extrato AS Ext LEFT JOIN tb_categoria AS Cat ON (Ext.fk_id_categoria = Cat.id_categoria) WHERE "
+                  . "Ext.fk_id_conta = ? AND Ext.data_movimentacao BETWEEN ? AND ?");
             $stmt->bindValue(1, $idConta, PDO::PARAM_INT);
             $stmt->bindValue(2, $dataMovimentacaoInicial);
             $stmt->bindValue(3, $dataMovimentacaoFinal);
@@ -104,7 +107,10 @@ class ContaModel extends Model {
 
     public function verSaldoAtual($idConta) {
         if (isset($idConta) && !empty($idConta)) {
-            $stmt = $this->db->prepare("SELECT saldo FROM tb_extrato WHERE fk_id_conta = ? ORDER BY id_extrato DESC LIMIT 1");
+            $dataAtual = date("Y-m-d");
+            $dataMenor = date("Y-m-d", strtotime("-8 days",strtotime($dataAtual)));
+            $stmt = $this->db->prepare("SELECT saldo FROM tb_extrato WHERE data_movimentacao BETWEEN '{$dataMenor}' AND '{$dataAtual}' "
+                  . "AND fk_id_conta = ? ORDER BY id_extrato DESC LIMIT 1");
             $stmt->bindValue(1, $idConta, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);
