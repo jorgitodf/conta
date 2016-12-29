@@ -26,7 +26,7 @@
         text-align: center;
     }
     #navbar-nav {
-        margin-left: -70%;
+        margin-left: 20px;
     }
     #navbar-nav > li > a {
         color: white;
@@ -43,13 +43,24 @@
     }
     #navbar-nav > li > a {
         padding: 15px;
-        margin-top: -2px;;
+        margin-top: -2px;
     }
     #navbar-nav > li > a, #navbar_deslogar  > li > a {
         color: white;
         padding: 15px;
-        margin-top: -2px;;
+        margin-top: -2px;
     }
+    #navbar_saldo {
+        color: white; 
+        margin-top: 4px;
+        font-size: 12px;
+        width: 250px;
+        margin-left: 180px;
+    }
+    .info_saldo {
+        color: yellow;
+    }
+
     .container-erro-404 {
         margin-top: 8%;
     }

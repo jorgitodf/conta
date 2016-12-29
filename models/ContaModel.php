@@ -9,12 +9,12 @@ class ContaModel extends Model {
     public function verificaConta($idUser) {
         if (isset($idUser) && !empty($idUser)) {
             $stmt = $this->db->prepare("SELECT tb_conta.id_conta AS 'IdConta', tb_conta.codigo_agencia AS 'CodAgencia', "
-                  . "tb_banco.nome_banco  AS 'NomeBanco', tb_conta.digito_verificador_agencia AS 'DigVerAgencia', "
-                  . "tb_tipo_conta.tipo_conta AS 'TipoConta', tb_conta.numero_conta AS 'NumeroConta', "
-                  . "tb_conta.digito_verificador_conta AS 'DigVerConta', tb_conta.codigo_operacao AS 'CodOperacao', "
-                  . "date_format(tb_conta.data_cadastro, '%d/%m/%Y') AS 'DataCadastro' FROM tb_conta LEFT JOIN tb_banco "
-                  . "ON (tb_conta.fk_cod_banco = tb_banco.cod_banco) LEFT JOIN tb_tipo_conta ON (tb_conta.fk_tipo_conta = "
-                  . "tb_tipo_conta.id_tipo_conta) WHERE tb_conta.fk_id_usuario = ? ORDER BY tb_conta.id_conta DESC");
+                . "tb_banco.nome_banco  AS 'NomeBanco', tb_conta.digito_verificador_agencia AS 'DigVerAgencia', "
+                . "tb_tipo_conta.tipo_conta AS 'TipoConta', tb_conta.numero_conta AS 'NumeroConta', "
+                . "tb_conta.digito_verificador_conta AS 'DigVerConta', tb_conta.codigo_operacao AS 'CodOperacao', "
+                . "date_format(tb_conta.data_cadastro, '%d/%m/%Y') AS 'DataCadastro' FROM tb_conta LEFT JOIN tb_banco "
+                . "ON (tb_conta.fk_cod_banco = tb_banco.cod_banco) LEFT JOIN tb_tipo_conta ON (tb_conta.fk_tipo_conta = "
+                . "tb_tipo_conta.id_tipo_conta) WHERE tb_conta.fk_id_usuario = ? ORDER BY tb_conta.id_conta DESC");
             $stmt->bindValue(1, $idUser, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -108,9 +108,11 @@ class ContaModel extends Model {
     public function verSaldoAtual($idConta) {
         if (isset($idConta) && !empty($idConta)) {
             $dataAtual = date("Y-m-d");
-            $dataMenor = date("Y-m-d", strtotime("-8 days",strtotime($dataAtual)));
-            $stmt = $this->db->prepare("SELECT saldo FROM tb_extrato WHERE data_movimentacao BETWEEN '{$dataMenor}' AND '{$dataAtual}' "
-                  . "AND fk_id_conta = ? ORDER BY id_extrato DESC LIMIT 1");
+            $dataMenor = date("Y-m-d", strtotime("-8 days", strtotime($dataAtual)));
+            $stmt = $this->db->prepare("SELECT ext.saldo as saldo, concat(con.numero_conta,'-',con.digito_verificador_conta) as "
+                  . "conta, ban.nome_banco as banco FROM tb_extrato as ext JOIN tb_conta as con ON (ext.fk_id_conta = con.id_conta) "
+                  . "JOIN tb_banco as ban ON (con.fk_cod_banco = ban.cod_banco) WHERE ext.data_movimentacao BETWEEN '{$dataMenor}' "
+                  . "AND '{$dataAtual}' AND ext.fk_id_conta = ? ORDER BY ext.id_extrato DESC LIMIT 1");
             $stmt->bindValue(1, $idConta, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -120,13 +122,11 @@ class ContaModel extends Model {
     public function debitarValor($idConta, $dataDebito, $movimentacao, $categoria, $novoValor) {
         if (!empty($idConta) && !empty($dataDebito) && !empty($movimentacao) && !empty($categoria) && !empty($novoValor)) {
             $saldo = $this->verSaldoAtual($idConta);
-            foreach ($saldo as $item) {
-                $saldo = $item;
-            }
-            if ($saldo < $novoValor) {
+
+            if ($saldo['saldo'] < $novoValor) {
                 return 0;
             } else {
-                $novoSaldo = $saldo - $novoValor;
+                $novoSaldo = $saldo['saldo'] - $novoValor;
                 $mes = $this->verificaMes();
                 $checkCategoria = $this->checkCategoria();
                 foreach ($checkCategoria as $linha) {
@@ -153,25 +153,25 @@ class ContaModel extends Model {
             }
         }
     }
-    
+
     public function creditarValor($idConta, $dataCredito, $movimentacao, $categoria, $novoValor) {
         if (!empty($idConta) && !empty($dataCredito) && !empty($movimentacao) && !empty($categoria) && !empty($novoValor)) {
-            
+
             $saldo = $this->verSaldoAtual($idConta);
-                foreach ($saldo as $item) {
-                    $saldo = $item;
+            foreach ($saldo as $item) {
+                $saldo = $item;
+            }
+            $novoSaldo = $saldo + $novoValor;
+            $mes = $this->verificaMes();
+            $checkCategoria = $this->checkCategoria();
+            foreach ($checkCategoria as $linha) {
+                $linha['id_categoria'];
+                if ($linha['id_categoria'] == $categoria) {
+                    $despFixa = 'S';
+                } else {
+                    $despFixa = 'N';
                 }
-                $novoSaldo = $saldo + $novoValor;
-                $mes = $this->verificaMes();
-                $checkCategoria = $this->checkCategoria();
-                foreach ($checkCategoria as $linha) {
-                    $linha['id_categoria'];
-                    if ($linha['id_categoria'] == $categoria) {
-                        $despFixa = 'S';
-                    } else {
-                        $despFixa = 'N';
-                    }
-                }
+            }
             $stmt = $this->db->prepare("INSERT INTO tb_extrato (data_movimentacao, mes, tipo_operacao, movimentacao, quantidade, valor, saldo, fk_id_categoria, fk_id_conta, despesa_fixa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->bindValue(1, $dataCredito, PDO::PARAM_STR);
             $stmt->bindValue(2, $mes, PDO::PARAM_STR);
@@ -187,7 +187,7 @@ class ContaModel extends Model {
             return 1;
         }
     }
-    
+
     public function creditarPgto($idConta, $dataCredito, $movimentacao, $categoria, $novoValor) {
         if (!empty($idConta) && !empty($dataCredito) && !empty($movimentacao) && !empty($categoria) && !empty($novoValor)) {
             $stmt = $this->db->prepare("INSERT INTO tb_pgto_agendado (data_pagamento, movimentacao, valor, pago, fk_id_categoria, "
@@ -202,7 +202,7 @@ class ContaModel extends Model {
             return 1;
         }
     }
-    
+
     public function verificaMesNumerico() {
         date_default_timezone_set('America/Sao_Paulo');
         $mesAtual = date("m");
@@ -302,7 +302,7 @@ class ContaModel extends Model {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public function getLastPgtoAgendado($idConta) {
         $stmt = $this->db->prepare("SELECT pgag.id_pgto_agendado AS 'idpgag', pgag.data_pagamento AS 'data', pgag.movimentacao AS "
               . "'mov', pgag.valor AS 'valor', cat.nome_categoria AS 'cat' FROM tb_pgto_agendado AS pgag, tb_categoria AS cat WHERE "
@@ -321,7 +321,7 @@ class ContaModel extends Model {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
-    
+
     public function getContasAgendadas($idConta) {
         $mes = $this->verificaMesNumerico();
         $stmt = $this->db->prepare("SELECT pgag.id_pgto_agendado AS 'idpgag', pgag.data_pagamento AS 'data', pgag.movimentacao "
@@ -329,20 +329,20 @@ class ContaModel extends Model {
               . "AND pgag.data_pagamento >= '2016-$mes-01' ORDER BY data_pagamento ASC");
         $stmt->bindValue(1, $idConta, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);       
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-    public function verificaPagamentoAgendado () {
+
+    public function verificaPagamentoAgendado() {
         $dados = array();
         date_default_timezone_set('America/Sao_Paulo');
-        $dataPagamento = date("Y-m-d"); 
+        $dataPagamento = date("Y-m-d");
         $stmtSelect = $this->db->prepare("SELECT * FROM tb_pgto_agendado WHERE data_pagamento = ? ORDER BY data_pagamento");
         $stmtSelect->bindValue(1, $dataPagamento, PDO::PARAM_INT);
         $stmtSelect->execute();
         $dados = $stmtSelect->fetchALL(PDO::FETCH_ASSOC);
 
         if (!empty($dados)) {
-            
+
             foreach ($dados as $value) {
                 $saldo = $this->verSaldoAtual($_SESSION['conta']['idConta']);
                 if ($saldo['saldo'] < $value['valor']) {
@@ -358,7 +358,7 @@ class ContaModel extends Model {
                         } else {
                             $despFixa = 'N';
                         }
-                    }   
+                    }
                     $stmt = $this->db->prepare("INSERT INTO tb_extrato (data_movimentacao, mes, tipo_operacao, movimentacao, quantidade,"
                           . " valor, saldo, fk_id_categoria, fk_id_conta, despesa_fixa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                     $stmt->bindValue(1, $value['data_pagamento'], PDO::PARAM_STR);
@@ -384,7 +384,6 @@ class ContaModel extends Model {
         } else {
             return 0;
         }
-
     }
 
 }

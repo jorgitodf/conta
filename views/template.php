@@ -25,7 +25,7 @@
                             </div>
 
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav" id="navbar-nav">
+                                <ul class="nav navbar-nav navbar-left" id="navbar-nav">
                                     <li class="dropdown">
                                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Minha Conta<span class="caret"></span></a>
                                         <ul class="dropdown-menu" id="dropdown-menu">
@@ -39,7 +39,15 @@
                                         </ul>
                                     </li>
                                 </ul>
-
+                                <ul class="nav navbar-nav navbar-form" id="navbar_saldo">
+                                    <?php if (isset($dados) && !empty($dados)): ?>
+                                    <li>Conta: <span class="info_saldo"><?php echo $dados['conta']; ?></span></li><br/>
+                                    <li>Banco: <span class="info_saldo"><?php echo $dados['banco']; ?></span></li><br/>
+                                    <li>Saldo: <span class="info_saldo"><?php echo number_format($dados['saldo'], 2, ',', '.'); ?></span></li><br/>
+                                    <?php else: ?>
+                                    <li><?php echo $erro; ?></li><br/>
+                                    <?php endif; ?>
+                                </ul>            
                                 <ul class="nav navbar-nav navbar-right" id="navbar_deslogar">
                                     <li class="dropdown">
                                         <a href="/login/logout">Deslogar</a>
