@@ -331,8 +331,18 @@
     #btn_extrato {
         height: 80px;
         border-radius: 10px 0 0 10px;
+        width: 115px;
     }
     #btn_extrato_1 {
+        height: 80px;
+        border-radius: 0 10px 10px 0;
+    }
+    #btn_agendamento {
+        height: 80px;
+        border-radius: 10px 0 0 10px;
+        width: 115px;
+    }
+    #btn_agendamento_1 {
         height: 80px;
         border-radius: 0 10px 10px 0;
     }
@@ -579,7 +589,41 @@
         font-size: 12px;
         text-align: center;
     }
+    
+    /*PÁGINA AGENDAMENTO DE PAGAMENTOS*/
+    #div_panel_agendamento_pgto {
+        margin-top: 6%;
+    }
+    #panel_head_agendamento_pagamento {
+        background-color: #6767fe;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+    }
+    .centralizar_td {
+        text-align: center;
+    }
+    #tabela_index_agendamento_pagamento > thead > tr > th {
+        text-align: center;
+         background-color: darkkhaki;
+    }
+    #tabela_index_agendamento_pagamento > tbody > tr > td {
+        padding: 3px;
+        font-size: 13px;
+    }
+    .cor_verde {
+        color: lime;
+    }
+    .cor_vermelho {
+        color: red;
+    }
+    .disabled {
+        pointer-events: none;
+        cursor: default;
+        opacity: 0.6;
+    }
 }	
+
 @media (min-width: 1440px) {
 
     html, body {
