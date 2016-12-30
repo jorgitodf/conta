@@ -388,8 +388,56 @@
     .body_debito {
         margin-top: 8%;
     }
-    #div_form_debito {
-
+    .both {
+        clear: both;
+    }
+    #div_row_form_agendar_pagamento {
+        margin-top: 8%;    
+        margin-left: 25%;
+    }
+    #div_mov_pgto {
+        float: left;
+        margin-left: 24%;
+    }
+    #data_pgto {
+        width: 170%;
+    }    
+    #mov_pgto {
+        width: 180%;
+    }
+    #valor_pgto {
+        width: 180%;
+    }
+    #categoria_pgto {
+        width: 171%;
+    }
+    #div_data_pgto {
+        float: left;
+    }
+    #div_valor_pgto {
+        float: left;
+        margin-left: 24%;
+    }
+    #div_btn_agendar {
+        float: left;
+    }
+    #div_msgs_error {
+        margin-left: 40%;
+        float: left;
+    }
+    #dataMsgError, #movMsgError, #catMsgError, #valMsgError {
+        color: red;
+        font-weight: bold;
+        font-size: 11px;
+        padding: 0;
+        display: none;
+    }
+    #div_cat_pgto {
+        float: left;    
+    }
+    #div_panel_form_agendar_pagamento {
+        width: 65%;
+        height: 300px;
     }
     .erro_debito, .erro_movimentacao, .erro_nome_categoria {
         color: red;

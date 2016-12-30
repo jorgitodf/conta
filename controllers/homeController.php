@@ -36,6 +36,7 @@ class homeController extends Controller {
                 $_SESSION['conta']['TipoConta'] = $linha['TipoConta'];
                 $_SESSION['conta']['numConta'] = $linha['NumeroConta'];
                 $_SESSION['conta']['DigVerConta'] = $linha['DigVerConta'];
+                $_SESSION['conta']['idUser'] = $linha['IdUser'];
             }
         }
         date_default_timezone_set('America/Sao_Paulo');

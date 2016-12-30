@@ -15,4 +15,16 @@ class AgendamentoModel extends Model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function verificaContaUsuarioLogadoExiste($idConta, $idUser) {
+        if ((isset($idConta) && !empty($idConta)) && (isset($idUser) && !empty($idUser))) {
+            $stmt = $this->db->prepare("SELECT id_conta as idConta, fk_id_usuario as idUser FROM conta.tb_conta WHERE id_conta = ?"
+                . " AND fk_id_usuario = ?");
+            $stmt->bindValue(1, $idConta, PDO::PARAM_INT);
+            $stmt->bindValue(2, $idUser, PDO::PARAM_INT);
+            $stmt->execute();
+            print_r($stmt->fetch(PDO::FETCH_ASSOC));exit;
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        
+    }
 }
