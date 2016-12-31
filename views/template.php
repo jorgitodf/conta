@@ -65,17 +65,17 @@
 
             <footer>
             </footer>
-            <div id="retorno"></div>
+            
         </main>
 
         <script src="/assets/js/jquery-3.1.0.min.js"></script>
         <script src="/assets/js/jquery.maskMoney.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>
         <script src="/assets/js/scripts.js"></script>
-
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#valor").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
+                $("#valor_pgto").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
             });
         </script>
 

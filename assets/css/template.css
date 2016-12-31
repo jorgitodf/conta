@@ -422,15 +422,22 @@
         float: left;
     }
     #div_msgs_error {
-        margin-left: 40%;
+        margin-left: 23%;
         float: left;
     }
-    #dataMsgError, #movMsgError, #catMsgError, #valMsgError {
+    .msgError {
         color: red;
         font-weight: bold;
         font-size: 11px;
         padding: 0;
-        display: none;
+    }
+    #msgCadPgtoSucesso {
+        padding: 7px;
+        text-align: center;
+        font-weight: bold;
+    }
+    #btn_novo_agendamento {
+        width: 75px;
     }
     #div_cat_pgto {
         float: left;    

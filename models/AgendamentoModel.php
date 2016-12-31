@@ -27,4 +27,51 @@ class AgendamentoModel extends Model {
         }
         
     }
+    
+    public function cadastrarPgtoAgendado($idConta,$dtPgto,$movPgto,$categoriaPgto,$valorPgto) {
+        if (!empty($idConta) && !empty($dtPgto) && !empty($movPgto) && !empty($categoriaPgto) && !empty($valorPgto)) {
+            try {
+                $this->db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
+                $this->db->beginTransaction();
+                $stmt = $this->db->prepare("INSERT INTO tb_pgto_agendado (data_pagamento, movimentacao, valor, pago, "
+                    ."fk_id_categoria, fk_id_conta) VALUES (?, ?, ?, ?, ?, ?)");
+                $stmt->bindValue(1, $dtPgto, PDO::PARAM_STR);
+                $stmt->bindValue(2, $movPgto, PDO::PARAM_STR);
+                $stmt->bindValue(3, $valorPgto, PDO::PARAM_STR);
+                $stmt->bindValue(4, 'Não', PDO::PARAM_STR);
+                $stmt->bindValue(5, $categoriaPgto, PDO::PARAM_INT);
+                $stmt->bindValue(6, $idConta, PDO::PARAM_INT);
+                $stmt->execute();
+                $this->db->commit();
+                return true;
+            } catch (PDOException $exc) {
+                $this->db->rollback();
+                throw new Exception('ERRO: '.$exc->getMessage());
+                printf($exc);
+                return false;
+            }
+        } else {
+            throw new Exception("ERRO: Possui dados vazios.");
+            return false;
+        }
+    }
+    
+    public function deletarPgtoAgendado($id) {
+        if (!empty($id)) {
+            try {
+                $this->db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
+                $this->db->beginTransaction();
+                $stmt = $this->db->prepare("DELETE FROM tb_pgto_agendado WHERE id_pgto_agendado = ?");
+                $stmt->bindValue(1, $id, PDO::PARAM_STR);
+                $stmt->execute();
+                $this->db->commit();
+                return true;
+            } catch (PDOException $exc) {
+                $this->db->rollback();
+                printf($exc);
+                return false;
+            }
+        }
+        
+    }
 }
