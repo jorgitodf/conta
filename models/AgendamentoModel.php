@@ -14,6 +14,15 @@ class AgendamentoModel extends Model {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    public function getPagamentoAgendado($id) {
+        if (!empty($id)) {
+            $stmt = $this->db->prepare("SELECT * FROM tb_pgto_agendado WHERE id_pgto_agendado = ?");
+            $stmt->bindValue(1, $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+    }
 
     public function verificaContaUsuarioLogadoExiste($idConta, $idUser) {
         if ((isset($idConta) && !empty($idConta)) && (isset($idUser) && !empty($idUser))) {
@@ -22,10 +31,36 @@ class AgendamentoModel extends Model {
             $stmt->bindValue(1, $idConta, PDO::PARAM_INT);
             $stmt->bindValue(2, $idUser, PDO::PARAM_INT);
             $stmt->execute();
-            print_r($stmt->fetch(PDO::FETCH_ASSOC));exit;
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
         
+    }
+    
+    public function alterarPgtoAgendado($idConta,$idPgtoAgendado,$dtPgto,$movPgto,$categoriaPgto,$valorPgto) {
+        if (!empty($idConta) && !empty($idPgtoAgendado) && !empty($dtPgto) && !empty($movPgto) && !empty($categoriaPgto) && !empty($valorPgto)) {
+            try {
+                $this->db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
+                $this->db->beginTransaction();
+                $stmt = $this->db->prepare("UPDATE tb_pgto_agendado SET data_pagamento = ?, movimentacao = ?,"
+                    . " valor = ?, fk_id_categoria = ?, fk_id_conta = ? WHERE id_pgto_agendado = ?");
+                $stmt->bindValue(1, $dtPgto, PDO::PARAM_STR);
+                $stmt->bindValue(2, $movPgto, PDO::PARAM_STR);
+                $stmt->bindValue(3, $valorPgto, PDO::PARAM_INT);
+                $stmt->bindValue(4, (int)$categoriaPgto, PDO::PARAM_INT);
+                $stmt->bindValue(5, (int)$idConta, PDO::PARAM_INT);
+                $stmt->bindValue(6, (int)$idPgtoAgendado, PDO::PARAM_INT);
+                $stmt->execute();
+                $this->db->commit();
+                return true;
+            } catch (PDOException $exc) {
+                $this->db->rollback();
+                throw new Exception('ERRO: '.$exc->getMessage());
+                return false;
+            }
+        } else {
+            throw new Exception("ERRO: Possui dados vazios.");
+            return false;
+        }
     }
     
     public function cadastrarPgtoAgendado($idConta,$dtPgto,$movPgto,$categoriaPgto,$valorPgto) {
@@ -47,7 +82,6 @@ class AgendamentoModel extends Model {
             } catch (PDOException $exc) {
                 $this->db->rollback();
                 throw new Exception('ERRO: '.$exc->getMessage());
-                printf($exc);
                 return false;
             }
         } else {

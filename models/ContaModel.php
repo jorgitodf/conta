@@ -89,9 +89,10 @@ class ContaModel extends Model {
     public function verExtratoAtual($idConta) {
         if (isset($idConta) && !empty($idConta)) {
             date_default_timezone_set('America/Sao_Paulo');
+            $ano = date("Y");
             $dataAtual = date("m");
-            $dataMovimentacaoInicial = "2016-{$dataAtual}-01";
-            $dataMovimentacaoFinal = "2016-{$dataAtual}-31";
+            $dataMovimentacaoInicial = "{$ano}-{$dataAtual}-01";
+            $dataMovimentacaoFinal = "{$ano}-{$dataAtual}-31";
 
             $stmt = $this->db->prepare("SELECT Ext.data_movimentacao AS 'DatMov', Ext.movimentacao AS 'Mov', Cat.nome_categoria AS "
                   . "'Cat', Ext.tipo_operacao AS 'Op', Ext.valor AS 'Val', Ext.saldo AS 'Sal', Ext.despesa_fixa AS 'Dp' FROM "
@@ -329,10 +330,12 @@ class ContaModel extends Model {
     }
 
     public function getContasAgendadas($idConta) {
+        date_default_timezone_set('America/Sao_Paulo');
+        $ano = date("Y");
         $mes = $this->verificaMesNumerico();
         $stmt = $this->db->prepare("SELECT pgag.id_pgto_agendado AS 'idpgag', pgag.data_pagamento AS 'data', pgag.movimentacao "
               . "AS 'mov', pgag.valor AS 'valor', pgag.pago AS 'pago' FROM tb_pgto_agendado AS pgag WHERE pgag.fk_id_conta = ? "
-              . "AND pgag.data_pagamento >= '2016-$mes-01' ORDER BY data_pagamento ASC");
+              . "AND pgag.data_pagamento >= '$ano-$mes-01' ORDER BY data_pagamento ASC");
         $stmt->bindValue(1, $idConta, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
