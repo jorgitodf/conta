@@ -60,6 +60,17 @@
                         <li><a href="/agendamento/agendar/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Agendar Pagamento</a></li>
                     </ul>
                 </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" id="btn_agendamento"><a class="href_btn_home" href="/home">Cartão Crédito</a></button>
+                    <button type="button" class="btn btn-success dropdown-toggle" id="btn_agendamento_1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/cartao">Cadastrar</a></li>
+                        <li><a href="/cartao/fatura">Lançar Fatura</a></li>
+                    </ul>
+                </div>
             </div>
 
 

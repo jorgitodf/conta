@@ -16,18 +16,24 @@ class agendamentoController extends Controller {
 
     public function index() {
         $dados = array();
+        $dados['pgtos_count'] = $this->agendamentoModel->getCount();
+        $dados['p_count'] = ceil($dados['pgtos_count'] / 15);
         $offset = 0;
         $data['p'] = 1;
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
-            $data['p'] = intval($_GET['p']);
-            if($data['p'] == 0) {
-                $data['p'] = 1;
+        if ($_GET) {
+            $p = filter_input(INPUT_GET, 'p', FILTER_VALIDATE_INT);
+            if (isset($p) && !empty($p) && $p !== false && $p <= $dados['p_count'] || $p == 0) {
+                $data['p'] = $p;
+                if($data['p'] == 0) {
+                    $data['p'] = 1;
+                } 
+            } else {
+                $this->loadTemplate('naoexisteView');
+                die();
             }
         }
         $offset = (15 * ($data['p'] - 1));
         $dados['pgto_agendados'] = $this->agendamentoModel->getAllPgamentosAgendados($offset);
-        $dados['pgtos_count'] = $this->agendamentoModel->getCount();
-        $dados['p_count'] = ceil($dados['pgtos_count'] / 15);
         $this->loadTemplate('agendaPgtoIndexView', $dados);
     }
 

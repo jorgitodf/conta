@@ -398,6 +398,23 @@
         margin-top: 8%;    
         margin-left: 25%;
     }
+    #div_row_form_debitar {
+        margin-top: auto;    
+        margin-left: auto
+    }
+    #div_panel_form_debitar {
+        width: 50%;
+        height: 320px;
+        margin-left: 25%
+    }
+    #div_data_debito {
+        float: left;
+    }
+    #div_mov_debito {
+        float: left;
+        margin-left: 24%;
+    }
+    
     #div_mov_pgto {
         float: left;
         margin-left: 24%;
@@ -405,13 +422,22 @@
     #data_pgto {
         width: 170%;
     }    
+    #data_debito {
+        width: 170%;
+    }    
     #mov_pgto {
         width: 180%;
+    }
+    #movimentacao {
+        width: 190%;
     }
     #valor_pgto {
         width: 180%;
     }
     #categoria_pgto {
+        width: 171%;
+    }
+    #nome_categoria {
         width: 171%;
     }
     #div_data_pgto {
@@ -421,11 +447,19 @@
         float: left;
         margin-left: 24%;
     }
+    #div_valor_debito {
+        float: left;
+        margin-left: 24%;
+    }
     #div_btn_agendar {
         float: left;
     }
     #div_msgs_error {
         margin-left: 23%;
+        float: left;
+    }
+    #div_msgs_error_debito {
+        margin-left: 24%;
         float: left;
     }
     .msgError {
@@ -439,10 +473,26 @@
         text-align: center;
         font-weight: bold;
     }
+    #msgDebitadoSucesso {
+        padding: 7px;
+        text-align: center;
+        font-weight: bold;
+    }
+    #msgDebitadoSucesso {
+        padding: 7px;
+        text-align: center;
+        font-weight: bold;
+    }
     #btn_novo_agendamento {
         width: 75px;
     }
+    #btn_novo_debito, #btn_salvar_debito {
+        width: 75px;
+    }
     #div_cat_pgto {
+        float: left;    
+    }
+    #div_cat_debito {
         float: left;    
     }
     #div_panel_form_agendar_pagamento {
@@ -652,6 +702,9 @@
     #div_panel_agendamento_pgto {
         margin-top: 6%;
     }
+    #div_panel_body {
+        height: 500px;
+    }
     #panel_head_agendamento_pagamento {
         background-color: #6767fe;
         color: white;
@@ -679,6 +732,10 @@
         pointer-events: none;
         cursor: default;
         opacity: 0.6;
+    }
+    #nav_pagination {
+        margin-left: 45%;
+        margin-top: -1%;
     }
 }	
 
