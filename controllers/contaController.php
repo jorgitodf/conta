@@ -117,71 +117,40 @@ class contaController extends Controller {
     }
 
     public function debitar($idConta = null) {
-        $dados = array();
-
-        if ($_POST) {
-            $status = true;
-            if (empty($_POST['data_debito'])) {
-                $dados['erroDebito'] = "<span class='erro_debito'>Preencha o campo Data!!</span>";
-                $status = false;
-            } else {
-                $dados['data_debito'] = $_POST['data_debito'];
-            }
-            if (empty($_POST['movimentacao'])) {
-                $dados['erroMovimentacao'] = "<span class='erro_movimentacao'>Preencha o campo Movimentacao!!</span>";
-                $status = false;
-            } else {
-                $dados['movimentacao'] = $_POST['movimentacao'];
-            }
-            if (empty($_POST['nome_categoria'])) {
-                $dados['erroCategoria'] = "<span class='erro_nome_categoria'>Preencha o campo Categoria!!</span>";
-                $status = false;
-            } else {
-                $dados['nome_categoria'] = $_POST['nome_categoria'];
-            }
-            if (empty($_POST['valor']) || $_POST['valor'] == 'R$ 0,00') {
-                $dados['erroValor'] = "<span class='erro_valor'>Preencha o campo Valor!!</span>";
-                $status = false;
-            } else {
-                $dados['valor'] = $_POST['valor'];
-            }
-
-            if ($status == true) {
-                $idConta = trim(addslashes($_POST['idConta']));
-                $dataDebito = trim(addslashes($_POST['data_debito']));
-                if (strpos($dataDebito, "/") !== false) {
-                    if ($this->validaData($dataDebito) == true) {
-                        $arr = explode('/', $dataDebito);
-                        $dataDebito = $arr[2] . '-' . $arr[1] . '-' . $arr[0];
-                    }
-                }
-                $movimentacao = trim(addslashes($_POST['movimentacao']));
-                $categoria = trim(addslashes($_POST['nome_categoria']));
-                $valor = trim(addslashes($_POST['valor']));
-                $valor = str_replace('.', '', $valor);
-                $valor = str_replace(',', '.', $valor);
-                $novoValor = str_replace('R$ ', '', $valor);
-
-                if ($this->contaModel->debitarValor($idConta, $dataDebito, $movimentacao, $categoria, $novoValor) == true) {
-                    $dadosSucesso = array();
-                    $dadosSucesso['idConta'] = $idConta;
-                    $dadosSucesso['msg_sucesso'] = "<span class='alert alert-success' role='alert' id='msg_sucesso_deb'>Valor Debitado com Sucesso!</span>";
-                    $dadosSucesso['last_debito'] = $this->contaModel->getLastDebito($idConta);
-                    $this->loadTemplate('debitoSucessoView', $dadosSucesso);
-                    die();
-                } else {
-                    
-                }
-            }
-            $dados['idConta'] = trim(addslashes($_POST['idConta']));
+        if (is_numeric($idConta) && isset($idConta) && !empty($idConta)) {
+            $dados['idConta'] = (int) $_SESSION['conta']['idConta'];
+            $dados['idUser'] = (int) $_SESSION['conta']['idUser'];
             $dados['categorias'] = $this->categoriaModel->getCategorias();
             $this->loadTemplate('debitoView', $dados);
-        } else {
-            if (is_numeric($idConta)) {
-                $dados['idConta'] = $idConta;
-                $dados['categorias'] = $this->categoriaModel->getCategorias();
-                $this->loadTemplate('debitoView', $dados);
+        } elseif (isset($_POST)) {
+            $idConta = addslashes($_POST['idConta']);
+            $dtDebito = trim(addslashes($_POST['data_debito']));
+            $movimentacao = trim(addslashes($_POST['movimentacao']));
+            $nome_categoria = trim(addslashes($_POST['nome_categoria']));
+            $valor = trim(addslashes($_POST['valor']));
+            $valor = str_replace('R$ ', '', str_replace(',', '.', str_replace('.', '', $valor)));
+            if (ValidacoesHelper::validarData($dtDebito) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Preencha o campo Data!', 'error'=>'erroData');
+            } else if (ValidacoesHelper::validarMovimentacao($movimentacao) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Preencha a Movimentação', 'error'=>'erroMov');
+            } elseif (ValidacoesHelper::validarCategoria($nome_categoria) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Preencha a Categoria', 'error'=>'erroCat');
+            } elseif (ValidacoesHelper::validarValor($valor) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Preencha o Valor', 'error'=>'erroVal');
+            } else {
+                try {
+                    if ($this->contaModel->debitarValor($idConta,$dtDebito,$movimentacao,$nome_categoria,$valor)) {
+                        $json = array('status'=>'success', 'message'=>'Débito Realizado com Sucesso!');
+                    } else {
+                        $json = array('status'=>'error', 'message'=>'Falha ao Debitar a Transação.', 'error'=>'erroCadModel');
+                    }
+                } catch (Exception $e) {
+                    $json = array('status'=>'error', 'message' => $e->getMessage(), 'error'=>'erroException');
+                }
             }
+            echo json_encode($json);
+        } else {
+            $this->loadTemplate('debitoView');
         }
     }
 

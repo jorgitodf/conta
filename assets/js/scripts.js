@@ -99,5 +99,57 @@ $(document).ready(function () {
             
         });
     });
+    
+    $('#btn_novo_debito').click(function () {
+        $("#btn_salvar_debito").removeAttr('disabled');
+        $("#btn_novo_debito").attr('disabled', 'disabled');
+        $("#data_debito").removeAttr('disabled');
+        $("#movimentacao").removeAttr('disabled');
+        $("#nome_categoria").removeAttr('disabled');
+        $("#valor").removeAttr('disabled');
+        $('#msgDebitadoSucesso').remove();
+        $("#data_debito").val("");
+        $("#movimentacao").val("");
+        $("#nome_categoria").val("");
+        $("#valor").val("");
+    });
+    $(function () {
+        $("#form_cad_debito").submit(function (e) {
+            $(".msgError").html("");
+            $(".msgError").css("display", "none");
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: $(this).attr("action"),
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (retorno) {
+                    if (retorno.status == 'error' ){
+                        //aqui é o código executado caso ocorra erros no cadastro pelo php
+                        $('.retorno').html('<span class="msgError" id="dataMsgError">' + retorno.message + '</span>');
+                    } else if (retorno.status == 'success'){
+                        //aqui é o código executado caso ocorra tudo ok no cadastro pelo php
+                        $('.retorno').html('<span class="alert alert-success" id="msgDebitadoSucesso">' + retorno.message + '</span>');
+                        $("#btn_salvar_debito").attr('disabled', 'disabled');
+                        $("#btn_novo_debito").removeAttr('disabled');
+                        $("#data_debito").attr('disabled', 'disabled');
+                        $("#movimentacao").attr('disabled', 'disabled');
+                        $("#nome_categoria").attr('disabled', 'disabled');
+                        $("#valor").attr('disabled', 'disabled');
+                    }
+                    else {
+                        alert(retorno);
+                        // alert com erro caso não seja um retorno json.
+                    }
+                },
+                fail: function(){
+                    alert('ERRO: Falha ao carregar o script.');
+                    // Erro caso o arquivo não seja encontrado ou falhou ao ser carregado.
+                }
+            });
+            
+            
+        });
+    });
 
 });

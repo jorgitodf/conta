@@ -6,11 +6,11 @@ class AgendamentoModel extends Model {
         parent::__construct();
     }
 
-    public function getAllPgamentosAgendados() {
+    public function getAllPgamentosAgendados($offset) {
         $stmt = $this->db->prepare("SELECT pgto.id_pgto_agendado as id, DATE_FORMAT(pgto.data_pagamento,'%d/%m/%Y') as data_pg, 
             lower(movimentacao) as mov, Replace(concat('R$ ', Format(pgto.valor, 2)),'.',',') as valor, pgto.pago as pg, 
             cat.nome_categoria as categoria FROM tb_pgto_agendado as pgto JOIN tb_categoria as cat ON (pgto.fk_id_categoria = 
-            cat.id_categoria)");
+            cat.id_categoria) ORDER BY pgto.data_pagamento ASC LIMIT $offset, 15");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -107,5 +107,14 @@ class AgendamentoModel extends Model {
             }
         }
         
+    }
+    
+    public function getCount() {
+        $r = 0;
+        $stmt = $this->db->prepare("SELECT COUNT(*) as c FROM tb_pgto_agendado");
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $r = $row['c'];
+        return $r;
     }
 }

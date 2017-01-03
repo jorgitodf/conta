@@ -690,25 +690,67 @@
     }
     main {
         height: 100%;
-        background-color: #f1f2f7;
+        background-color: #DCDCDC;
+    }
+    #section_load_template {
+        background-color: #DCDCDC;
+    }
+    #barra_nav {
+        height: 60px;
+        background-color: #337ab7;
     }
     .navbar .navbar-nav {
         display: inline-block;
         float: none;
-        margin:0 auto;
         margin: 0.5%;
     }
     .navbar .navbar-collapse {
         text-align: center;
     }
     #navbar-nav {
-        margin-left: -70%;
+        margin-left: 20px;
+    }
+    #navbar-nav > li > a {
+        color: white;
+    }
+    #navbar-nav > li > a:hover {
+        background-color: #ccc;
+        color: red;
+        padding: 15px;
+        margin-top: -2px;;
+    } 
+    #dropdown-menu > li > a:hover {
+        background-color: #ccc;
+        color: red;
+    }
+    #navbar-nav > li > a {
+        padding: 15px;
+        margin-top: -2px;
+    }
+    #navbar-nav > li > a, #navbar_deslogar  > li > a {
+        color: white;
+        padding: 15px;
+        margin-top: -2px;
+    }
+    #navbar_saldo {
+        color: white; 
+        margin-top: 4px;
+        font-size: 12px;
+        width: 250px;
+        margin-left: 180px;
+    }
+    .info_saldo {
+        color: yellow;
+    }
+
+    .container-erro-404 {
+        margin-top: 8%;
     }
 
     /*LOGIN PAGE*/
 
     .login-body {
-        background-color: #f1f2f7;
+        background-color: #DCDCDC;
     }
 
     .container-login {
@@ -909,6 +951,10 @@
         margin-left: 16%;
         margin-top: 2%;
     }
+    #td_sem_contas_agendadas {
+        text-align: center;
+        font-weight: bold;
+    }
 
 
     /*PÁGINA HOME CONTA*/
@@ -955,7 +1001,7 @@
         float: left;
     }
     .div_msg_alert_pgto_agendado {
-        margin-top: 26.5%;
+        margin-top: 27.5%;
     }
     .href_btn_home {
         color: white;
@@ -967,24 +1013,37 @@
     #btn_extrato {
         height: 80px;
         border-radius: 10px 0 0 10px;
+        width: 115px;
     }
     #btn_extrato_1 {
+        height: 80px;
+        border-radius: 0 10px 10px 0;
+    }
+    #btn_agendamento {
+        height: 80px;
+        border-radius: 10px 0 0 10px;
+        width: 115px;
+    }
+    #btn_agendamento_1 {
         height: 80px;
         border-radius: 0 10px 10px 0;
     }
 
     /*PÁGINA EXTRATO ATUAL*/
     .body_extrato {
-        margin-top: 7%;
+        margin-top: 8%;
     }
     #extrato_erro {
         margin-left: 25%;
     }
     #table_extrato {
-        width: 85%;
+        width: 80%;
+    }
+    #table_extrato_atual > tbody > tr > td {
+        padding: 3px;
     }
     #div_extrato {
-        margin-left: 15%;
+        margin-left: 16%;
     }
     .td_extrato_cre {
         color: #0902fd;
@@ -1014,9 +1073,113 @@
     .body_debito {
         margin-top: 8%;
     }
-    #div_form_debito {
-        margin-left: 30%;
-        margin-right: 30%;
+    .both {
+        clear: both;
+    }
+    #div_row_form_agendar_pagamento {
+        margin-top: 8%;    
+        margin-left: 25%;
+    }
+    #div_row_form_debitar {
+        margin-top: auto;    
+        margin-left: auto
+    }
+    #div_panel_form_debitar {
+        width: 50%;
+        height: 320px;
+        margin-left: 25%
+    }
+    #div_data_debito {
+        float: left;
+    }
+    #div_mov_debito {
+        float: left;
+        margin-left: 24%;
+    }
+    
+    #div_mov_pgto {
+        float: left;
+        margin-left: 24%;
+    }
+    #data_pgto {
+        width: 170%;
+    }    
+    #data_debito {
+        width: 170%;
+    }    
+    #mov_pgto {
+        width: 180%;
+    }
+    #movimentacao {
+        width: 205%;
+    }
+    #valor_pgto {
+        width: 180%;
+    }
+    #categoria_pgto {
+        width: 171%;
+    }
+    #nome_categoria {
+        width: 171%;
+    }
+    #div_data_pgto {
+        float: left;
+    }
+    #div_valor_pgto {
+        float: left;
+        margin-left: 24%;
+    }
+    #div_valor_debito {
+        float: left;
+        margin-left: 24%;
+    }
+    #div_btn_agendar {
+        float: left;
+    }
+    #div_msgs_error {
+        margin-left: 23%;
+        float: left;
+    }
+    #div_msgs_error_debito {
+        margin-left: 24%;
+        float: left;
+    }
+    .msgError {
+        color: red;
+        font-weight: bold;
+        font-size: 11px;
+        padding: 0;
+    }
+    #msgCadPgtoSucesso {
+        padding: 7px;
+        text-align: center;
+        font-weight: bold;
+    }
+    #msgDebitadoSucesso {
+        padding: 7px;
+        text-align: center;
+        font-weight: bold;
+    }
+    #msgDebitadoSucesso {
+        padding: 7px;
+        text-align: center;
+        font-weight: bold;
+    }
+    #btn_novo_agendamento {
+        width: 75px;
+    }
+    #btn_novo_debito, #btn_salvar_debito {
+        width: 75px;
+    }
+    #div_cat_pgto {
+        float: left;    
+    }
+    #div_cat_debito {
+        float: left;    
+    }
+    #div_panel_form_agendar_pagamento {
+        width: 65%;
+        height: 300px;
     }
     .erro_debito, .erro_movimentacao, .erro_nome_categoria {
         color: red;
@@ -1026,7 +1189,7 @@
     .erro_valor {
         color: red;
         font-size: 11px;
-        margin-left: 24.7%;	
+        margin-left: 24%;	
     }
     .div_button_debito {
         float: left;
@@ -1052,7 +1215,7 @@
     .erro_valor {
         color: red;
         font-size: 11px;
-        margin-left: 25.7%;	
+        margin-left: 24.7%;	
     }
     .div_button_debito {
         float: left;
@@ -1101,7 +1264,180 @@
         width: 240px;
         margin-left: 29%;
     }
+    
+    /*PÁGINA RELATÓRIO MOVIMENTAÇÃO*/
+    .body_relatorio_movimentacao {
+        margin-top: 7%;
+    }
+    .div_data_inicial_relatorio {
+        float: left;
+    }
+    .div_data_inicial_relatorio_erro {
+        float: left;
+        margin-left: 28%;
+        margin-top: 6%;
+    }
+    #msg_data_inicial_relatorio_erro {
+        padding: 6px;
+    }
+    .div_data_final_relatorio {
+        clear: both;
+        float: left;
+    }
+    .div_data_final_relatorio_erro {
+        float: left;
+        margin-left: 30%;
+        margin-top: 6%;
+    }
+    #msg_data_final_relatorio_erro, #msg_movimentacao_relatorio_erro {
+        padding: 6px;
+    }
+    .div_movimentacao_relatorio {
+        clear: both;
+        float: left; 
+    }
+    #movimentacao_relatorio {
+        width: 250px;
+    }
+    .div_movimentacao_relatorio_erro {
+        float: left;
+        margin-left: 5%;
+        margin-top: 6%;  
+    }
+    .div_button_relatorio_movimentacao {
+        clear: both;
+    }
+    
+    /*PÁGINA RELATÓRIO GERAL*/
+    .div_coint_form {
+        margin-top: 7%;
+    }  
+    #row_panel_form_rel_geral {
+        margin-left: 25%;
+    }
+    #panel_form_rel_geral {
+        border: solid 0 white;
+    }
+    #panel_heading_form_rel_geral {
+        background-color: #3935ce;
+        color: white;
+    }
+    .div_coint {
+        margin-top: 5%;
+        background-color: #ccc;
+        height: 585px;
+    }  
+    #div_cab_rel_geral {
+        background-color: blue;
+    }
+    #seg_div_rel_geral {
+        margin-top: 1%;
+    }
+    #div_cab_rel_geral {
+        color: white;
+        text-align: center;
+        padding: 1px;
+        font-weight: bold;
+    }
+    #table_rel_geral {
+        background-color: white;
+    }
+    #table_rel_geral > tbody > tr > td {
+        padding: 0;
+        text-align: center;
+        font-size: 12px;
+    }
+    #table_rel_geral > thead > tr > th {
+        padding: 2px;
+        text-align: center;
+    }
+    #table_rel_geral > tfoot > tr > td {
+        padding: 0;
+        font-size: 12px;
+        text-align: center;
+    }
+    
+    /*PÁGINA RELATÓRIO GERAL CATEGORIA*/
+    .div_coint_rel_geral_cat {
+        margin-top: 6%;
+        background-color: #D2B48C;
+    }
+    #table_rel_geral_categoria {
+        background-color: white;
+    }
+    #table_rel_geral_categoria > tbody > tr > td {
+        padding: 0;
+        text-align: center;
+        font-size: 11px;
+    }
+    #table_rel_geral_categoria > thead > tr > th {
+        padding: 2px;
+        text-align: center;
+    }
+    #table_rel_geral_categoria > tfoot > tr > td {
+        padding: 0;
+        font-size: 12px;
+        text-align: center;
+    }
+    
+    /*PÁGINA AGENDAMENTO DE PAGAMENTOS*/
+    #div_panel_agendamento_pgto {
+        margin-top: 6%;
+    }
+    #div_panel_body {
+        height: 500px;
+    }
+    #panel_head_agendamento_pagamento {
+        background-color: #6767fe;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+    }
+    .centralizar_td {
+        text-align: center;
+    }
+    #tabela_index_agendamento_pagamento > thead > tr > th {
+        text-align: center;
+         background-color: darkkhaki;
+    }
+    #tabela_index_agendamento_pagamento > tbody > tr > td {
+        padding: 3px;
+        font-size: 13px;
+    }
+    .cor_verde {
+        color: lime;
+    }
+    .cor_vermelho {
+        color: red;
+    }
+    .disabled {
+        pointer-events: none;
+        cursor: default;
+        opacity: 0.6;
+    }
+    .pagination {
+        margin-top: -10%;
 
+    }
+    .pag_item {
+        width:20px;
+        height:20px;
+        float:left;
+        border:1px solid #000;
+        margin-right: 3px;
+        text-align: center;
+        line-height: 20px;
+    }
+    .pag_item a {
+        color:#000;
+        text-decoration: none;
+    }
+    .pag_ativo {
+        background-color:#224074;
+    }
+    .pag_ativo a {
+        color:#FFF;
+    }
 }	
 
 

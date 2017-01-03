@@ -120,38 +120,51 @@ class ContaModel extends Model {
         }
     }
 
-    public function debitarValor($idConta, $dataDebito, $movimentacao, $categoria, $novoValor) {
-        if (!empty($idConta) && !empty($dataDebito) && !empty($movimentacao) && !empty($categoria) && !empty($novoValor)) {
+    public function debitarValor($idConta,$dtDebito,$movimentacao,$nome_categoria,$valor) {
+        if (!empty($idConta) && !empty($dtDebito) && !empty($movimentacao) && !empty($nome_categoria) && !empty($valor)) {
             $saldo = $this->verSaldoAtual($idConta);
 
-            if ($saldo['saldo'] < $novoValor) {
+            if ($saldo['saldo'] < $valor) {
                 return 0;
             } else {
-                $novoSaldo = $saldo['saldo'] - $novoValor;
+                $novoSaldo = $saldo['saldo'] - $valor;
                 $mes = $this->verificaMes();
                 $checkCategoria = $this->checkCategoria();
                 foreach ($checkCategoria as $linha) {
                     $linha['id_categoria'];
-                    if ($linha['id_categoria'] == $categoria) {
+                    if ($linha['id_categoria'] == $nome_categoria) {
                         $despFixa = 'S';
                     } else {
                         $despFixa = 'N';
                     }
                 }
-                $stmt = $this->db->prepare("INSERT INTO tb_extrato (data_movimentacao, mes, tipo_operacao, movimentacao, quantidade, valor, saldo, fk_id_categoria, fk_id_conta, despesa_fixa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt->bindValue(1, $dataDebito, PDO::PARAM_STR);
-                $stmt->bindValue(2, $mes, PDO::PARAM_STR);
-                $stmt->bindValue(3, 'Débito', PDO::PARAM_STR);
-                $stmt->bindValue(4, $movimentacao, PDO::PARAM_STR);
-                $stmt->bindValue(5, 1, PDO::PARAM_INT);
-                $stmt->bindValue(6, $novoValor, PDO::PARAM_STR);
-                $stmt->bindValue(7, $novoSaldo, PDO::PARAM_STR);
-                $stmt->bindValue(8, $categoria, PDO::PARAM_INT);
-                $stmt->bindValue(9, $idConta, PDO::PARAM_INT);
-                $stmt->bindValue(10, $despFixa, PDO::PARAM_STR);
-                $stmt->execute();
-                return 1;
+                try {
+                    $this->db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
+                    $this->db->beginTransaction();
+                    $stmt = $this->db->prepare("INSERT INTO tb_extrato (data_movimentacao, mes, tipo_operacao, movimentacao, quantidade, "
+                            . "valor, saldo, fk_id_categoria, fk_id_conta, despesa_fixa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->bindValue(1, $dtDebito, PDO::PARAM_STR);
+                    $stmt->bindValue(2, $mes, PDO::PARAM_STR);
+                    $stmt->bindValue(3, 'Débito', PDO::PARAM_STR);
+                    $stmt->bindValue(4, $movimentacao, PDO::PARAM_STR);
+                    $stmt->bindValue(5, 1, PDO::PARAM_INT);
+                    $stmt->bindValue(6, $valor, PDO::PARAM_STR);
+                    $stmt->bindValue(7, $novoSaldo, PDO::PARAM_STR);
+                    $stmt->bindValue(8, $nome_categoria, PDO::PARAM_INT);
+                    $stmt->bindValue(9, $idConta, PDO::PARAM_INT);
+                    $stmt->bindValue(10, $despFixa, PDO::PARAM_STR);
+                    $stmt->execute();
+                    $this->db->commit();
+                    return true;
+                } catch (PDOException $exc) {
+                    $this->db->rollback();
+                    throw new Exception('ERRO: '.$exc->getMessage());
+                    return false;
+                }
             }
+        } else {
+            throw new Exception("ERRO: Possui dados vazios.");
+            return false;
         }
     }
 
@@ -298,7 +311,9 @@ class ContaModel extends Model {
     }
 
     public function getLastDebito($idConta) {
-        $stmt = $this->db->prepare("SELECT Ext.data_movimentacao AS 'DatMov', Ext.movimentacao AS 'Mov', Cat.nome_categoria AS 'Cat', Ext.valor AS 'Val' FROM tb_extrato AS Ext, tb_categoria AS Cat WHERE Ext.fk_id_categoria = Cat.id_categoria AND Ext.fk_id_conta = ? ORDER BY id_extrato DESC LIMIT 1");
+        $stmt = $this->db->prepare("SELECT Ext.data_movimentacao AS 'DatMov', Ext.movimentacao AS 'Mov', Cat.nome_categoria AS 'Cat', "
+                . "Ext.valor AS 'Val' FROM tb_extrato AS Ext, tb_categoria AS Cat WHERE Ext.fk_id_categoria = Cat.id_categoria AND "
+                . "Ext.fk_id_conta = ? ORDER BY id_extrato DESC LIMIT 1");
         $stmt->bindValue(1, $idConta, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -335,7 +350,7 @@ class ContaModel extends Model {
         $mes = $this->verificaMesNumerico();
         $stmt = $this->db->prepare("SELECT pgag.id_pgto_agendado AS 'idpgag', pgag.data_pagamento AS 'data', pgag.movimentacao "
               . "AS 'mov', pgag.valor AS 'valor', pgag.pago AS 'pago' FROM tb_pgto_agendado AS pgag WHERE pgag.fk_id_conta = ? "
-              . "AND pgag.data_pagamento >= '$ano-$mes-01' ORDER BY data_pagamento ASC");
+              . "AND pgag.data_pagamento >= '{$ano}-{$mes}-01' AND pgag.data_pagamento <= '{$ano}-{$mes}-31' ORDER BY data_pagamento ASC");
         $stmt->bindValue(1, $idConta, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

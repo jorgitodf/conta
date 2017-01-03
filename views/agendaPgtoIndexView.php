@@ -4,7 +4,7 @@
         <header class="panel-heading" id="div_panel_agendamento_pgto">
             <div class="panel panel-success" >
                 <div class="panel-heading" id="panel_head_agendamento_pagamento">Listagem Geral de Agendamento de Pagamentos</div>
-                <div class="panel-body">
+                <div class="panel-body" id="div_panel_body">
                     <?php if (isset($pgto_agendados) && !empty($pgto_agendados)): ?>
                     <table class="table table-bordered table-responsive table-hover table-condensed" id="tabela_index_agendamento_pagamento">
                         <thead>
@@ -40,6 +40,12 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <div class="pagination">
+                        <?php for($q=1; $q <= $p_count; $q++): ?>
+                        <div class="pag_item <?php echo ($q==$p)?'pag_ativo':''; ?>"><a href="/agendamento?p=<?php echo $q; ?>"><?php echo $q; ?></a></div>
+                        <?php endfor; ?>
+                        <div style="clear:both"></div>
+                    </div>
                     <?php else: ?>
                     
                     <?php endif; ?>
