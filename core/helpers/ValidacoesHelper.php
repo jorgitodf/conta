@@ -25,6 +25,12 @@ class ValidacoesHelper {
         }
     }
     
+    public static function validarCartao($cartao) {
+        if (empty($cartao) || $cartao == "") {
+            return true;
+        }
+    }
+    
     public static function validarNumCartao($num) {
         if (empty($num) || $num == "") {
             return $erro = "Preencha o Número do Cartão";
@@ -41,6 +47,12 @@ class ValidacoesHelper {
     
     public static function validarBandeira($bandeira) {
         if (empty($bandeira) || $bandeira == "") {
+            return true;
+        }
+    }
+    
+    public static function validarBanco($banco) {
+        if (empty($banco) || $banco == "") {
             return true;
         }
     }

@@ -429,7 +429,7 @@
         width: 180%;
     }
     #movimentacao {
-        width: 190%;
+        width: 205%;
     }
     #valor_pgto {
         width: 180%;
@@ -516,7 +516,41 @@
         padding: 3%;
         margin-left: 1%;
     }
-
+    
+    /*PÁGINA CARTÃO DE CRÉDITO*/
+    #div_panel_form_cad_carta_credito {
+        width: 70%;
+        height: 300px;
+    }
+    #div_row_form_cad_carta_credito {
+        margin-top: 8%;    
+        margin-left: 22%;
+    }
+    #div_num_cartao {
+        float: left;
+    }
+    #div_data_validade {
+        float: left;
+    }
+    #btn_novo_cartao_credito, #btn_salvar_cartao_credito {
+        width: 70px;
+        text-align: center;
+    }
+    #msgCadastroCartaoSucesso {
+        padding: 7.5px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 12px;
+    }
+    #div_msgs_error_cart_cred {
+        margin-left: 50%;
+        margin-top: -45px;
+        float: left;
+    }
+    #div_botoes_cart_cred {
+        float: left;
+    }
+    
     /*PÁGINA CRÉDITO*/
     .body_debito {
         margin-top: 8%;
@@ -733,11 +767,65 @@
         cursor: default;
         opacity: 0.6;
     }
-    #nav_pagination {
-        margin-left: 45%;
-        margin-top: -1%;
+    .pagination {
+        margin-top: -10%;
+
     }
-}	
+    .pag_item {
+        width:20px;
+        height:20px;
+        float:left;
+        border:1px solid #000;
+        margin-right: 3px;
+        text-align: center;
+        line-height: 20px;
+    }
+    .pag_item a {
+        color:#000;
+        text-decoration: none;
+    }
+    .pag_ativo {
+        background-color:#224074;
+    }
+    .pag_ativo a {
+        color:#FFF;
+    }
+    
+    /*PÁGINA FATURA DE CARTÃO DE CRÉDITO*/
+    #div_panel_form_cad_fatura_carta_credito {
+        height: 300px;
+    }
+    #div_panel_form_deb_fatura_carta_credito {
+        height: 300px;
+    }
+    #div_row_form_cad_fatura_cartao_credito {
+        margin-top: 8%;    
+        margin-left: 30%;
+    }
+    #div_row_form_deb_fatura_cartao_credito {
+        margin-top: 8%;    
+        margin-left: 25%;
+    }
+    #panel_body_fatura {
+
+    }
+    #btn_nova_fatura, #btn_salvar_nova_fatura, #btn_debitar_fatura {
+        width: 70px;
+    }
+    #msgCadastroFaturaSucesso {
+        padding: 7px;
+        text-align: center;
+        font-weight: bold;
+    }
+    #div_msgs_error_cad_fatura {
+        margin-left: 47%;
+        margin-top: -42px;
+        float: left;
+    }
+    #msg_erro_fatura {
+        margin-left: 10%;
+    }
+}		
 
 @media (min-width: 1440px) {
 

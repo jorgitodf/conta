@@ -159,10 +159,12 @@ $(document).ready(function () {
         $("#num_cartao").removeAttr('disabled');
         $("#data_validade").removeAttr('disabled');
         $("#bandeira").removeAttr('disabled');
+        $("#banco").removeAttr('disabled');
         $('#msgCadastroCartaoSucesso').remove();
         $("#num_cartao").val("");
         $("#data_validade").val("");
         $("#bandeira").val("");
+        $("#banco").val("");
     });
     $(function () {
         $("#form_cadastro_cartao_credito").submit(function (e) {
@@ -186,6 +188,54 @@ $(document).ready(function () {
                         $("#num_cartao").attr('disabled', 'disabled');
                         $("#data_validade").attr('disabled', 'disabled');
                         $("#bandeira").attr('disabled', 'disabled');
+                        $("#banco").attr('disabled', 'disabled');
+                    }
+                    else {
+                        alert(retorno);
+                        // alert com erro caso não seja um retorno json.
+                    }
+                },
+                fail: function(){
+                    alert('ERRO: Falha ao carregar o script.');
+                    // Erro caso o arquivo não seja encontrado ou falhou ao ser carregado.
+                }
+            });
+            
+            
+        });
+    });
+    
+    $('#btn_nova_fatura').click(function () {
+        $("#btn_salvar_nova_fatura").removeAttr('disabled');
+        $("#btn_nova_fatura").attr('disabled', 'disabled');
+        $("#cartao").removeAttr('disabled');
+        $("#data_pagto").removeAttr('disabled');
+        $('#msgCadastroFaturaSucesso').remove();
+        $("#cartao").val("");
+        $("#data_pagto").val("");
+    });
+    $(function () {
+        $("#form_cadastro_fatura_cartao_credito").submit(function (e) {
+            $(".msgError").html("");
+            $(".msgError").css("display", "none");
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: $(this).attr("action"),
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (retorno) {
+                    if (retorno.status == 'error' ){
+                        //aqui é o código executado caso ocorra erros no cadastro pelo php
+                        $('.retorno').html('<span class="msgError" id="msg_erro_fatura">' + retorno.message + '</span>');
+                    } else if (retorno.status == 'success'){
+                        //aqui é o código executado caso ocorra tudo ok no cadastro pelo php
+                        $('.retorno').html('<span class="alert alert-success" id="msgCadastroFaturaSucesso">' + retorno.message + '</span>');
+                        $("#btn_salvar_nova_fatura").attr('disabled', 'disabled');
+                        $("#btn_nova_fatura").removeAttr('disabled');
+                        $("#btn_debitar_fatura").removeAttr('disabled');
+                        $("#cartao").attr('disabled', 'disabled');
+                        $("#data_pagto").attr('disabled', 'disabled');
                     }
                     else {
                         alert(retorno);

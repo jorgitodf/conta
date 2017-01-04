@@ -69,6 +69,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="/cartao">Cadastrar</a></li>
                         <li><a href="/cartao/fatura">Lançar Fatura</a></li>
+                        <li><a href="/cartao/debitarfatura">Debitar Fatura</a></li>
                     </ul>
                 </div>
             </div>

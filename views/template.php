@@ -72,10 +72,16 @@
         <script src="/assets/js/jquery.maskMoney.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>
         <script src="/assets/js/scripts.js"></script>
+        <script src="/assets/js/jquery.maskedinput.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#valor").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
                 $("#valor_pgto").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
+                $("#valor_compra_fatura").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
+            });
+            jQuery(function($){
+               $("#num_cartao").mask("9999.9999.9999.9999");
+               $("#data_validade").mask("99/9999");
             });
         </script>
 
