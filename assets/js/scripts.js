@@ -151,5 +151,55 @@ $(document).ready(function () {
             
         });
     });
+    
+    
+    $('#btn_novo_cartao_credito').click(function () {
+        $("#btn_salvar_cartao_credito").removeAttr('disabled');
+        $("#btn_novo_cartao_credito").attr('disabled', 'disabled');
+        $("#num_cartao").removeAttr('disabled');
+        $("#data_validade").removeAttr('disabled');
+        $("#bandeira").removeAttr('disabled');
+        $('#msgCadastroCartaoSucesso').remove();
+        $("#num_cartao").val("");
+        $("#data_validade").val("");
+        $("#bandeira").val("");
+    });
+    $(function () {
+        $("#form_cadastro_cartao_credito").submit(function (e) {
+            $(".msgError").html("");
+            $(".msgError").css("display", "none");
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: $(this).attr("action"),
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (retorno) {
+                    if (retorno.status == 'error' ){
+                        //aqui é o código executado caso ocorra erros no cadastro pelo php
+                        $('.retorno').html('<span class="msgError">' + retorno.message + '</span>');
+                    } else if (retorno.status == 'success'){
+                        //aqui é o código executado caso ocorra tudo ok no cadastro pelo php
+                        $('.retorno').html('<span class="alert alert-success" id="msgCadastroCartaoSucesso">' + retorno.message + '</span>');
+                        $("#btn_salvar_cartao_credito").attr('disabled', 'disabled');
+                        $("#btn_novo_cartao_credito").removeAttr('disabled');
+                        $("#num_cartao").attr('disabled', 'disabled');
+                        $("#data_validade").attr('disabled', 'disabled');
+                        $("#bandeira").attr('disabled', 'disabled');
+                    }
+                    else {
+                        alert(retorno);
+                        // alert com erro caso não seja um retorno json.
+                    }
+                },
+                fail: function(){
+                    alert('ERRO: Falha ao carregar o script.');
+                    // Erro caso o arquivo não seja encontrado ou falhou ao ser carregado.
+                }
+            });
+            
+            
+        });
+    });
 
 });
