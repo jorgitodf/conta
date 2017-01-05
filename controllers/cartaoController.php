@@ -83,13 +83,55 @@ class cartaoController extends Controller {
     public function debitarfatura() {
         $dados = array();
         if (!$_POST) {
+            $dados['cartao'] = $this->cartaoModel->getCartaoByDataPgtoFatura();
             $this->loadTemplate('faturaDebitarView', $dados);
         } elseif (isset($_POST)) {
-
+            $idFaturaCartao = (int) filter_input(INPUT_POST, 'cartao_fat', FILTER_SANITIZE_NUMBER_INT);
+            $dtCompra = trim(addslashes(filter_input(INPUT_POST, 'data_compra', FILTER_SANITIZE_STRING)));
+            $descricao = trim(addslashes(filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_STRING)));
+            $valor = trim(addslashes($_POST['valor_compra_fatura']));
+            $valor = str_replace('R$ ', '', str_replace(',', '.', str_replace('.', '', $valor)));
+            $parcela = filter_input(INPUT_POST, 'parcela', FILTER_SANITIZE_STRING);
+            if (ValidacoesHelper::validarCampoIntegerVazio($idFaturaCartao) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Selecione um Cartão com a Data de Vencimento da Fatura', 'error'=>'erroMov');
+            } elseif (ValidacoesHelper::validarData($dtCompra) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Informe a Data da Compra', 'error'=>'erroMov');
+            } elseif (ValidacoesHelper::validarCampoDescricao($descricao) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Informe a Descrição da Compra', 'error'=>'erroMov');
+            } elseif (ValidacoesHelper::validarValor($valor) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Informe o Valor da Compra', 'error'=>'erroMov');
+            } else {
+                try {
+                    if ($this->cartaoModel->cadastrarDespesaFaturaCartaoCredito($idFaturaCartao,$descricao,$dtCompra,$valor,$parcela)) {
+                        $json = array('status'=>'success', 'message'=>'Despesa na Fatura Gravada com Sucesso!');
+                    } else {
+                        $json = array('status'=>'error', 'message'=>'Falha ao Gravar a Despesa na Fatura.', 'error'=>'erroCadModel');
+                    }
+                } catch (Exception $e) {
+                    $json = array('status'=>'error', 'message' => $e->getMessage(), 'error'=>'erroException');
+                }
+            }
+            echo json_encode($json);
         } else {
             $this->loadTemplate('faturaDebitarView');
         }  
     }
 
-    
+    public function fecharfatura() {
+        $dados = array();
+        if (!$_POST) {
+            $dados['cartao'] = $this->cartaoModel->getCartaoByDataPgtoFatura();
+            $this->loadTemplate('faturaFecharView', $dados);
+        } elseif (isset($_SESSION['userLogin']) && isset($_POST)) {
+            $idUser = (int) $_SESSION['userLogin']['idUser'];
+            $idFaturaCartao = (int) filter_input(INPUT_POST, 'cartao_fat', FILTER_SANITIZE_NUMBER_INT);
+            $dados['fatura'] = $this->cartaoModel->getCartaoByDataPgtoFatura($idFaturaCartao, $idUser);
+            $dados['itensfatura'] = $this->cartaoModel->getItensDespesaFaturaByIdFaturaCartao($idFaturaCartao);
+            echo "<pre>";
+            print_r($dados);exit;
+            $this->loadTemplate('faturaFecharView', $dados);
+        } else {
+            $this->loadTemplate('faturaFecharView');
+        }  
+    }
 }

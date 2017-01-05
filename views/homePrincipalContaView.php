@@ -70,6 +70,7 @@
                         <li><a href="/cartao">Cadastrar</a></li>
                         <li><a href="/cartao/fatura">Lançar Fatura</a></li>
                         <li><a href="/cartao/debitarfatura">Debitar Fatura</a></li>
+                        <li><a href="/cartao/fecharfatura">Fechar Fatura</a></li>
                     </ul>
                 </div>
             </div>

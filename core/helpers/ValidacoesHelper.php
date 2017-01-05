@@ -13,6 +13,19 @@ class ValidacoesHelper {
             return true;
         }
     }
+    
+    public static function validarCampoIntegerVazio($campo) {
+        if (empty($campo) || $campo == "") {
+            return true;
+        }
+    }
+    
+    public static function validarCampoDescricao($campo) {
+        if (empty($campo) || $campo == "") {
+            return true;
+        }
+    }
+    
     public static function validarValor($valor) {
         if (empty($valor) || $valor == "") {
             return true;

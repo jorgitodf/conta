@@ -1346,12 +1346,18 @@
     
     /*PÁGINA CARTÃO DE CRÉDITO*/
     #div_panel_form_cad_carta_credito {
-        width: 100%;
-        height: 350px;
+        width: 70%;
+        height: 300px;
     }
     #div_row_form_cad_carta_credito {
         margin-top: 8%;    
-        margin-left: 33%;
+        margin-left: 22%;
+    }
+    #div_num_cartao {
+        float: left;
+    }
+    #div_data_validade {
+        float: left;
     }
     #btn_novo_cartao_credito, #btn_salvar_cartao_credito {
         width: 70px;
@@ -1364,7 +1370,7 @@
         font-size: 12px;
     }
     #div_msgs_error_cart_cred {
-        margin-left: 40%;
+        margin-left: 50%;
         margin-top: -45px;
         float: left;
     }
@@ -1610,6 +1616,58 @@
     }
     .pag_ativo a {
         color:#FFF;
+    }
+    
+    /*PÁGINA FATURA DE CARTÃO DE CRÉDITO*/
+    #div_panel_form_cad_fatura_carta_credito {
+        height: 300px;
+    }
+    #div_panel_form_deb_fatura_carta_credito {
+        height: 380px;
+    }
+    #div_row_form_cad_fatura_cartao_credito {
+        margin-top: 8%;    
+        margin-left: 29%;
+    }
+    #div_row_form_deb_fatura_cartao_credito {
+        margin-top: 8%;    
+        margin-left: 25%;
+    }
+    #div_row_form_fecha_fatura_cartao_credito {
+        margin-top: 8%;    
+        margin-left: 8%;
+    }
+    #panel_body_fatura {
+
+    }
+    #btn_nova_fatura, #btn_salvar_nova_fatura, #btn_debitar_fatura, #btn_nova_lanc_fatura, #btn_salvar_novo_lanc_fatura {
+        width: 70px;
+    }
+    #msgCadastroFaturaSucesso {
+        padding: 7px;
+        text-align: center;
+        font-weight: bold;
+    }
+    #div_msgs_error_cad_fatura {
+        margin-left: 47%;
+        margin-top: -42px;
+        float: left;
+    }
+    #div_msgs_error_lan_fatura {
+        margin-left: 42%;
+        margin-top: -42px;
+        float: left;
+    }
+    #msg_erro_fatura {
+        margin-left: 10%;
+    }
+    #msg_erro_lanc_fatura {
+        margin-left: 0;
+    }
+    #msgLancamentoFaturaSucesso {
+        padding: 7px;
+        text-align: center;
+        font-weight: bold;
     }
 }	
 

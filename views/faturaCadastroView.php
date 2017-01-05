@@ -20,10 +20,9 @@
                     </div>   
                     <div class="row-fluid">
                         <div class="form-group form-group-sm col-sm-8 col-md-8 col-lg-8" id="">
-                            <label for="data_pagto" class="control-label">Data de Pagamento:</label>
+                            <label for="data_pagto" class="control-label">Data de Vencimento:</label>
                             <input type="date" name="data_pagto" id="data_pagto" class="form-control input-sm" disabled="disabled"/>
                         </div>
-                        <input type="hidden" name="idUser" value="<?php echo $idUser; ?>"/>
                     </div> 
                     <div class="both"></div><br/>
                     <div class="row-fluid">

@@ -251,5 +251,60 @@ $(document).ready(function () {
             
         });
     });
+    
+$('#btn_nova_lanc_fatura').click(function () {
+        $("#btn_salvar_novo_lanc_fatura").removeAttr('disabled');
+        $("#btn_nova_lanc_fatura").attr('disabled', 'disabled');
+        $("#cartao_fat").removeAttr('disabled');
+        $("#data_compra").removeAttr('disabled');
+        $("#descricao").removeAttr('disabled');
+        $("#valor_compra_fatura").removeAttr('disabled');
+        $("#parcela").removeAttr('disabled');
+        $('#msgLancamentoFaturaSucesso').remove();
+        $("#cartao_fat").val("");
+        $("#data_compra").val("");
+        $("#descricao").val("");
+        $("#valor_compra_fatura").val("");
+        $("#parcela").val("");
+    });
+    $(function () {
+        $("#form_deb_fatura_cartao_credito").submit(function (e) {
+            $(".msgError").html("");
+            $(".msgError").css("display", "none");
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: $(this).attr("action"),
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (retorno) {
+                    if (retorno.status == 'error' ){
+                        //aqui é o código executado caso ocorra erros no cadastro pelo php
+                        $('.retorno').html('<span class="msgError" id="msg_erro_lanc_fatura">' + retorno.message + '</span>');
+                    } else if (retorno.status == 'success'){
+                        //aqui é o código executado caso ocorra tudo ok no cadastro pelo php
+                        $('.retorno').html('<span class="alert alert-success" id="msgLancamentoFaturaSucesso">' + retorno.message + '</span>');
+                        $("#btn_salvar_novo_lanc_fatura").attr('disabled', 'disabled');
+                        $("#btn_nova_lanc_fatura").removeAttr('disabled');
+                        $("#cartao_fat").attr('disabled', 'disabled');
+                        $("#data_compra").attr('disabled', 'disabled');
+                        $("#descricao").attr('disabled', 'disabled');
+                        $("#valor_compra_fatura").attr('disabled', 'disabled');
+                        $("#parcela").attr('disabled', 'disabled');
+                    }
+                    else {
+                        alert(retorno);
+                        // alert com erro caso não seja um retorno json.
+                    }
+                },
+                fail: function(){
+                    alert('ERRO: Falha ao carregar o script.');
+                    // Erro caso o arquivo não seja encontrado ou falhou ao ser carregado.
+                }
+            });
+            
+            
+        });
+    });
 
 });
