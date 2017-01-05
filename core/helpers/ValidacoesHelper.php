@@ -69,5 +69,12 @@ class ValidacoesHelper {
             return true;
         }
     }
+    
+    public static function removeCaracteresValor ($valor) {
+        $valor1 = str_replace('.', '', $valor);
+        $valor2 = str_replace(',', '.', $valor1);
+        $valor3 = trim(str_replace('R$ ', '', $valor2));
+        return $valor3;
+    }
 
 }

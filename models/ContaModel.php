@@ -37,7 +37,7 @@ class ContaModel extends Model {
         $stmt = $this->db->query("SELECT * FROM tb_tipo_conta ORDER BY tipo_conta");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
+    
     public function cadastrarConta($nomeBanco, $codAgencia, $digAgencia, $tipoConta, $numConta, $digConta, $codOperacao, $idUser) {
         if (!empty($nomeBanco) && !empty($codAgencia) && !empty($tipoConta) && !empty($numConta) && !empty($digConta) && !empty($idUser)) {
 

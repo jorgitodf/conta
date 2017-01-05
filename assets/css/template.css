@@ -429,7 +429,7 @@
         width: 180%;
     }
     #movimentacao {
-        width: 205%;
+        width: 190%;
     }
     #valor_pgto {
         width: 180%;
@@ -486,7 +486,7 @@
     #btn_novo_agendamento {
         width: 75px;
     }
-    #btn_novo_debito, #btn_salvar_debito {
+    #btn_novo_debito, #btn_salvar_debito, #btn_pagar_debito {
         width: 75px;
     }
     #div_cat_pgto {
@@ -796,20 +796,26 @@
         height: 300px;
     }
     #div_panel_form_deb_fatura_carta_credito {
-        height: 300px;
+        height: 380px;
     }
     #div_row_form_cad_fatura_cartao_credito {
         margin-top: 8%;    
-        margin-left: 30%;
+        margin-left: 29%;
     }
     #div_row_form_deb_fatura_cartao_credito {
         margin-top: 8%;    
         margin-left: 25%;
     }
-    #panel_body_fatura {
-
+    #div_row_form_fecha_fatura_cartao_credito {
+        margin-top: 7%;    
+        margin-left: 10%;
+        width: 90%;
     }
-    #btn_nova_fatura, #btn_salvar_nova_fatura, #btn_debitar_fatura {
+    #div_panel_fecha_fatura_cartao {
+        width: 70%;
+        margin-left: 9%;
+    }
+    #btn_nova_fatura, #btn_salvar_nova_fatura, #btn_debitar_fatura, #btn_nova_lanc_fatura, #btn_salvar_novo_lanc_fatura {
         width: 70px;
     }
     #msgCadastroFaturaSucesso {
@@ -822,9 +828,55 @@
         margin-top: -42px;
         float: left;
     }
+    #div_msgs_error_lan_fatura {
+        margin-left: 42%;
+        margin-top: -42px;
+        float: left;
+    }
     #msg_erro_fatura {
         margin-left: 10%;
     }
+    #msg_erro_lanc_fatura {
+        margin-left: 0;
+    }
+    #msgLancamentoFaturaSucesso {
+        padding: 7px;
+        text-align: center;
+        font-weight: bold;
+    }
+    #table_lista_itens_fatura > tbody > tr > td {
+        font-size: 12px;
+        padding: 3px;
+    }
+    .alinha_td_centro, .alinha_th_centro {
+        text-align: center;
+    }
+    #div_row_table_fecha_fatura {
+        width: 96.2%;
+    }
+    #table_lista_itens_fatura {
+        margin-left: 1.9%;
+    }
+    #msg_alerta_sem_despesa_fatura {
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        width: 104%;
+    }
+    #num_cartao, #nome_banco, #nome_bandeira, #dt_vencimento, #encargos, #iof, #anuidade, #protecao_prem, #valor_pagar, #juros, #restante, #valor_total {
+        font-size: 12px;
+        height: 27px;
+    }
+    .muda_label {
+        font-size: 12px;
+    }
+    #table_lista_itens_fatura > tfoot > tr > td {
+        padding: 2px;
+    }
+    #div_botoes_fecha_fatura {
+        margin-left: 2%;
+    }
+
 }		
 
 @media (min-width: 1440px) {

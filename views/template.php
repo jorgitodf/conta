@@ -78,6 +78,14 @@
                 $("#valor").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
                 $("#valor_pgto").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
                 $("#valor_compra_fatura").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
+                $("#encargos").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
+                $("#iof").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
+                $("#anuidade").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
+                $("#protecao_prem").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
+                $("#valor_pagar").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
+                $("#juros_fat").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
+                $("#restante").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
+                $("#valor_total").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
             });
             jQuery(function($){
                $("#num_cartao").mask("9999.9999.9999.9999");

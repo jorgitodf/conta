@@ -32,6 +32,38 @@ class CartaoModel extends Model {
         }
     }
     
+    public function pagarFatura($array = null, $idFaturaCartao = null) {
+        if ($array != null && $idFaturaCartao != null) {
+            try {
+                $this->db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
+                $this->db->beginTransaction();
+                $stmt = $this->db->prepare("UPDATE tb_fatura_cartao SET encargos = ?, protecao_premiada = ?,"
+                    . " iof = ?, anuidade = ?, restante_fatura_anterior = ?, pago = ?, juros = ?, valor_total_fatura = ?,"
+                    . "valor_pago = ? WHERE id_fatura_cartao = ?");
+                $stmt->bindValue(1, !empty($array['encargos']) ? $array['encargos'] : null, PDO::PARAM_INT);
+                $stmt->bindValue(2, !empty($array['protecao']) ? $array['protecao'] : null, PDO::PARAM_INT);
+                $stmt->bindValue(3, !empty($array['iof']) ? $array['iof'] : null, PDO::PARAM_INT);
+                $stmt->bindValue(4, !empty($array['anuidade']) ? $array['anuidade'] : null, PDO::PARAM_INT);
+                $stmt->bindValue(5, !empty($array['restante']) ? $array['restante'] : null, PDO::PARAM_INT);
+                $stmt->bindValue(6, 'S', PDO::PARAM_STR);
+                $stmt->bindValue(7, !empty($array['juros']) ? $array['juros'] : null, PDO::PARAM_INT);
+                $stmt->bindValue(8, !empty($array['totalgeral']) ? $array['totalgeral'] : null, PDO::PARAM_INT);
+                $stmt->bindValue(9, !empty($array['valor_pagar']) ? $array['valor_pagar'] : null, PDO::PARAM_INT);
+                $stmt->bindValue(10, $idFaturaCartao, PDO::PARAM_INT);
+                $stmt->execute();
+                $this->db->commit();
+                return true;
+            } catch (PDOException $exc) {
+                $this->db->rollback();
+                throw new Exception('ERRO: '.$exc->getMessage());
+                return false;
+            }
+        } else {
+            throw new Exception("ERRO: Possui dados vazios.");
+            return false;
+        }
+    }
+    
     public function getCartaoByDataPgtoFatura($idCartao = null, $idUser = null) {
         if ($idCartao == null && $idUser == null) {
             $stmt = $this->db->query("SELECT fat.id_fatura_cartao as id, DATE_FORMAT(fat.data_vencimento_fatura,'%d/%m/%Y') as data, 
@@ -57,8 +89,8 @@ class CartaoModel extends Model {
     public function getItensDespesaFaturaByIdFaturaCartao($idFaturaCartao) {
         if (!empty($idFaturaCartao)) {
             $stmt = $this->db->prepare("SELECT idf.data_compra as data, df.descricao as descricao, idf.parcela as parcela, 
-                idf.valor_compra as valor FROM tb_item_despesa_fatura as idf LEFT JOIN tb_despesa_fatura as df ON 
-                (idf.fk_id_despesa_fatura = df.id_despesa_fatura) LEFT JOIN tb_fatura_cartao as fc ON 
+                idf.valor_compra as valor FROM tb_item_despesa_fatura as idf JOIN tb_despesa_fatura as df ON 
+                (idf.fk_id_despesa_fatura = df.id_despesa_fatura) JOIN tb_fatura_cartao as fc ON 
                 (idf.fk_id_fatura_cartao = fc.id_fatura_cartao) AND idf.fk_id_fatura_cartao = ?");
             $stmt->bindValue(1, $idFaturaCartao, PDO::PARAM_INT);
             $stmt->execute();
