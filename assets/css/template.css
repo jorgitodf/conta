@@ -874,9 +874,28 @@
         padding: 2px;
     }
     #div_botoes_fecha_fatura {
-        margin-left: 2%;
+        margin-left: 0;
+        float: left;
     }
-
+    #erroIdFatura {
+        color: red;
+        font-weight: bold;
+        font-size: 11px;
+        padding: 0;
+    }
+    #btn_novo_pgto_fatura, #btn_calcular_fatura, #btn_pagar_fatura {
+        width: 80px;
+    }
+    #div_msg_error_pagar_fatura {
+        margin-left: 10%;
+        float: left;
+        margin-top: 0.5%;
+    }    
+    #msgPagamentoFaturaSucesso {
+        padding: 8px;
+        text-align: center;
+        font-weight: bold;
+    }
 }		
 
 @media (min-width: 1440px) {

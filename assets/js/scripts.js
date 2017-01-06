@@ -252,7 +252,7 @@ $(document).ready(function () {
         });
     });
     
-$('#btn_nova_lanc_fatura').click(function () {
+    $('#btn_nova_lanc_fatura').click(function () {
         $("#btn_salvar_novo_lanc_fatura").removeAttr('disabled');
         $("#btn_nova_lanc_fatura").attr('disabled', 'disabled');
         $("#cartao_fat").removeAttr('disabled');
@@ -306,5 +306,119 @@ $('#btn_nova_lanc_fatura').click(function () {
             
         });
     });
+    
+    $('#btn_limpar_pgto_fatura').click(function () {
+        $("#encargos").val("");
+        $("#iof").val("");
+        $("#anuidade").val("");
+        $("#protecao_prem").val("");
+        $("#juros_fat").val("");
+        $("#restante").val("");
+        $("#valor_total").val("");
+        $("#valor_pagar").val("");
+    });
 
+    $('#btn_novo_pgto_fatura').click(function () {
+        $("#btn_novo_pgto_fatura").attr('disabled', 'disabled');
+        $("#btn_calcular_fatura").removeAttr('disabled');
+        $("#btn_pagar_fatura").removeAttr('disabled');
+        $("#btn_limpar_pgto_fatura").removeAttr('disabled');
+    });
+    $(function () {
+        $("#form_fechar_fatura").submit(function (e) {
+            var id_cartao_fat = $('#id_cartao_fat').val();
+            var encargos = $('#encargos').val();
+            var iof = $('#iof').val();
+            var anuidade = $('#anuidade').val();
+            var protecao_prem = $('#protecao_prem').val();
+            var juros_fat = $('#juros_fat').val();
+            var restante = $('#restante').val();
+            var valor_pagar = $('#valor_pagar').val();
+            var valor_total = $('#valor_total').val();
+            $(".msgError").html("");
+            $(".msgError").css("display", "none");
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: $(this).attr("action"),
+                data: {id_cartao_fat: id_cartao_fat, encargos: encargos, iof: iof, anuidade: anuidade, protecao_prem: protecao_prem,
+                      juros_fat: juros_fat, restante: restante, valor_pagar: valor_pagar, valor_total: valor_total},
+                dataType: 'json',
+                success: function (retorno) {
+                    if (retorno.status === 'error' ){
+                        $('.retorno').html('<span class="msgError" id="">' + retorno.message + '</span>');
+                    } else if (retorno.status === 'success'){
+                        $('.retorno').html('<span class="alert alert-success" id="msgPagamentoFaturaSucesso">' + retorno.message + '</span>');
+                        $("#btn_novo_pgto_fatura").attr('disabled', 'disabled');
+                        $("#btn_calcular_fatura").attr('disabled', 'disabled');
+                        $("#btn_pagar_fatura").attr('disabled', 'disabled');
+                        $("#btn_limpar_pgto_fatura").attr('disabled', 'disabled');
+                        $("#encargos").attr('disabled', 'disabled');
+                        $("#iof").attr('disabled', 'disabled');
+                        $("#anuidade").attr('disabled', 'disabled');
+                        $("#protecao_prem").attr('disabled', 'disabled');
+                        $("#juros_fat").attr('disabled', 'disabled');
+                        $("#restante").attr('disabled', 'disabled');
+                        $("#valor_pagar").attr('disabled', 'disabled');
+                        $("#valor_total").attr('disabled', 'disabled');
+                    } else {
+                        alert(retorno);
+                    }
+                },
+                fail: function(){
+                    alert('ERRO: Falha ao carregar o script.');
+                    // Erro caso o arquivo não seja encontrado ou falhou ao ser carregado.
+                }
+            });
+        });
+    });
+
+
+    $('#btn_calcular_fatura').click(function () {
+        var str = $('#subtotal').val();
+        var subtotal = str.replace('R$', '');
+        var str = $('#encargos').val();
+        var encargos = str.replace('R$', '');
+        var encargos = encargos.replace(',', '.');
+        if (encargos === "") {
+            encargos = 0;
+        }
+        var str = $('#iof').val();
+        var iof = str.replace('R$', '');
+        var iof = iof.replace(',', '.');
+        if (iof === "") {
+            iof = 0;
+        }
+        var str = $('#anuidade').val();
+        var anuidade = str.replace('R$', '');
+        var anuidade = anuidade.replace(',', '.');
+        if (anuidade === "") {
+            anuidade = 0;
+        }
+        var str = $('#protecao_prem').val();
+        var protecao_prem = str.replace('R$', '');
+        var protecao_prem = protecao_prem.replace(',', '.');
+        if (protecao_prem === "") {
+            protecao_prem = 0;
+        }
+        var str = $('#juros_fat').val();
+        var juros_fat = str.replace('R$', '');
+        var juros_fat = juros_fat.replace(',', '.');
+        if (juros_fat === "") {
+            juros_fat = 0;
+        }
+        var str = $('#restante').val();
+        var restante = str.replace('R$', '');
+        var restante = restante.replace(',', '.');
+        if (restante === "") {
+            restante = 0;
+        }
+        var total = 0;
+        if (subtotal > 0) {
+            total = (parseFloat(subtotal) + parseFloat(encargos) + parseFloat(iof) + parseFloat(anuidade) + parseFloat(protecao_prem)
+                + parseFloat(juros_fat) + parseFloat(restante));
+        }
+        $('#valor_total').val('R$ '+ total);
+    });
+    
 });

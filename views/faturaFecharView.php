@@ -1,13 +1,13 @@
 
 <aside class="container col-sm-12 col-lg-12">
     <div class="row-fluid" id="div_row_form_fecha_fatura_cartao_credito">
+        <?php if (!isset($fatura)): ?>
         <form method="POST" action="/cartao/fecharfatura" id="form_buscar_fatura_fechar" >
             <div class="panel panel-primary" id="div_panel_fecha_fatura_cartao">
                 <div class="panel-heading">
                     <h3 class="panel-title">Fechamento de Fatura de Cartão de Crédito para Pagamento</h3>
                 </div>
                 <div class="panel-body" id="panel_body_fatura"> 
-                    <?php if (!isset($fatura)): ?>
                     <div class="row-fluid">
                         <div class="form-group form-group-sm col-sm-12 col-md-12 col-lg-12" id="">
                             <label for="cartao_fat" class="control-label">Cartão de Crédito / Data de Pagamento:</label>
@@ -30,15 +30,24 @@
                             <button type="submit" id="btn_fechar_fatura_buscar" class="btn btn-primary">Buscar</button>
                         </div>
                         <div class="form-group form-group-sm col-sm-12 col-md-12 col-lg-12" id="div_msgs_error_lan_fatura">
-                            <div class="retorno"></div>
+                            <?php echo!empty($erroIdFatura) ? $erroIdFatura : "" ?><br/>
                         </div>
                     </div>
-                    <?php elseif(isset($fatura) && !empty($fatura)): ?>
+                </div>
+            </div>    
+        </form>
+        <?php elseif(isset($fatura) && !empty($fatura)): ?>
+        <form method="POST" action="/cartao/fecharfatura" id="form_fechar_fatura" >
+            <div class="panel panel-primary" id="div_panel_fecha_fatura_cartao">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Fechamento de Fatura de Cartão de Crédito para Pagamento</h3>
+                </div>
+                <div class="panel-body" id="panel_body_fatura"> 
                     <div class="row-fluid">
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="num_cartao" class="control-label muda_label">Número do Cartão:</label>
                             <input type="text" name="num_cartao" id="num_cartao" class="form-control input-sm" readonly="true" value="<?php echo $fatura[0]['num']; ?>"/>
-                            <input type="hidden" name="id_cartao_fat" value="<?php echo $fatura[0]['id']; ?>"/>
+                            <input type="hidden" name="id_cartao_fat" id="id_cartao_fat" value="<?php echo $fatura[0]['id']; ?>"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="nome_banco" class="control-label muda_label">Banco:</label>
@@ -82,7 +91,7 @@
                                     <td class="muda_label"></td>
                                     <td class="muda_label"></td>
                                     <td class="muda_label alinha_td_centro">R$: <?php echo number_format($total, 2, ',', '.'); ?></td>
-                                    <input type="hidden" name="subtotal" id="juros" value="<?php echo $total; ?>"/>
+                                    <input type="hidden" name="subtotal" id="subtotal" value="<?php echo $total; ?>"/>
                                 </tr>    
                             </tfoot>    
                         </table>
@@ -130,22 +139,23 @@
                         </div>
                     </div>
                     <div class="both"></div>
-                    <div class="row-fluid">
+                    <div class="row-fluid col-md-12 col-md-12" col-sm-12>
                         <div class="form-group" id="div_botoes_fecha_fatura">
-                            <button type="button" id="btn_novo_debito" class="btn btn-primary">Novo</button>
-                            <button type="submit" id="btn_salvar_debito" class="btn btn-primary">Calcular</button>
-                            <button type="submit" id="btn_pagar_debito" class="btn btn-primary">Pagar</button>
+                            <button type="button" id="btn_novo_pgto_fatura" class="btn btn-primary">Novo</button>
+                            <button type="button" id="btn_calcular_fatura" class="btn btn-primary" disabled="disabled">Calcular</button>
+                            <button type="submit" id="btn_pagar_fatura" class="btn btn-primary" disabled="disabled">Pagar</button>
+                            <button type="button" id="btn_limpar_pgto_fatura" class="btn btn-primary" disabled="disabled">Limpar</button>
                         </div>
-                        <div class="form-group" id="">
+                        <div class="form-group" id="div_msg_error_pagar_fatura">
                             <div class="retorno"></div>
                         </div>
                         <div class="both"></div>
-                    </div>    
-                    <?php else: ?>
-                    <?php echo ""; ?>
-                    <?php endif; ?>
+                    </div> 
                 </div>
-            </div>    
+            </div>       
         </form>
+        <?php else: ?>
+        <?php echo ""; ?>
+        <?php endif; ?>
     </div>
 </aside>

@@ -32,18 +32,18 @@ class CartaoModel extends Model {
         }
     }
     
-    public function pagarFatura($array = null, $idFaturaCartao = null) {
-        if ($array != null && $idFaturaCartao != null) {
+    public function pagarFatura($array, $idFaturaCartao = null) {
+        if (isset($array) && $idFaturaCartao != null) {
             try {
                 $this->db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
                 $this->db->beginTransaction();
                 $stmt = $this->db->prepare("UPDATE tb_fatura_cartao SET encargos = ?, protecao_premiada = ?,"
                     . " iof = ?, anuidade = ?, restante_fatura_anterior = ?, pago = ?, juros = ?, valor_total_fatura = ?,"
                     . "valor_pago = ? WHERE id_fatura_cartao = ?");
-                $stmt->bindValue(1, !empty($array['encargos']) ? $array['encargos'] : null, PDO::PARAM_INT);
-                $stmt->bindValue(2, !empty($array['protecao']) ? $array['protecao'] : null, PDO::PARAM_INT);
-                $stmt->bindValue(3, !empty($array['iof']) ? $array['iof'] : null, PDO::PARAM_INT);
-                $stmt->bindValue(4, !empty($array['anuidade']) ? $array['anuidade'] : null, PDO::PARAM_INT);
+                $stmt->bindValue(1, !empty($array['encargos']) ? $array['encargos'] : 0.00, PDO::PARAM_INT);
+                $stmt->bindValue(2, !empty($array['protecao']) ? $array['protecao'] : 0.00, PDO::PARAM_INT);
+                $stmt->bindValue(3, !empty($array['iof']) ? $array['iof'] : 0.00, PDO::PARAM_INT);
+                $stmt->bindValue(4, !empty($array['anuidade']) ? $array['anuidade'] : 0.00, PDO::PARAM_INT);
                 $stmt->bindValue(5, !empty($array['restante']) ? $array['restante'] : null, PDO::PARAM_INT);
                 $stmt->bindValue(6, 'S', PDO::PARAM_STR);
                 $stmt->bindValue(7, !empty($array['juros']) ? $array['juros'] : null, PDO::PARAM_INT);

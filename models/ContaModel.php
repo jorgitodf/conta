@@ -306,7 +306,7 @@ class ContaModel extends Model {
     }
 
     public function checkCategoria() {
-        $stmt = $this->db->query("SELECT * FROM tb_categoria WHERE id_categoria IN (5,6,11,18,19,22,25,31,37,42)");
+        $stmt = $this->db->query("SELECT * FROM tb_categoria WHERE id_categoria IN (5,6,11,18,19,22,25,31,37,42,48)");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -366,7 +366,6 @@ class ContaModel extends Model {
         $dados = $stmtSelect->fetchALL(PDO::FETCH_ASSOC);
 
         if (!empty($dados)) {
-
             foreach ($dados as $value) {
                 $saldo = $this->verSaldoAtual($_SESSION['conta']['idConta']);
                 if ($saldo['saldo'] < $value['valor']) {

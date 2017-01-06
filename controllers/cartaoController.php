@@ -122,53 +122,57 @@ class cartaoController extends Controller {
         if (!$_POST) {
             $dados['cartao'] = $this->cartaoModel->getCartaoByDataPgtoFatura();
             $this->loadTemplate('faturaFecharView', $dados);
-        } elseif (isset($_SESSION['userLogin']) && isset($_POST)) {
-            if (isset($_POST['cartao_fat'])) {
-                $idUser = (int) $_SESSION['userLogin']['idUser'];
-                $idFaturaCartao = (int) filter_input(INPUT_POST, 'cartao_fat', FILTER_SANITIZE_NUMBER_INT);
+        } elseif (isset($_SESSION['userLogin']) && isset($_POST['cartao_fat'])) {
+            $idUser = (int) $_SESSION['userLogin']['idUser'];
+            $idFaturaCartao = (int) filter_input(INPUT_POST, 'cartao_fat', FILTER_SANITIZE_NUMBER_INT);
+            if (ValidacoesHelper::validarIdVazio($idFaturaCartao) == TRUE) {
+                $dados['erroIdFatura'] = "<span id='erroIdFatura'>Selecione uma Fatura!</span>";
+            } else {
                 $dados['fatura'] = $this->cartaoModel->getCartaoByDataPgtoFatura($idFaturaCartao, $idUser);
                 $dados['itensfatura'] = $this->cartaoModel->getItensDespesaFaturaByIdFaturaCartao($idFaturaCartao);
-                $this->loadTemplate('faturaFecharView', $dados);
-            } elseif (isset($_POST['id_cartao_fat']) || isset($_POST['subtotal']) || isset($_POST['encargos']) || isset($_POST['iof'])
-                  || isset($_POST['anuidade']) || isset($_POST['protecao_prem']) || isset($_POST['restante']) || isset($_POST['juros_fat'])) {
-                $idUser = (int) $_SESSION['userLogin']['idUser'];
-                $idFaturaCartao = (int) filter_input(INPUT_POST, 'id_cartao_fat', FILTER_SANITIZE_NUMBER_INT);
-                $subtotal = $_POST['subtotal'];
-                $encargos = addslashes($_POST['encargos']);
-                $iof = addslashes($_POST['iof']);
-                $anuidade = addslashes($_POST['anuidade']);
-                $protecao_prem = addslashes($_POST['protecao_prem']);
-                $juros_fat = addslashes($_POST['juros_fat']);
-                $restante = addslashes($_POST['restante']);
-                $valor_pagar = $_POST['valor_pagar'];
-                
-                $encargosNew = ValidacoesHelper::removeCaracteresValor($encargos);
-                $iofNew = ValidacoesHelper::removeCaracteresValor($iof);
-                $anuidadeNew = ValidacoesHelper::removeCaracteresValor($anuidade);
-                $protecao_premNew = ValidacoesHelper::removeCaracteresValor($protecao_prem);
-                $juros_fatNew = ValidacoesHelper::removeCaracteresValor($juros_fat);
-                $restanteNew = ValidacoesHelper::removeCaracteresValor($restante);
-                $valor_pagarNew = ValidacoesHelper::removeCaracteresValor($valor_pagar);
-                
-                $totalGeral = ($subtotal + $encargosNew + $iofNew + $anuidadeNew + $protecao_premNew + $juros_fatNew + $restanteNew);
-                
-                $dados['rettotalgeral'] = ['encargos'=>$encargosNew,'iof'=>$iofNew,'anuidade'=>$anuidadeNew,'protecao'=>$protecao_premNew,
-                    'juros'=>$juros_fatNew,'restante'=>$restanteNew,'totalgeral'=>$totalGeral,'valor_pagar'=>$valor_pagarNew];
-                
-                if ($valor_pagarNew <= $totalGeral && !empty($valor_pagarNew) && !empty($totalGeral)) {
-                    if ($this->cartaoModel->pagarFatura($dados['rettotalgeral'], $idFaturaCartao) == true) {
-                        echo "Fatura paga com Sucesso...";
-                    } else {
-                        echo "Erro ao Pagar a Fatura...";
-                    }
-                }
-                
-                $dados['fatura'] = $this->cartaoModel->getCartaoByDataPgtoFatura($idFaturaCartao, $idUser);
-                $dados['itensfatura'] = $this->cartaoModel->getItensDespesaFaturaByIdFaturaCartao($idFaturaCartao);
-                $this->loadTemplate('faturaFecharView', $dados);
             }
-        } else {
-            $this->loadTemplate('faturaFecharView');
-        }  
+            $dados['cartao'] = $this->cartaoModel->getCartaoByDataPgtoFatura();
+            $this->loadTemplate('faturaFecharView', $dados);
+        } elseif (isset($_POST['id_cartao_fat']) || isset($_POST['encargos']) || isset($_POST['iof']) || isset($_POST['anuidade']) 
+              || isset($_POST['protecao_prem']) || isset($_POST['restante']) || isset($_POST['juros_fat']) || 
+              isset($_POST['valor_pagar']) || isset($_POST['valor_total'])) {
+            $idUser = (int) $_SESSION['userLogin']['idUser'];
+            $idFaturaCartao = (int) filter_input(INPUT_POST, 'id_cartao_fat', FILTER_SANITIZE_NUMBER_INT);
+            $encargos = addslashes($_POST['encargos']);
+            $iof = addslashes($_POST['iof']);
+            $anuidade = addslashes($_POST['anuidade']);
+            $protecao_prem = addslashes($_POST['protecao_prem']);
+            $juros_fat = addslashes($_POST['juros_fat']);
+            $restante = addslashes($_POST['restante']);
+            $valorPagar = addslashes($_POST['valor_pagar']);
+            $valorTotal = addslashes($_POST['valor_total']);
+
+            $encargosNew = ValidacoesHelper::removeCaracteresValor($encargos);
+            $iofNew = ValidacoesHelper::removeCaracteresValor($iof);
+            $anuidadeNew = ValidacoesHelper::removeCaracteresValor($anuidade);
+            $protecao_premNew = ValidacoesHelper::removeCaracteresValor($protecao_prem);
+            $juros_fatNew = ValidacoesHelper::removeCaracteresValor($juros_fat);
+            $restanteNew = ValidacoesHelper::removeCaracteresValor($restante);
+            $valorTotalNew = ValidacoesHelper::removeCaracteresValorTotal($valorTotal);
+            $valorPagarNew = ValidacoesHelper::removeCaracteresValor($valorPagar);
+            $dados['valoresSalvar'] = ['encargos'=>$encargosNew,'iof'=>$iofNew,'anuidade'=>$anuidadeNew,'protecao'=>$protecao_premNew,
+                'juros'=>$juros_fatNew,'restante'=>$restanteNew,'totalgeral'=>$valorTotalNew,'valor_pagar'=>$valorPagarNew];
+            if (ValidacoesHelper::validarValor($valorPagarNew) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Informe o Valor a Pagar', 'error'=>'erroValPag');
+            } elseif (ValidacoesHelper::validarValorMaior($valorPagarNew, $valorTotalNew) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Valor a Pagar Maior que Valor Total', 'error'=>'erroValPagMaior');
+            } else {
+                try {
+                    if ($this->cartaoModel->pagarFatura($dados['valoresSalvar'], $idFaturaCartao) == true) {
+                        $json = array('status'=>'success', 'message'=>'Fatura Paga com Sucesso!');
+                    } else {
+                        $json = array('status'=>'error', 'message'=>'Falha ao Pagar a Fatura.');
+                    }
+                } catch (Exception $e) {
+                    $json = array('status'=>'error', 'message' => $e->getMessage(), 'error'=>'erroException');
+                }
+            }
+            echo json_encode($json);
+        }
     }
 }

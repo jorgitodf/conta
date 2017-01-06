@@ -7,6 +7,18 @@ class ValidacoesHelper {
             return true;
         }
     }
+    
+    public static function validarIdVazio($id) {
+        if (empty($id) || $id = "") {
+            return true;
+        }
+    }
+    
+    public static function validarValorMaior($valor1, $valor2) {
+        if ($valor1 > $valor2) {
+            return true;
+        }
+    }
 
     public static function validarMovimentacao($string) {
         if (empty($string) || $string == "") {
@@ -73,6 +85,12 @@ class ValidacoesHelper {
     public static function removeCaracteresValor ($valor) {
         $valor1 = str_replace('.', '', $valor);
         $valor2 = str_replace(',', '.', $valor1);
+        $valor3 = trim(str_replace('R$ ', '', $valor2));
+        return $valor3;
+    }
+    
+    public static function removeCaracteresValorTotal ($valor) {
+        $valor2 = str_replace(',', '.', $valor);
         $valor3 = trim(str_replace('R$ ', '', $valor2));
         return $valor3;
     }
