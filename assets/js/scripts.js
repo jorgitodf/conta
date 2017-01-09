@@ -151,7 +151,55 @@ $(document).ready(function () {
             
         });
     });
-    
+
+    $('#btn_novo_credito').click(function () {
+        $("#btn_salvar_credito").removeAttr('disabled');
+        $("#btn_novo_credito").attr('disabled', 'disabled');
+        $("#data_credito").removeAttr('disabled');
+        $("#mov_cred").removeAttr('disabled');
+        $("#nome_cat_cre").removeAttr('disabled');
+        $("#valor_cre").removeAttr('disabled');
+        $('#msgCreditadoSucesso').remove();
+        $("#data_credito").val("");
+        $("#mov_cred").val("");
+        $("#nome_cat_cre").val("");
+        $("#valor_cre").val("");
+    });
+    $(function () {
+        $("#form_cad_credito").submit(function (e) {
+            $(".msgError").html("");
+            $(".msgError").css("display", "none");
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: $(this).attr("action"),
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (retorno) {
+                    if (retorno.status == 'error' ){
+                        $('.retorno').html('<span class="msgError" id="dataMsgError">' + retorno.message + '</span>');
+                    } else if (retorno.status == 'success'){
+                        $('.retorno').html('<span class="alert alert-success" id="msgCreditadoSucesso">' + retorno.message + '</span>');
+                        $("#btn_salvar_credito").attr('disabled', 'disabled');
+                        $("#btn_novo_credito").removeAttr('disabled');
+                        $("#data_credito").attr('disabled', 'disabled');
+                        $("#mov_cred").attr('disabled', 'disabled');
+                        $("#nome_cat_cre").attr('disabled', 'disabled');
+                        $("#valor_cre").attr('disabled', 'disabled');
+                    }
+                    else {
+                        alert(retorno);
+                    }
+                },
+                fail: function(){
+                    alert('ERRO: Falha ao carregar o script.');
+                    // Erro caso o arquivo não seja encontrado ou falhou ao ser carregado.
+                }
+            });
+            
+            
+        });
+    });
     
     $('#btn_novo_cartao_credito').click(function () {
         $("#btn_salvar_cartao_credito").removeAttr('disabled');

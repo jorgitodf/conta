@@ -154,68 +154,44 @@ class contaController extends Controller {
         }
     }
 
-    public function creditar($idConta = null) {
-        $dados = array();
-
-        if ($_POST) {
-            $status = true;
-            if (empty($_POST['data_credito'])) {
-                $dados['erroCredito'] = "<span class='erro_credito'>Preencha o campo Data!!</span>";
-                $status = false;
-            } else {
-                $dados['data_credito'] = $_POST['data_credito'];
-            }
-            if (empty($_POST['movimentacao'])) {
-                $dados['erroMovimentacao'] = "<span class='erro_movimentacao'>Preencha o campo Movimentacao!!</span>";
-                $status = false;
-            } else {
-                $dados['movimentacao'] = $_POST['movimentacao'];
-            }
-            if (empty($_POST['nome_categoria'])) {
-                $dados['erroCategoria'] = "<span class='erro_nome_categoria'>Preencha o campo Categoria!!</span>";
-                $status = false;
-            } else {
-                $dados['nome_categoria'] = $_POST['nome_categoria'];
-            }
-            if (empty($_POST['valor']) || $_POST['valor'] == 'R$ 0,00') {
-                $dados['erroValor'] = "<span class='erro_valor'>Preencha o campo Valor!!</span>";
-                $status = false;
-            } else {
-                $dados['valor'] = $_POST['valor'];
-            }
-
-            if ($status == true) {
-                $idConta = trim(addslashes($_POST['idConta']));
-                $dataCredito = trim(addslashes($_POST['data_credito']));
-                $movimentacao = trim(addslashes($_POST['movimentacao']));
-                $categoria = trim(addslashes($_POST['nome_categoria']));
-                $valor = trim(addslashes($_POST['valor']));
-                $valor = str_replace('.', '', $valor);
-                $valor = str_replace(',', '.', $valor);
-                $novoValor = str_replace('R$ ', '', $valor);
-
-                if ($this->contaModel->creditarValor($idConta, $dataCredito, $movimentacao, $categoria, $novoValor) == true) {
-                    $dadosSucesso = array();
-                    $dadosSucesso['idConta'] = $idConta;
-                    $dadosSucesso['msg_sucesso'] = "<span class='alert alert-success' role='alert' id='msg_sucesso_deb'>Valor Creditado com Sucesso!</span>";
-                    $dadosSucesso['last_debito'] = $this->contaModel->getLastDebito($idConta);
-                    $this->loadTemplate('creditoSucessoView', $dadosSucesso);
-                    die();
-                } else {
-                    
-                }
-            }
-            $dados['idConta'] = $idConta;
+        public function creditar($idConta = null) {
+        if (is_numeric($idConta) && isset($idConta) && !empty($idConta)) {
+            $dados['idConta'] = (int) $_SESSION['conta']['idConta'];
+            $dados['idUser'] = (int) $_SESSION['conta']['idUser'];
             $dados['categorias'] = $this->categoriaModel->getCategorias();
             $this->loadTemplate('creditoView', $dados);
-        } else {
-            if (is_numeric($idConta)) {
-                $dados['idConta'] = $idConta;
-                $dados['categorias'] = $this->categoriaModel->getCategorias();
-                $this->loadTemplate('creditoView', $dados);
+        } elseif (isset($_POST)) {
+            $idConta = (int) filter_input(INPUT_POST, 'idConta', FILTER_SANITIZE_NUMBER_INT);
+            $dtCredito = trim(addslashes(filter_input(INPUT_POST, 'data_credito', FILTER_SANITIZE_STRING)));
+            $movimentacao_cre = trim(addslashes(filter_input(INPUT_POST, 'mov_cred', FILTER_SANITIZE_STRING)));
+            $categoria = (int) filter_input(INPUT_POST, 'nome_cat_cre', FILTER_SANITIZE_NUMBER_INT);
+            $valor = trim(addslashes($_POST['valor_cre']));
+            $valorNew = str_replace('R$ ', '', str_replace(',', '.', str_replace('.', '', $valor)));
+            if (ValidacoesHelper::validarData($dtCredito) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Preencha o campo Data!');
+            } elseif (ValidacoesHelper::validarMovimentacao($movimentacao_cre) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Preencha a Movimentação',);
+            } elseif (ValidacoesHelper::validarCategoria($categoria) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Preencha a Categoria', 'error'=>'erroCat');
+            } elseif (ValidacoesHelper::validarValor($valorNew) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Preencha o Valor', 'error'=>'erroVal');
+            } else {
+                try {
+                    if ($this->contaModel->creditarValor($idConta,$dtCredito,$movimentacao_cre,$categoria,$valorNew)) {
+                        $json = array('status'=>'success', 'message'=>'Transação Creditada com Sucesso!');
+                    } else {
+                        $json = array('status'=>'error', 'message'=>'Falha ao Creditar a Transação.');
+                    }
+                } catch (Exception $e) {
+                    $json = array('status'=>'error', 'message' => $e->getMessage(), 'error'=>'erroException');
+                }
             }
+            echo json_encode($json);
+        } else {
+            $this->loadTemplate('creditoView');
         }
     }
+
 
     public function agendar($idConta = null) {
         $dados = array();

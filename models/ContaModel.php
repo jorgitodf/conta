@@ -123,7 +123,6 @@ class ContaModel extends Model {
     public function debitarValor($idConta,$dtDebito,$movimentacao,$nome_categoria,$valor) {
         if (!empty($idConta) && !empty($dtDebito) && !empty($movimentacao) && !empty($nome_categoria) && !empty($valor)) {
             $saldo = $this->verSaldoAtual($idConta);
-
             if ($saldo['saldo'] < $valor) {
                 return 0;
             } else {
@@ -168,14 +167,10 @@ class ContaModel extends Model {
         }
     }
 
-    public function creditarValor($idConta, $dataCredito, $movimentacao, $categoria, $novoValor) {
-        if (!empty($idConta) && !empty($dataCredito) && !empty($movimentacao) && !empty($categoria) && !empty($novoValor)) {
-
+    public function creditarValor($idConta, $dataCredito, $movimentacao, $categoria, $valorNew) {
+        if (!empty($idConta) && !empty($dataCredito) && !empty($movimentacao) && !empty($categoria) && !empty($valorNew)) {
             $saldo = $this->verSaldoAtual($idConta);
-            foreach ($saldo as $item) {
-                $saldo = $item;
-            }
-            $novoSaldo = $saldo + $novoValor;
+            $novoSaldo = $saldo['saldo'] + $valorNew;
             $mes = $this->verificaMes();
             $checkCategoria = $this->checkCategoria();
             foreach ($checkCategoria as $linha) {
@@ -186,19 +181,33 @@ class ContaModel extends Model {
                     $despFixa = 'N';
                 }
             }
-            $stmt = $this->db->prepare("INSERT INTO tb_extrato (data_movimentacao, mes, tipo_operacao, movimentacao, quantidade, valor, saldo, fk_id_categoria, fk_id_conta, despesa_fixa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bindValue(1, $dataCredito, PDO::PARAM_STR);
-            $stmt->bindValue(2, $mes, PDO::PARAM_STR);
-            $stmt->bindValue(3, 'Crédito', PDO::PARAM_STR);
-            $stmt->bindValue(4, $movimentacao, PDO::PARAM_STR);
-            $stmt->bindValue(5, 1, PDO::PARAM_INT);
-            $stmt->bindValue(6, $novoValor, PDO::PARAM_STR);
-            $stmt->bindValue(7, $novoSaldo, PDO::PARAM_STR);
-            $stmt->bindValue(8, $categoria, PDO::PARAM_INT);
-            $stmt->bindValue(9, $idConta, PDO::PARAM_INT);
-            $stmt->bindValue(10, $despFixa, PDO::PARAM_STR);
-            $stmt->execute();
-            return 1;
+            try {
+                $this->db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
+                $this->db->beginTransaction();
+                $stmt = $this->db->prepare("INSERT INTO tb_extrato (data_movimentacao, mes, tipo_operacao, movimentacao, quantidade, "
+                        . "valor, saldo, fk_id_categoria, fk_id_conta, despesa_fixa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->bindValue(1, $dataCredito, PDO::PARAM_STR);
+                $stmt->bindValue(2, $mes, PDO::PARAM_STR);
+                $stmt->bindValue(3, 'Crédito', PDO::PARAM_STR);
+                $stmt->bindValue(4, $movimentacao, PDO::PARAM_STR);
+                $stmt->bindValue(5, 1, PDO::PARAM_INT);
+                $stmt->bindValue(6, $valorNew, PDO::PARAM_STR);
+                $stmt->bindValue(7, $novoSaldo, PDO::PARAM_STR);
+                $stmt->bindValue(8, $categoria, PDO::PARAM_INT);
+                $stmt->bindValue(9, $idConta, PDO::PARAM_INT);
+                $stmt->bindValue(10, $despFixa, PDO::PARAM_STR);
+                $stmt->execute();
+                $this->db->commit();
+                return true;
+            } catch (PDOException $exc) {
+                $this->db->rollback();
+                throw new Exception('ERRO: '.$exc->getMessage());
+                return false;
+            }
+
+        } else {
+            throw new Exception("ERRO: Possui dados vazios.");
+            return false;
         }
     }
 

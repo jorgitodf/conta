@@ -86,6 +86,7 @@
                 $("#juros_fat").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
                 $("#restante").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
                 $("#valor_total").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
+                $("#valor_cre").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
             });
             jQuery(function($){
                $("#num_cartao").mask("9999.9999.9999.9999");

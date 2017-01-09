@@ -478,11 +478,6 @@
         text-align: center;
         font-weight: bold;
     }
-    #msgDebitadoSucesso {
-        padding: 7px;
-        text-align: center;
-        font-weight: bold;
-    }
     #btn_novo_agendamento {
         width: 75px;
     }
@@ -1376,11 +1371,6 @@
         text-align: center;
         font-weight: bold;
     }
-    #msgDebitadoSucesso {
-        padding: 7px;
-        text-align: center;
-        font-weight: bold;
-    }
     #btn_novo_agendamento {
         width: 75px;
     }
@@ -1453,10 +1443,32 @@
     .body_debito {
         margin-top: 8%;
     }
-    #div_form_debito {
-        margin-left: 30%;
-        margin-right: 30%;
+    #div_row_form_creditar {
+        margin-left: auto;
+        margin-right: auto;
     }
+    #div_panel_form_creditar {
+        width: 40%;
+        height: 320px;
+        margin-left: 29%
+    }
+    #btn_novo_credito, #btn_salvar_credito {
+        width: 80px;
+    }
+    #msgCreditadoSucesso {
+        padding: 7px;
+        text-align: center;
+        font-weight: bold;
+    }
+    #div_msgs_error_credito {
+        float: left;
+        margin-left: 13.5%;
+        margin-top: 1.5%;
+    }
+    .div_button_credito {
+        float: left;
+    }
+
     .erro_credito, .erro_movimentacao, .erro_nome_categoria {
         color: red;
         font-size: 11px;
@@ -1739,6 +1751,62 @@
         padding: 7px;
         text-align: center;
         font-weight: bold;
+    }
+    #table_lista_itens_fatura > tbody > tr > td {
+        font-size: 12px;
+        padding: 3px;
+    }
+    .alinha_td_centro, .alinha_th_centro {
+        text-align: center;
+    }
+    #div_row_table_fecha_fatura {
+        width: 96.2%;
+    }
+    #table_lista_itens_fatura {
+        margin-left: 1.9%;
+    }
+    #msg_alerta_sem_despesa_fatura {
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        width: 104%;
+    }
+    #num_cartao, #nome_banco, #nome_bandeira, #dt_vencimento, #encargos, #iof, #anuidade, #protecao_prem, #valor_pagar, #juros, #restante, #valor_total {
+        font-size: 12px;
+        height: 27px;
+    }
+    .muda_label {
+        font-size: 12px;
+    }
+    #table_lista_itens_fatura > tfoot > tr > td {
+        padding: 2px;
+    }
+    #div_botoes_fecha_fatura {
+        margin-left: 0;
+        float: left;
+    }
+    #erroIdFatura {
+        color: red;
+        font-weight: bold;
+        font-size: 11px;
+        padding: 0;
+    }
+    #btn_novo_pgto_fatura, #btn_calcular_fatura, #btn_pagar_fatura {
+        width: 80px;
+    }
+    #div_msg_error_pagar_fatura {
+        margin-left: 10%;
+        float: left;
+        margin-top: 0.5%;
+    }    
+    #msgPagamentoFaturaSucesso {
+        padding: 8px;
+        text-align: center;
+        font-weight: bold;
+    }
+    #div_panel_fecha_fatura_cartao {
+        width: 70%;
+        margin-left: 9%;
     }
 }	
 

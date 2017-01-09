@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group form-group-sm" id="div_valor_debito">
                             <label for="valor" class="control-label">Valor:</label>
-                            <input type="text" name="valor" id="valor" class="form-control input-sm" disabled="disabled" value="<?php echo!empty($valor) ? $valor : ''; ?>"/>
+                            <input type="text" name="valor" id="valor" class="form-control input-sm" disabled="disabled"/>
                             <input type="hidden" name="idConta" value="<?php echo $idConta; ?>"/>
                         </div> 
                         <div class="both"></div>
