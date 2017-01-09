@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    
     $('#btn_novo_agendamento').click(function () {
         $("#btn_salvar_agendamento").removeAttr('disabled');
         $("#btn_novo_agendamento").attr('disabled', 'disabled');
@@ -421,43 +422,36 @@ $(document).ready(function () {
         });
     });
 
-
     $('#btn_calcular_fatura').click(function () {
         var str = $('#subtotal').val();
-        var subtotal = str.replace('R$', '');
+        var subtotal = replace(str);
         var str = $('#encargos').val();
-        var encargos = str.replace('R$', '');
-        var encargos = encargos.replace(',', '.');
+        var encargos = replace(str);
         if (encargos === "") {
             encargos = 0;
         }
         var str = $('#iof').val();
-        var iof = str.replace('R$', '');
-        var iof = iof.replace(',', '.');
+        var iof = replace(str);
         if (iof === "") {
             iof = 0;
         }
         var str = $('#anuidade').val();
-        var anuidade = str.replace('R$', '');
-        var anuidade = anuidade.replace(',', '.');
+        var anuidade = replace(str);
         if (anuidade === "") {
             anuidade = 0;
         }
         var str = $('#protecao_prem').val();
-        var protecao_prem = str.replace('R$', '');
-        var protecao_prem = protecao_prem.replace(',', '.');
+        var protecao_prem = replace(str);
         if (protecao_prem === "") {
             protecao_prem = 0;
         }
         var str = $('#juros_fat').val();
-        var juros_fat = str.replace('R$', '');
-        var juros_fat = juros_fat.replace(',', '.');
+        var juros_fat = replace(str);
         if (juros_fat === "") {
             juros_fat = 0;
         }
         var str = $('#restante').val();
-        var restante = str.replace('R$', '');
-        var restante = restante.replace(',', '.');
+        var restante = replace(str);
         if (restante === "") {
             restante = 0;
         }
@@ -466,7 +460,14 @@ $(document).ready(function () {
             total = (parseFloat(subtotal) + parseFloat(encargos) + parseFloat(iof) + parseFloat(anuidade) + parseFloat(protecao_prem)
                 + parseFloat(juros_fat) + parseFloat(restante));
         }
-        $('#valor_total').val('R$ '+ total);
+        $('#valor_total').val('R$ ' + total);
     });
+    
+    function replace(str) {
+        var encargos = str.replace('R$', '');
+        encargos = encargos.replace('.', ''); 
+        encargos = encargos.replace(',', '.'); 
+        return encargos;
+    }
     
 });

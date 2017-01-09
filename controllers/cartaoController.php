@@ -128,7 +128,7 @@ class cartaoController extends Controller {
             if (ValidacoesHelper::validarIdVazio($idFaturaCartao) == TRUE) {
                 $dados['erroIdFatura'] = "<span id='erroIdFatura'>Selecione uma Fatura!</span>";
             } else {
-                $dados['fatura'] = $this->cartaoModel->getCartaoByDataPgtoFatura($idFaturaCartao, $idUser);
+                $dados['fatura'] = $this->cartaoModel->getFaturaById($idFaturaCartao, $idUser);
                 $dados['itensfatura'] = $this->cartaoModel->getItensDespesaFaturaByIdFaturaCartao($idFaturaCartao);
             }
             $dados['cartao'] = $this->cartaoModel->getCartaoByDataPgtoFatura();

@@ -550,10 +550,32 @@
     .body_debito {
         margin-top: 8%;
     }
-    #div_form_debito {
-        margin-left: 30%;
-        margin-right: 30%;
+    #div_row_form_creditar {
+        margin-left: auto;
+        margin-right: auto;
     }
+    #div_panel_form_creditar {
+        width: 40%;
+        height: 320px;
+        margin-left: 29%
+    }
+    #btn_novo_credito, #btn_salvar_credito {
+        width: 80px;
+    }
+    #msgCreditadoSucesso {
+        padding: 7px;
+        text-align: center;
+        font-weight: bold;
+    }
+    #div_msgs_error_credito {
+        float: left;
+        margin-left: 13.5%;
+        margin-top: 1.5%;
+    }
+    .div_button_credito {
+        float: left;
+    }
+
     .erro_credito, .erro_movimentacao, .erro_nome_categoria {
         color: red;
         font-size: 11px;
@@ -656,11 +678,11 @@
     }
     
     /*PÁGINA RELATÓRIO GERAL*/
-    .div_coint_form {
+    .body_rel_geral {
         margin-top: 7%;
     }  
-    #row_panel_form_rel_geral {
-        margin-left: 25%;
+    #div_row_form_rel_geral {
+        margin-left: 28%;
     }
     #panel_form_rel_geral {
         border: solid 0 white;
@@ -668,6 +690,13 @@
     #panel_heading_form_rel_geral {
         background-color: #3935ce;
         color: white;
+    }
+    #div_btn_form_rel_geral {
+        float: left;
+    }
+    #div_msg_error_rel_geral {
+        margin-left: 30%;
+        padding: 5px;
     }
     .div_coint {
         margin-top: 5%;

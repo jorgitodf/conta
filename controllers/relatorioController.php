@@ -64,7 +64,23 @@ class relatorioController extends Controller {
             $dados['categoria'] = $this->categoriaModel->getCategoriasDespesas();
             $this->loadTemplate('relatorioFormGeralView', $dados);
         }
-        if ($_POST) {
+        if (isset($_POST['nome_categoria']) && empty($_POST['nome_categoria'])) {
+            $dados['erroCat'] = "Selecione uma Categoria!";
+            $dados['idConta'] = $_SESSION['conta']['idConta'];
+            $dados['idUser'] = $_SESSION['userLogin']['idUser'];
+            $dados['anoForm'] = $_POST['ano'];
+            $dados['ano'] = $this->extratoModel->listarAnoExtrato();
+            $dados['categoria'] = $this->categoriaModel->getCategoriasDespesas();
+            $this->loadTemplate('relatorioFormGeralView', $dados);
+        } elseif (isset($_POST['ano']) && empty($_POST['ano'])) {
+            $dados['erroAno'] = "Selecione um Ano";
+            $dados['idConta'] = $_SESSION['conta']['idConta'];
+            $dados['idUser'] = $_SESSION['userLogin']['idUser'];
+            $dados['nome_categoria'] = $_POST['nome_categoria'];
+            $dados['ano'] = $this->extratoModel->listarAnoExtrato();
+            $dados['categoria'] = $this->categoriaModel->getCategoriasDespesas();
+            $this->loadTemplate('relatorioFormGeralView', $dados);
+        } else {
             $categoria = intval($_POST['nome_categoria']);
             $idUser = intval($_POST['idUser']);
             $idConta = intval($_POST['idConta']);

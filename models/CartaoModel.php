@@ -64,26 +64,30 @@ class CartaoModel extends Model {
         }
     }
     
-    public function getCartaoByDataPgtoFatura($idCartao = null, $idUser = null) {
-        if ($idCartao == null && $idUser == null) {
-            $stmt = $this->db->query("SELECT fat.id_fatura_cartao as id, DATE_FORMAT(fat.data_vencimento_fatura,'%d/%m/%Y') as data, 
-                car.numero_cartao as num, band.bandeira as bandeira, ban.nome_banco as nome FROM tb_fatura_cartao as fat JOIN 
-                tb_cartao_credito as car ON (fat.fk_id_cartao_credito = car.id_cartao_credito) JOIN tb_banco as ban ON (ban.cod_banco = 
-                car.fk_cod_banco) JOIN tb_bandeira_cartao as band ON (band.id_bandeira_cartao = car.fk_id_bandeira_cartao) WHERE fat.pago
-                = 'N'");
-        } else {
+    public function getCartaoByDataPgtoFatura() {
+        $stmt = $this->db->query("SELECT fat.id_fatura_cartao as id, DATE_FORMAT(fat.data_vencimento_fatura,'%d/%m/%Y') as data,"
+            . " car.numero_cartao as num, band.bandeira as bandeira, ban.nome_banco as nome, fat.fk_id_cartao_credito as cardid"
+            . " FROM tb_fatura_cartao as fat JOIN tb_cartao_credito as car ON (fat.fk_id_cartao_credito = "
+            . "car.id_cartao_credito) JOIN tb_banco as ban ON (ban.cod_banco = car.fk_cod_banco) JOIN tb_bandeira_cartao as "
+            . "band ON (band.id_bandeira_cartao = car.fk_id_bandeira_cartao) WHERE fat.pago = 'N'");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function getFaturaById($idFaturaCartao, $idUser) {
+        if ((!empty($idFaturaCartao) && is_numeric($idFaturaCartao)) && (!empty($idUser) && is_numeric($idUser))) {
             $stmt = $this->db->prepare("SELECT fat.id_fatura_cartao as id, car.numero_cartao as num, "
-                . "DATE_FORMAT(fat.data_vencimento_fatura,'%d/%m/%Y') as data, band.bandeira as bandeira, ban.nome_banco as nome, "
-                . "fat.encargos as encargos, fat.protecao_premiada as protecao, fat.anuidade as anuidade, "
-                . "fat.restante_fatura_anterior as restante, fat.valor_total_fatura as valor_total FROM tb_fatura_cartao as fat "
-                . "JOIN tb_cartao_credito as car ON (fat.fk_id_cartao_credito = car.id_cartao_credito) JOIN tb_banco as ban "
-                . "ON (ban.cod_banco = car.fk_cod_banco) JOIN tb_bandeira_cartao as band ON (band.id_bandeira_cartao = "
-                . "car.fk_id_bandeira_cartao) WHERE fat.pago = 'N' AND fat.fk_id_cartao_credito = ? AND car.fk_id_usuario = ?");
-            $stmt->bindValue(1, $idCartao, PDO::PARAM_INT);
+                  . "DATE_FORMAT(fat.data_vencimento_fatura,'%d/%m/%Y') as data, band.bandeira as bandeira, "
+                  . "ban.nome_banco as nome, fat.encargos as encargos, fat.protecao_premiada as protecao, fat.anuidade as anuidade,"
+                  . "fat.restante_fatura_anterior as restante, fat.valor_total_fatura as valor_total FROM tb_fatura_cartao as fat "
+                  . "JOIN tb_cartao_credito as car ON (fat.fk_id_cartao_credito = car.id_cartao_credito) JOIN tb_banco as ban ON "
+                  . "(ban.cod_banco = car.fk_cod_banco) JOIN tb_bandeira_cartao as band ON (band.id_bandeira_cartao = "
+                  . "car.fk_id_bandeira_cartao) WHERE fat.pago = 'N' AND fat.id_fatura_cartao = ? AND car.fk_id_usuario = ?");
+            $stmt->bindValue(1, $idFaturaCartao, PDO::PARAM_INT);
             $stmt->bindValue(2, $idUser, PDO::PARAM_INT);
             $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
     public function getItensDespesaFaturaByIdFaturaCartao($idFaturaCartao) {

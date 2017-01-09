@@ -8,6 +8,12 @@ class ValidacoesHelper {
         }
     }
     
+    public static function validarCampoVazio($campo) {
+        if (empty($campo) || $campo = "") {
+            return true;
+        }
+    }
+    
     public static function validarIdVazio($id) {
         if (empty($id) || $id = "") {
             return true;
