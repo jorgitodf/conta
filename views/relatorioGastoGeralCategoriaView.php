@@ -149,4 +149,9 @@
         </div>
     </div>
     <?php endif; ?>
+    <div class="row">
+        <div class="form-group form-group-sm" id="btn_voltar_rel_geral">
+            <a href="/relatorio/geral" class="btn btn-primary">Voltar</a>
+        </div>
+    </div>
 </div>

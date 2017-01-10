@@ -15,7 +15,6 @@
                             <select class="form-control input-sm" name="nome_categoria" id="" >
                                 <option></option>
                                 <?php foreach ($categoria as $value): ?> 
-                                    <option value="<?php echo $value['id_categoria']; ?>"><?php echo $value['nome_categoria']; ?> </option>
                                     <option <?php echo (isset($nome_categoria) && $value['id_categoria'] == $nome_categoria ? 'selected="selected"' : '') ?> value="<?php echo $value['id_categoria']; ?>"><?php echo $value['nome_categoria']; ?> </option>
                                 <?php endforeach; ?>
                             </select>
@@ -27,7 +26,6 @@
                             <select class="form-control input-sm" name="ano" id="" >
                                 <option></option>
                                 <?php foreach ($ano as $value): ?> 
-                                    <option value="<?php echo $value['ano']; ?>"><?php echo $value['ano']; ?> </option>
                                     <option <?php echo (isset($anoForm) && $value['ano'] == $anoForm ? 'selected="selected"' : '') ?> value="<?php echo $value['ano']; ?>"><?php echo $value['ano']; ?> </option>
                                 <?php endforeach; ?>
                             </select>
@@ -38,9 +36,11 @@
                             <button type="submit" class="btn btn-primary" id="btn_buscar_rel_geral">Buscar</button>
                         </div>
                         <div class="form-group" id="div_msg_error_rel_geral">
-                            <div class="retorno"></div>
+                            <div class="retorno">
+                                <span class="msg_error_sem_ajax"><?php echo !empty($erroCat) ? $erroCat : ""; ?></span>
+                                <span class="msg_error_sem_ajax"><?php echo !empty($erroAno) ? $erroAno : ""; ?></span>
+                            </div>
                         </div>
-                        <div class="both"></div>
                     </div>      
                 </div>       
             </div>    

@@ -71,12 +71,10 @@
                         <li><a href="/cartao/fatura">Lançar Fatura</a></li>
                         <li><a href="/cartao/debitarfatura">Debitar Fatura</a></li>
                         <li><a href="/cartao/fecharfatura">Fechar Fatura</a></li>
+                        <li><a href="/cartao/consultarfatura">Consultar Fatura</a></li>
                     </ul>
                 </div>
             </div>
-
-
-
             <div class="div_msg_alert_pgto_agendado">
                 <?php echo!empty($mensagem) ? $mensagem : ""; ?>
             </div>

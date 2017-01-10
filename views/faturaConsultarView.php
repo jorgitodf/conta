@@ -1,52 +1,11 @@
 
 <aside class="container col-sm-12 col-lg-12">
     <div class="row-fluid" id="div_row_form_fecha_fatura_cartao_credito">
-        <?php if (!isset($fatura)): ?>
-        <form method="POST" action="/cartao/fecharfatura" id="form_buscar_fatura_fechar" >
-            <div class="panel panel-primary" id="div_panel_fecha_fatura_cartao">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Fechamento de Fatura de Cartão de Crédito para Pagamento</h3>
-                </div>
-                <div class="panel-body" id="panel_body_fatura"> 
-                    <?php if (isset($cartao) && !empty($cartao)): ?>
-                    <div class="row-fluid">
-                        <div class="form-group form-group-sm col-sm-12 col-md-12 col-lg-12" id="">
-                            <label for="cartao_fat" class="control-label">Cartão de Crédito / Data de Pagamento:</label>
-                    
-                            <select class="form-control input-sm" name="cartao_fat" id="cartao_fat">
-                                <option></option>
-                                <?php foreach ($cartao as $value): ?> 
-                                    <option value="<?php $value['id']; ?>">Data de Vencimento: <?php $value['data']; ?> - <?php wordwrap($value['num'], 4, '.', true); ?> - <?php $value['bandeira']; ?> - <?php $value['nome']; ?></option>
-                                <?php endforeach; ?> 
-                            </select>          
-                        </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="form-group form-group-sm col-sm-12 col-md-12 col-lg-12" id="">
-                            <button type="submit" id="btn_fechar_fatura_buscar" class="btn btn-primary">Buscar</button>
-                        </div>
-                        <div class="form-group form-group-sm col-sm-12 col-md-12 col-lg-12" id="div_msgs_error_lan_fatura">
-                            <?php echo!empty($erroIdFatura) ? $erroIdFatura : "" ?><br/>
-                        </div>
-                    </div>
-                    <?php else: ?>   
-                    <div class="row-fluid">
-                        <div class="form-group form-group-sm col-sm-12 col-md-12 col-lg-12" id="">
-                            <div id="msg_sem_fatura">Não há nenhuma Fatura disponível para Pagamento no Momento!</div>
-                        </div>   
-                        <div class="form-group form-group-sm col-sm-12 col-md-12 col-lg-12" id="">
-                            <a href="/home" class="btn btn-primary">Voltar</a>
-                        </div>
-                    </div>    
-                    <?php endif; ?>  
-                </div>
-            </div>    
-        </form>
-        <?php elseif(isset($fatura) && !empty($fatura)): ?>
+        <?php if(isset($fatura) && !empty($fatura)): ?>
         <form method="POST" action="/cartao/fecharfatura" id="form_fechar_fatura" >
             <div class="panel panel-primary" id="div_panel_fecha_fatura_cartao">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Fechamento de Fatura de Cartão de Crédito para Pagamento</h3>
+                    <h3 class="panel-title">Consulta de Fatura de Cartão de Crédito</h3>
                 </div>
                 <div class="panel-body" id="panel_body_fatura"> 
                     <div class="row-fluid">
@@ -110,47 +69,44 @@
                     <div class="row-fluid">
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="encargos" class="control-label muda_label">Encargos:</label>
-                            <input type="text" name="encargos" id="encargos" class="form-control input-sm" value="<?php $r='R$ '; echo isset($rettotalgeral['encargos'])&&!empty($rettotalgeral['encargos']) ? $r.number_format($rettotalgeral['encargos'], 2, ',', '.') : ""; ?>"/>
+                            <input type="text" name="encargos" id="encargos" class="form-control input-sm" value="<?php $r='R$ '; echo $r.number_format($fatura[0]['encargos'], 2, ',', '.'); ?>"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="iof" class="control-label muda_label">IOF:</label>
-                            <input type="text" name="iof" id="iof" class="form-control input-sm" value="<?php $r='R$ '; echo isset($rettotalgeral['iof'])&&!empty($rettotalgeral['iof']) ? $r.number_format($rettotalgeral['iof'], 2, ',', '.') : ""; ?>"/>
+                            <input type="text" name="iof" id="iof" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['iof']) ? $r.number_format($fatura[0]['iof'], 2, ',', '.') : ''; ?>"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="anuidade" class="control-label muda_label">Anuidade:</label>
-                            <input type="text" name="anuidade" id="anuidade" class="form-control input-sm" value="<?php $r='R$ '; echo isset($rettotalgeral['anuidade'])&&!empty($rettotalgeral['anuidade']) ? $r.number_format($rettotalgeral['anuidade'], 2, ',', '.') : ""; ?>"/>
+                            <input type="text" name="anuidade" id="anuidade" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['anuidade']) ? $r.number_format($fatura[0]['anuidade'], 2, ',', '.') : ''; ?>"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="protecao_prem" class="control-label muda_label">Proteção Premiada:</label>
-                            <input type="text" name="protecao_prem" id="protecao_prem" class="form-control input-sm" value="<?php $r='R$ '; echo isset($rettotalgeral['protecao'])&&!empty($rettotalgeral['protecao']) ? $r.number_format($rettotalgeral['protecao'], 2, ',', '.') : ""; ?>"/>
+                            <input type="text" name="protecao_prem" id="protecao_prem" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['protecao']) ? $r.number_format($fatura[0]['protecao'], 2, ',', '.') : ''; ?>"/>
                         </div>
                     </div>
                     <div class="row-fluid">
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="juros_fat" class="control-label muda_label">Juros:</label>
-                            <input type="text" name="juros_fat" id="juros_fat" class="form-control input-sm" value="<?php $r='R$ '; echo isset($rettotalgeral['juros'])&&!empty($rettotalgeral['juros']) ? $r.number_format($rettotalgeral['juros'], 2, ',', '.') : ""; ?>"/>
+                            <input type="text" name="juros_fat" id="juros_fat" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['juros']) ? $r.number_format($fatura[0]['juros'], 2, ',', '.') : ''; ?>"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="restante" class="control-label muda_label">Restante Fatura Anterior:</label>
-                            <input type="text" name="restante" id="restante" class="form-control input-sm" value="<?php $r='R$ '; echo isset($rettotalgeral['restante'])&&!empty($rettotalgeral['restante']) ? $r.number_format($rettotalgeral['restante'], 2, ',', '.') : ""; ?>"/>
+                            <input type="text" name="restante" id="restante" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['restante']) ? $r.number_format($fatura[0]['restante'], 2, ',', '.') : ''; ?>"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="valor_total" class="control-label muda_label">Valor Total Fatura:</label>
-                            <input type="text" name="valor_total" id="valor_total" class="form-control input-sm" value="<?php $r='R$ '; echo isset($rettotalgeral['totalgeral'])&&!empty($rettotalgeral['totalgeral']) ? $r.number_format($rettotalgeral['totalgeral'], 2, ',', '.') : ""; ?>"/>
+                            <input type="text" name="valor_total" id="valor_total" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['valor_total']) ? $r.number_format($fatura[0]['valor_total'], 2, ',', '.') : ''; ?>"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
-                            <label for="valor_pagar" class="control-label muda_label">Valor a Pagar:</label>
-                            <input type="text" name="valor_pagar" id="valor_pagar" class="form-control input-sm" value="<?php $r='R$ '; echo isset($rettotalgeral['valor_pagar'])&&!empty($rettotalgeral['valor_pagar']) ? $r.number_format($rettotalgeral['valor_pagar'], 2, ',', '.') : ""; ?>"/>
+                            <label for="valor_pagar" class="control-label muda_label">Valor Pago:</label>
+                            <input type="text" name="valor_pagar" id="valor_pagar" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['val_pgo']) ? $r.number_format($fatura[0]['val_pgo'], 2, ',', '.') : ''; ?>"/>
                             <input type="hidden" name="set_vlr_pagar" value="pagar"/>
                         </div>
                     </div>
                     <div class="both"></div>
                     <div class="row-fluid col-md-12 col-md-12" col-sm-12>
                         <div class="form-group" id="div_botoes_fecha_fatura">
-                            <button type="button" id="btn_novo_pgto_fatura" class="btn btn-primary">Novo</button>
-                            <button type="button" id="btn_calcular_fatura" class="btn btn-primary" disabled="disabled">Calcular</button>
-                            <button type="submit" id="btn_pagar_fatura" class="btn btn-primary" disabled="disabled">Pagar</button>
-                            <button type="button" id="btn_limpar_pgto_fatura" class="btn btn-primary" disabled="disabled">Limpar</button>
+                            <a href="/cartao/consultarfatura" class="btn btn-primary">Voltar</a>
                         </div>
                         <div class="form-group" id="div_msg_error_pagar_fatura">
                             <div class="retorno"></div>

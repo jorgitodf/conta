@@ -116,6 +116,27 @@ class cartaoController extends Controller {
             $this->loadTemplate('faturaDebitarView');
         }  
     }
+    
+    public function consultarfatura() {
+        $dados = array();
+        if (isset($_SESSION['userLogin']) && !$_POST) {
+            $dados['idUser'] = (int) $_SESSION['userLogin']['idUser'];
+            $dados['fatura'] = $this->cartaoModel->getFaturaByIdConsulta($dados['idUser']);
+            $this->loadTemplate('consultarFaturaView', $dados);
+        } elseif (isset($_POST['fatura']) && empty($_POST['fatura'])) {
+            $dados['idUser'] = (int) $_SESSION['userLogin']['idUser'];
+            $dados['erroFat'] = "Selecione uma Fatura!";
+            $dados['fatura'] = $this->cartaoModel->getFaturaByIdConsulta($dados['idUser']);
+            $this->loadTemplate('consultarFaturaView', $dados);
+        } elseif (isset($_POST['fatura']) && !empty($_POST['fatura'])) {
+            $idFatura = (int) filter_input(INPUT_POST, 'fatura', FILTER_SANITIZE_NUMBER_INT);
+            $dados['fatura'] = $this->cartaoModel->getFaturaById($idFatura);
+            $dados['itensfatura'] = $this->cartaoModel->getItensDespesaFaturaByIdFaturaCartao($idFatura);
+            $this->loadTemplate('faturaConsultarView', $dados);
+        } else {
+            $this->loadTemplate('consultarFaturaView');
+        }
+    }
 
     public function fecharfatura() {
         $dados = array();

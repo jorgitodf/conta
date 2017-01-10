@@ -74,8 +74,23 @@ class CartaoModel extends Model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    public function getFaturaById($idFaturaCartao, $idUser) {
-        if ((!empty($idFaturaCartao) && is_numeric($idFaturaCartao)) && (!empty($idUser) && is_numeric($idUser))) {
+    public function getFaturaByIdConsulta($idUser) {
+        if (!empty($idUser) && is_numeric($idUser)) {
+            $stmt = $this->db->prepare("SELECT fat.id_fatura_cartao as id, cc.numero_cartao as num, DATE_FORMAT"
+                  . "(fat.data_vencimento_fatura,'%d/%m/%Y') as data, ban.bandeira as band, bc.nome_banco as nome FROM tb_fatura_cartao "
+                  . "as fat JOIN tb_cartao_credito as cc ON (fat.fk_id_cartao_credito = cc.id_cartao_credito) JOIN "
+                  . "tb_bandeira_cartao as ban ON (ban.id_bandeira_cartao = cc.fk_id_bandeira_cartao) JOIN tb_banco as bc "
+                  . "ON (bc.cod_banco = cc.fk_cod_banco) WHERE cc.fk_id_usuario = 1 ORDER BY fat.id_fatura_cartao, "
+                  . "fat.data_vencimento_fatura ASC");
+            $stmt->bindValue(1, $idUser, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
+
+
+    public function getFaturaById($idFaturaCartao, $idUser = null) {
+        if ((isset($idFaturaCartao) && is_numeric($idFaturaCartao)) && (isset($idUser) && is_numeric($idUser))) {
             $stmt = $this->db->prepare("SELECT fat.id_fatura_cartao as id, car.numero_cartao as num, "
                   . "DATE_FORMAT(fat.data_vencimento_fatura,'%d/%m/%Y') as data, band.bandeira as bandeira, "
                   . "ban.nome_banco as nome, fat.encargos as encargos, fat.protecao_premiada as protecao, fat.anuidade as anuidade,"
@@ -87,7 +102,19 @@ class CartaoModel extends Model {
             $stmt->bindValue(2, $idUser, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } elseif (isset($idFaturaCartao) && is_numeric($idFaturaCartao)) {
+            $stmt = $this->db->prepare("SELECT fat.id_fatura_cartao as id, car.numero_cartao as num, "
+                  . "DATE_FORMAT(fat.data_vencimento_fatura,'%d/%m/%Y') as data, band.bandeira as bandeira, "
+                  . "ban.nome_banco as nome, fat.encargos as encargos, fat.protecao_premiada as protecao, fat.anuidade as anuidade,"
+                  . "fat.restante_fatura_anterior as restante, fat.valor_total_fatura as valor_total, fat.valor_pago as val_pgo FROM tb_fatura_cartao as fat "
+                  . "JOIN tb_cartao_credito as car ON (fat.fk_id_cartao_credito = car.id_cartao_credito) JOIN tb_banco as ban ON "
+                  . "(ban.cod_banco = car.fk_cod_banco) JOIN tb_bandeira_cartao as band ON (band.id_bandeira_cartao = "
+                  . "car.fk_id_bandeira_cartao) WHERE fat.id_fatura_cartao = ?");
+            $stmt->bindValue(1, $idFaturaCartao, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+        
     }
     
     public function getItensDespesaFaturaByIdFaturaCartao($idFaturaCartao) {

@@ -319,7 +319,7 @@
         float: left;
     }
     .div_msg_alert_pgto_agendado {
-        margin-top: 27.5%;
+        margin-top: 32%;
     }
     .href_btn_home {
         color: white;
@@ -698,6 +698,19 @@
         margin-left: 30%;
         padding: 5px;
     }
+    .msg_error_sem_ajax {
+        color: red;
+        font-weight: bold;
+        font-size: 12px;
+    }
+    #btn_voltar_rel_geral {
+        float: right;
+        margin-right: 2.2%;
+    }
+    #msg_ret_sem_pgto {
+        font-weight: bold;
+        background-color: #FFDEAD;
+    }
     .div_coint {
         margin-top: 5%;
         background-color: #ccc;
@@ -814,6 +827,10 @@
     .pag_ativo a {
         color:#FFF;
     }
+    #nav_pagination {
+        margin-left: 44%;
+        margin-top: -1.5%;
+    }
     
     /*PÁGINA FATURA DE CARTÃO DE CRÉDITO*/
     #div_panel_form_cad_fatura_carta_credito {
@@ -838,6 +855,13 @@
     #div_panel_fecha_fatura_cartao {
         width: 70%;
         margin-left: 9%;
+    }
+    #msg_sem_fatura {
+        background-color: #FFDAB9;
+        padding: 9px;
+        text-align: center;
+        font-weight: bold;
+        color: red;
     }
     #btn_nova_fatura, #btn_salvar_nova_fatura, #btn_debitar_fatura, #btn_nova_lanc_fatura, #btn_salvar_novo_lanc_fatura {
         width: 70px;
@@ -919,6 +943,22 @@
         padding: 8px;
         text-align: center;
         font-weight: bold;
+    }
+    
+    
+    /*CONSULTAR FATURAS*/
+    #aside_consultar_fatura {
+        margin-top: 8%;
+    }
+    #div_row_consultar_fatura {
+        margin-left: 24%;
+    }
+    .div_button_form {
+        float: left;
+    }
+    #div_msg_error_buscar_fatura {
+        margin-left: 30%;
+        padding: 5px;
     }
 }		
 

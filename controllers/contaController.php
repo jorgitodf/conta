@@ -154,7 +154,7 @@ class contaController extends Controller {
         }
     }
 
-        public function creditar($idConta = null) {
+    public function creditar($idConta = null) {
         if (is_numeric($idConta) && isset($idConta) && !empty($idConta)) {
             $dados['idConta'] = (int) $_SESSION['conta']['idConta'];
             $dados['idUser'] = (int) $_SESSION['conta']['idUser'];
@@ -191,7 +191,6 @@ class contaController extends Controller {
             $this->loadTemplate('creditoView');
         }
     }
-
 
     public function agendar($idConta = null) {
         $dados = array();
@@ -262,14 +261,14 @@ class contaController extends Controller {
     }
 
     public function pagar($idConta) {
-        if (isset($idConta) && !empty($idConta)) {
+        if (isset($idConta) && !empty($idConta) && is_numeric($idConta)) {
             $resultado = $this->contaModel->verificaPagamentoAgendado();
             if ($resultado == 0) {
                 date_default_timezone_set('America/Sao_Paulo');
                 $data['ano'] = date("Y");
                 $data['mes'] = $this->contaModel->verificaMes();
                 $data['contas_agendadas'] = $this->contaModel->getContasAgendadas($_SESSION['conta']['idConta']);
-                $data['mensagem'] = "<span class='alert alert-danger' role='alert'>Não há nenhum pagamento agendado para pagar hoje.</span>";
+                $data['mensagem'] = "<span class='alert alert-danger' role='alert' id='msg_ret_sem_pgto'>Não há nenhum pagamento agendado pagamento hoje.</span>";
             } else {
                 date_default_timezone_set('America/Sao_Paulo');
                 $data['ano'] = date("Y");

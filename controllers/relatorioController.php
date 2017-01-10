@@ -63,8 +63,7 @@ class relatorioController extends Controller {
             $dados['ano'] = $this->extratoModel->listarAnoExtrato();
             $dados['categoria'] = $this->categoriaModel->getCategoriasDespesas();
             $this->loadTemplate('relatorioFormGeralView', $dados);
-        }
-        if (isset($_POST['nome_categoria']) && empty($_POST['nome_categoria'])) {
+        } elseif (isset($_POST['nome_categoria']) && empty($_POST['nome_categoria'])) {
             $dados['erroCat'] = "Selecione uma Categoria!";
             $dados['idConta'] = $_SESSION['conta']['idConta'];
             $dados['idUser'] = $_SESSION['userLogin']['idUser'];
