@@ -91,16 +91,18 @@ class CartaoModel extends Model {
     public function getValorFaturaMesAnterior($idCart) {
         if (!empty($idCart) && is_numeric($idCart)) {
             $mesAtual = $this->verificaMesNumerico();
-            if ($mesAtual == '12') {
+            if ($mesAtual == 12) {
                 $mesAnterior = $mesAtual - 11;
             } else {
                 $mesAnterior = $mesAtual - 1;
             }
-            $stmt = $this->db->prepare("SELECT restante_fatura_anterior as res FROM conta.tb_fatura_cartao WHERE fk_id_cartao_credito = ? "
-                  . "AND ano_mes_ref = '2017-$mesAnterior'");
+            $anoMes = "2017-$mesAnterior";
+            $stmt = $this->db->prepare("SELECT valor_total_fatura as valtotal, valor_pago as valpgo FROM tb_fatura_cartao "
+                . "WHERE fk_id_cartao_credito = ? AND ano_mes_ref = ?");
             $stmt->bindValue(1, $idCart, PDO::PARAM_INT);
+            $stmt->bindValue(2, $anoMes, PDO::PARAM_STR);
             $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 
@@ -231,40 +233,40 @@ class CartaoModel extends Model {
         $mesAtual = date("m");
         switch ($mesAtual) {
             case '01':
-                $mesAtual = '01';
+                $mesAtual = 1;
                 break;
             case '02':
-                $mesAtual = '02';
+                $mesAtual = 2;
                 break;
             case '03':
-                $mesAtual = '03';
+                $mesAtual = 3;
                 break;
             case '04':
-                $mesAtual = '04';
+                $mesAtual = 4;
                 break;
             case '05':
-                $mesAtual = '05';
+                $mesAtual = 5;
                 break;
             case '06':
-                $mesAtual = '06';
+                $mesAtual = 6;
                 break;
             case '07':
-                $mesAtual = '07';
+                $mesAtual = 7;
                 break;
             case '08':
-                $mesAtual = '08';
+                $mesAtual = 8;
                 break;
             case '09':
-                $mesAtual = '09';
+                $mesAtual = 9;
                 break;
             case '10':
-                $mesAtual = '10';
+                $mesAtual = 10;
                 break;
             case '11':
-                $mesAtual = '11';
+                $mesAtual = 11;
                 break;
             case '12':
-                $mesAtual = '12';
+                $mesAtual = 12;
                 break;
         }
         return $mesAtual;

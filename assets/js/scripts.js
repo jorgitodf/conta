@@ -475,7 +475,8 @@ $(document).ready(function () {
                 if (retorno.status === 'error' ){
                     $('.retorno').html('<span class="msgError" id="">' + retorno.message + '</span>');
                 } else if (retorno.status === 'success'){
-                    var val = retorno.message.toString();
+                    var r = arred(retorno.message,2);
+                    var val = r.toString();
                     var res = val.replace('.',',');
                     $('#restante').val('R$ ' + res);
                 } else {
@@ -493,6 +494,11 @@ $(document).ready(function () {
         var encargos = str.replace('R$', '');
         encargos = encargos.replace(',', '.'); 
         return encargos;
+    }
+    
+    function arred(val,casas) { 
+        var aux = Math.pow(2,casas);
+        return Math.floor(val * aux) / aux;
     }
     
 });

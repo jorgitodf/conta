@@ -15,8 +15,8 @@ class cartaoController extends Controller {
         if ($_POST) {
             $idCart = (int) filter_input(INPUT_POST, 'id_cartao_cre', FILTER_SANITIZE_NUMBER_INT);
             $resFatAnt = $this->cartaoModel->getValorFaturaMesAnterior($idCart);
-            $res = $resFatAnt['res'];
-            if ($res > 0) {
+            if (!empty($resFatAnt)) {
+                $res = $resFatAnt[0]['valtotal'] - $resFatAnt[0]['valpgo'];
                 $json = array('status'=>'success', 'message'=>$res);
             } else {
                 $json = array('status'=>'error', 'message'=>'Calcular o valor da Fatura Anterior somente na Data de Vencimento');
