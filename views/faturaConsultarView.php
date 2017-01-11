@@ -69,37 +69,37 @@
                     <div class="row-fluid">
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="encargos" class="control-label muda_label">Encargos:</label>
-                            <input type="text" name="encargos" id="encargos" class="form-control input-sm" value="<?php $r='R$ '; echo $r.number_format($fatura[0]['encargos'], 2, ',', '.'); ?>"/>
+                            <input type="text" name="encargos" id="encargos" class="form-control input-sm" readonly="true" value="<?php $r='R$ '; echo $r.number_format($fatura[0]['encargos'], 2, ',', '.'); ?>"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="iof" class="control-label muda_label">IOF:</label>
-                            <input type="text" name="iof" id="iof" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['iof']) ? $r.number_format($fatura[0]['iof'], 2, ',', '.') : ''; ?>"/>
+                            <input type="text" name="iof" id="iof" class="form-control input-sm" readonly="true" value="<?php $r='R$ '; echo !empty($fatura[0]['iof']) ? $r.number_format($fatura[0]['iof'], 2, ',', '.') : ''; ?>"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="anuidade" class="control-label muda_label">Anuidade:</label>
-                            <input type="text" name="anuidade" id="anuidade" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['anuidade']) ? $r.number_format($fatura[0]['anuidade'], 2, ',', '.') : ''; ?>"/>
+                            <input type="text" name="anuidade" id="anuidade" class="form-control input-sm" readonly="true" value="<?php $r='R$ '; echo !empty($fatura[0]['anuidade']) ? $r.number_format($fatura[0]['anuidade'], 2, ',', '.') : ''; ?>"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="protecao_prem" class="control-label muda_label">Proteção Premiada:</label>
-                            <input type="text" name="protecao_prem" id="protecao_prem" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['protecao']) ? $r.number_format($fatura[0]['protecao'], 2, ',', '.') : ''; ?>"/>
+                            <input type="text" name="protecao_prem" id="protecao_prem" class="form-control input-sm" readonly="true" value="<?php $r='R$ '; echo !empty($fatura[0]['protecao']) ? $r.number_format($fatura[0]['protecao'], 2, ',', '.') : ''; ?>"/>
                         </div>
                     </div>
                     <div class="row-fluid">
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="juros_fat" class="control-label muda_label">Juros:</label>
-                            <input type="text" name="juros_fat" id="juros_fat" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['juros']) ? $r.number_format($fatura[0]['juros'], 2, ',', '.') : ''; ?>"/>
+                            <input type="text" name="juros_fat" id="juros_fat" class="form-control input-sm" readonly="true" value="<?php $r='R$ '; echo !empty($fatura[0]['juros']) ? $r.number_format($fatura[0]['juros'], 2, ',', '.') : ''; ?>"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="restante" class="control-label muda_label">Restante Fatura Anterior:</label>
-                            <input type="text" name="restante" id="restante" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['restante']) ? $r.number_format($fatura[0]['restante'], 2, ',', '.') : ''; ?>"/>
+                            <input type="text" name="restante" id="restante" class="form-control input-sm" readonly="true" value="<?php $r='R$ '; echo !empty($fatura[0]['restante']) ? $r.number_format($fatura[0]['restante'], 2, ',', '.') : ''; ?>"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="valor_total" class="control-label muda_label">Valor Total Fatura:</label>
-                            <input type="text" name="valor_total" id="valor_total" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['valor_total']) ? $r.number_format($fatura[0]['valor_total'], 2, ',', '.') : ''; ?>"/>
+                            <input type="text" name="valor_total" id="valor_total" class="form-control input-sm" readonly="true" value="<?php $r='R$ '; echo !empty($fatura[0]['valor_total']) ? $r.number_format($fatura[0]['valor_total'], 2, ',', '.') : ''; ?>"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="valor_pagar" class="control-label muda_label">Valor Pago:</label>
-                            <input type="text" name="valor_pagar" id="valor_pagar" class="form-control input-sm" value="<?php $r='R$ '; echo !empty($fatura[0]['val_pgo']) ? $r.number_format($fatura[0]['val_pgo'], 2, ',', '.') : ''; ?>"/>
+                            <input type="text" name="valor_pagar" id="valor_pagar" class="form-control input-sm" readonly="true" value="<?php $r='R$ '; echo !empty($fatura[0]['val_pgo']) ? $r.number_format($fatura[0]['val_pgo'], 2, ',', '.') : ''; ?>"/>
                             <input type="hidden" name="set_vlr_pagar" value="pagar"/>
                         </div>
                     </div>

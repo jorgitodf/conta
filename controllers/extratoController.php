@@ -51,5 +51,3 @@ class extratoController extends Controller {
     }
 
 }
-
-?>

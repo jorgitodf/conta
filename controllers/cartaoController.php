@@ -10,6 +10,20 @@ class cartaoController extends Controller {
         $this->usuarioModel = new UsuarioModel();
         $this->cartaoModel = new CartaoModel();
     }
+    
+    public function getRestanteFaturaAnterior() {
+        if ($_POST) {
+            $idCart = (int) filter_input(INPUT_POST, 'id_cartao_cre', FILTER_SANITIZE_NUMBER_INT);
+            $resFatAnt = $this->cartaoModel->getValorFaturaMesAnterior($idCart);
+            $res = $resFatAnt['res'];
+            if ($res > 0) {
+                $json = array('status'=>'success', 'message'=>$res);
+            } else {
+                $json = array('status'=>'error', 'message'=>'Calcular o valor da Fatura Anterior somente na Data de Vencimento');
+            }
+            echo json_encode($json);
+        }
+    }
 
     public function index() {
         $dados = array();

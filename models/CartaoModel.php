@@ -88,13 +88,28 @@ class CartaoModel extends Model {
         }
     }
 
+    public function getValorFaturaMesAnterior($idCart) {
+        if (!empty($idCart) && is_numeric($idCart)) {
+            $mesAtual = $this->verificaMesNumerico();
+            if ($mesAtual == '12') {
+                $mesAnterior = $mesAtual - 11;
+            } else {
+                $mesAnterior = $mesAtual - 1;
+            }
+            $stmt = $this->db->prepare("SELECT restante_fatura_anterior as res FROM conta.tb_fatura_cartao WHERE fk_id_cartao_credito = ? "
+                  . "AND ano_mes_ref = '2017-$mesAnterior'");
+            $stmt->bindValue(1, $idCart, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+    }
 
     public function getFaturaById($idFaturaCartao, $idUser = null) {
         if ((isset($idFaturaCartao) && is_numeric($idFaturaCartao)) && (isset($idUser) && is_numeric($idUser))) {
             $stmt = $this->db->prepare("SELECT fat.id_fatura_cartao as id, car.numero_cartao as num, "
                   . "DATE_FORMAT(fat.data_vencimento_fatura,'%d/%m/%Y') as data, band.bandeira as bandeira, "
                   . "ban.nome_banco as nome, fat.encargos as encargos, fat.protecao_premiada as protecao, fat.anuidade as anuidade,"
-                  . "fat.restante_fatura_anterior as restante, fat.valor_total_fatura as valor_total FROM tb_fatura_cartao as fat "
+                  . "fat.restante_fatura_anterior as restante, fat.valor_total_fatura as valor_total, car.id_cartao_credito as idCartao FROM tb_fatura_cartao as fat "
                   . "JOIN tb_cartao_credito as car ON (fat.fk_id_cartao_credito = car.id_cartao_credito) JOIN tb_banco as ban ON "
                   . "(ban.cod_banco = car.fk_cod_banco) JOIN tb_bandeira_cartao as band ON (band.id_bandeira_cartao = "
                   . "car.fk_id_bandeira_cartao) WHERE fat.pago = 'N' AND fat.id_fatura_cartao = ? AND car.fk_id_usuario = ?");
@@ -209,6 +224,50 @@ class CartaoModel extends Model {
             throw new Exception("ERRO: Possui dados vazios.");
             return false;
         }
+    }
+    
+    public function verificaMesNumerico() {
+        date_default_timezone_set('America/Sao_Paulo');
+        $mesAtual = date("m");
+        switch ($mesAtual) {
+            case '01':
+                $mesAtual = '01';
+                break;
+            case '02':
+                $mesAtual = '02';
+                break;
+            case '03':
+                $mesAtual = '03';
+                break;
+            case '04':
+                $mesAtual = '04';
+                break;
+            case '05':
+                $mesAtual = '05';
+                break;
+            case '06':
+                $mesAtual = '06';
+                break;
+            case '07':
+                $mesAtual = '07';
+                break;
+            case '08':
+                $mesAtual = '08';
+                break;
+            case '09':
+                $mesAtual = '09';
+                break;
+            case '10':
+                $mesAtual = '10';
+                break;
+            case '11':
+                $mesAtual = '11';
+                break;
+            case '12':
+                $mesAtual = '12';
+                break;
+        }
+        return $mesAtual;
     }
 
 }

@@ -16,7 +16,7 @@
                             <select class="form-control input-sm" name="cartao_fat" id="cartao_fat">
                                 <option></option>
                                 <?php foreach ($cartao as $value): ?> 
-                                    <option value="<?php $value['id']; ?>">Data de Vencimento: <?php $value['data']; ?> - <?php wordwrap($value['num'], 4, '.', true); ?> - <?php $value['bandeira']; ?> - <?php $value['nome']; ?></option>
+                                    <option value="<?php echo $value['id']; ?>">Data de Vencimento: <?php echo $value['data']; ?> - <?php echo wordwrap($value['num'], 4, '.', true); ?> - <?php echo $value['bandeira']; ?> - <?php echo $value['nome']; ?></option>
                                 <?php endforeach; ?> 
                             </select>          
                         </div>
@@ -54,6 +54,8 @@
                             <label for="num_cartao" class="control-label muda_label">Número do Cartão:</label>
                             <input type="text" name="num_cartao" id="num_cartao" class="form-control input-sm" readonly="true" value="<?php echo $fatura[0]['num']; ?>"/>
                             <input type="hidden" name="id_cartao_fat" id="id_cartao_fat" value="<?php echo $fatura[0]['id']; ?>"/>
+                            <input type="hidden" name="id_cartao_cre" id="id_cartao_cre" value="<?php echo $fatura[0]['idCartao']; ?>"/>
+                            <input type="hidden" name="" id="action" value="/cartao/getRestanteFaturaAnterior"/>
                         </div>
                         <div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3" id="">
                             <label for="nome_banco" class="control-label muda_label">Banco:</label>
