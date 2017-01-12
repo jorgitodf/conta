@@ -6,6 +6,7 @@
                 <div class="panel-heading" id="panel_head_agendamento_pagamento">Listagem Geral de Agendamento de Pagamentos</div>
                 <div class="panel-body" id="div_panel_body">
                     <?php if (isset($pgto_agendados) && !empty($pgto_agendados)): ?>
+                    <div class="row-fluid">
                         <table class="table table-bordered table-responsive table-hover table-condensed" id="tabela_index_agendamento_pagamento">
                             <thead>
                                 <tr>
@@ -40,6 +41,8 @@
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
+                    </div>    
+                    <div class="row-fluid" id="div_nav_pagination">
                         <nav aria-label="Page navigation" id="nav_pagination">
                             <ul class="pagination">
                                 <li><a href="/agendamento?p=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
@@ -52,6 +55,7 @@
                                 </li>
                             </ul>
                         </nav>
+                    </div>    
                     <?php else: ?>
 
                     <?php endif; ?>

@@ -139,10 +139,12 @@ class contaController extends Controller {
                 $json = array('status'=>'error', 'message'=>'Preencha o Valor', 'error'=>'erroVal');
             } else {
                 try {
-                    if ($this->contaModel->debitarValor($idConta,$dtDebito,$movimentacao,$nome_categoria,$valor)) {
+                    if ($this->contaModel->debitarValor($idConta,$dtDebito,$movimentacao,$nome_categoria,$valor) == "Saldo Insuficiente") {
+                        $json = array('status'=>'error', 'message'=>'Saldo Insuficiente para Realiazar a Transação!');
+                    } elseif ($this->contaModel->debitarValor($idConta,$dtDebito,$movimentacao,$nome_categoria,$valor) == "OK") {
                         $json = array('status'=>'success', 'message'=>'Débito Realizado com Sucesso!');
                     } else {
-                        $json = array('status'=>'error', 'message'=>'Falha ao Debitar a Transação.', 'error'=>'erroCadModel');
+                        $json = array('status'=>'error', 'message'=>'Falha ao Debitar a Transação.');
                     }
                 } catch (Exception $e) {
                     $json = array('status'=>'error', 'message' => $e->getMessage(), 'error'=>'erroException');
@@ -262,15 +264,14 @@ class contaController extends Controller {
 
     public function pagar($idConta) {
         if (isset($idConta) && !empty($idConta) && is_numeric($idConta)) {
+            date_default_timezone_set('America/Sao_Paulo');
             $resultado = $this->contaModel->verificaPagamentoAgendado();
             if ($resultado == 0) {
-                date_default_timezone_set('America/Sao_Paulo');
                 $data['ano'] = date("Y");
                 $data['mes'] = $this->contaModel->verificaMes();
                 $data['contas_agendadas'] = $this->contaModel->getContasAgendadas($_SESSION['conta']['idConta']);
                 $data['mensagem'] = "<span class='alert alert-danger' role='alert' id='msg_ret_sem_pgto'>Não há nenhum pagamento agendado pagamento hoje.</span>";
             } else {
-                date_default_timezone_set('America/Sao_Paulo');
                 $data['ano'] = date("Y");
                 $data['mes'] = $this->contaModel->verificaMes();
                 $data['contas_agendadas'] = $this->contaModel->getContasAgendadas($_SESSION['conta']['idConta']);

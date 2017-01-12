@@ -829,7 +829,10 @@
     }
     #nav_pagination {
         margin-left: 44%;
-        margin-top: -1.5%;
+    }
+    #div_nav_pagination {
+        margin-top: -1%;
+        position: static;
     }
     
     /*PÁGINA FATURA DE CARTÃO DE CRÉDITO*/

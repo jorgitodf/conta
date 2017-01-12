@@ -123,19 +123,13 @@ class ContaModel extends Model {
     public function debitarValor($idConta,$dtDebito,$movimentacao,$nome_categoria,$valor) {
         if (!empty($idConta) && !empty($dtDebito) && !empty($movimentacao) && !empty($nome_categoria) && !empty($valor)) {
             $saldo = $this->verSaldoAtual($idConta);
-            if ($saldo['saldo'] < $valor) {
-                return 0;
-            } else {
+            if ($valor <= $saldo['saldo']) {
                 $novoSaldo = $saldo['saldo'] - $valor;
                 $mes = $this->verificaMes();
                 $checkCategoria = $this->checkCategoria();
                 foreach ($checkCategoria as $linha) {
                     $linha['id_categoria'];
-                    if ($linha['id_categoria'] == $nome_categoria) {
-                        $despFixa = 'S';
-                    } else {
-                        $despFixa = 'N';
-                    }
+                    $linha['id_categoria'] == $nome_categoria ? $despFixa = 'S' : $despFixa = 'N';
                 }
                 try {
                     $this->db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
@@ -154,12 +148,14 @@ class ContaModel extends Model {
                     $stmt->bindValue(10, $despFixa, PDO::PARAM_STR);
                     $stmt->execute();
                     $this->db->commit();
-                    return true;
+                    return "OK";
                 } catch (PDOException $exc) {
                     $this->db->rollback();
                     throw new Exception('ERRO: '.$exc->getMessage());
                     return false;
                 }
+            } else {
+                return "Saldo Insuficiente";
             }
         } else {
             throw new Exception("ERRO: Possui dados vazios.");
@@ -373,7 +369,6 @@ class ContaModel extends Model {
         $stmtSelect->bindValue(1, $dataPagamento, PDO::PARAM_INT);
         $stmtSelect->execute();
         $dados = $stmtSelect->fetchALL(PDO::FETCH_ASSOC);
-
         if (!empty($dados)) {
             foreach ($dados as $value) {
                 $saldo = $this->verSaldoAtual($_SESSION['conta']['idConta']);
@@ -382,15 +377,6 @@ class ContaModel extends Model {
                 } elseif ($saldo['saldo'] >= $value['valor'] && $value['pago'] == 'Não') {
                     $novoSaldo = $saldo['saldo'] - $value['valor'];
                     $mes = $this->verificaMes();
-                    $checkCategoria = $this->checkCategoria();
-                    foreach ($checkCategoria as $linha) {
-                        $linha['id_categoria'];
-                        if ($linha['id_categoria'] == $value['fk_id_categoria']) {
-                            $despFixa = 'S';
-                        } else {
-                            $despFixa = 'N';
-                        }
-                    }
                     $stmt = $this->db->prepare("INSERT INTO tb_extrato (data_movimentacao, mes, tipo_operacao, movimentacao, quantidade,"
                           . " valor, saldo, fk_id_categoria, fk_id_conta, despesa_fixa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                     $stmt->bindValue(1, $value['data_pagamento'], PDO::PARAM_STR);
@@ -402,7 +388,7 @@ class ContaModel extends Model {
                     $stmt->bindValue(7, $novoSaldo, PDO::PARAM_STR);
                     $stmt->bindValue(8, $value['fk_id_categoria'], PDO::PARAM_INT);
                     $stmt->bindValue(9, $value['fk_id_conta'], PDO::PARAM_INT);
-                    $stmt->bindValue(10, $despFixa, PDO::PARAM_STR);
+                    $stmt->bindValue(10, 'S', PDO::PARAM_STR);
                     $stmt->execute();
 
                     $stmtUpdate = $this->db->prepare("UPDATE tb_pgto_agendado SET pago = 'Sim' WHERE id_pgto_agendado = ?");
