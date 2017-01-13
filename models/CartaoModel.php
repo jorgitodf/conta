@@ -175,14 +175,16 @@ class CartaoModel extends Model {
     
     public function cadastrarFaturaCartao($cartao, $data_pagto) {
         if (!empty($cartao) && !empty($data_pagto)) {
+            $anoMes = ConstructHelper::transformaAnoMes($data_pagto);
             try {
                 $this->db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
                 $this->db->beginTransaction();
-                $stmt = $this->db->prepare("INSERT INTO tb_fatura_cartao (data_vencimento_fatura, pago, fk_id_cartao_credito) VALUES "
-                      . "(?, ?, ?)");
+                $stmt = $this->db->prepare("INSERT INTO tb_fatura_cartao (data_vencimento_fatura, pago, fk_id_cartao_credito, "
+                    . "ano_mes_ref) VALUES (?, ?, ?, ?)");
                 $stmt->bindValue(1, $data_pagto, PDO::PARAM_STR);
                 $stmt->bindValue(2, "N", PDO::PARAM_STR);
                 $stmt->bindValue(3, $cartao, PDO::PARAM_INT);
+                $stmt->bindValue(4, $anoMes, PDO::PARAM_STR);
                 $stmt->execute();
                 $this->db->commit();
                 return true;

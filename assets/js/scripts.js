@@ -1,5 +1,54 @@
 $(document).ready(function () {
     
+    var idConta = $("#idConta").val();
+        $.ajax({
+            type: "POST",
+            url: $('#actionsecond').val(),
+            data: {idConta: idConta},
+            dataType: 'json',
+            success: function (retorno) {
+                if (retorno.status === 'sucess' ){
+                    //$('.retorno').html('<span class="alert alert-danger" role="alert" id="msg_ret_sem_pgto">' + retorno.message + '</span>');
+                    $('#tabela_pgto_agendado').html(retorno.tabela);
+                } else {
+                    alert(retorno);
+                }
+            },
+            fail: function(){
+                alert('ERRO: Falha ao carregar o script.');
+            }
+        });
+    
+    var idContaPg = $("#idConta").val();
+    setTimeout(function() {
+        $.ajax({
+            type: "POST",
+            url: $('#action').val(),
+            data: {idConta: idContaPg},
+            dataType: 'json',
+            success: function (retorno) {
+                if (retorno.status === 'error' ){
+                    $('.retorno').html('<span class="alert alert-danger" role="alert" id="msg_ret_sem_pgto">' + retorno.message + '</span>');
+                    setTimeout(function() {
+                        $('#msg_ret_sem_pgto').remove();
+                    }, 10000);
+                } else if (retorno.status === 'success'){
+                    $('#tabela_pgto_agendado').html(retorno.tabela);
+                    $('.retorno').html('<span class="alert alert-success" role="alert" id="msg_ret_com_pgto">' + retorno.message + '</span>');
+                    setTimeout(function() {
+                        $('#msg_ret_com_pgto').remove();
+                    }, 10000);
+                } else {
+                    alert(retorno);
+                }
+            },
+            fail: function(){
+                alert('ERRO: Falha ao carregar o script.');
+            }
+        });   
+    }, 3000);
+
+    
     $('#btn_novo_agendamento').click(function () {
         $("#btn_salvar_agendamento").removeAttr('disabled');
         $("#btn_novo_agendamento").attr('disabled', 'disabled');
@@ -500,5 +549,33 @@ $(document).ready(function () {
         var aux = Math.pow(2,casas);
         return Math.floor(val * aux) / aux;
     }
+    
+    $(function () {
+        $("#form_extrato_periodo").submit(function (e) {
+            $(".msgError").html("");
+            $(".msgError").css("display", "none");
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: $(this).attr("action"),
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (retorno) {
+                    if (retorno.status === 'error' ){
+                        $('.retorno').html('<span class="msgError" id="">' + retorno.message + '</span>');
+                    } else if (retorno.status === 'success'){
+                        $('#div_panel_tabela_extrato').html(retorno.divtabela);
+                    }
+                    else {
+                        alert(retorno);
+                    }
+                },
+                fail: function(){
+                    alert('ERRO: Falha ao carregar o script.');
+                    // Erro caso o arquivo não seja encontrado ou falhou ao ser carregado.
+                }
+            });
+        });
+    });
     
 });

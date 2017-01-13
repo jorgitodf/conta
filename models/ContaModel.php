@@ -353,9 +353,10 @@ class ContaModel extends Model {
         date_default_timezone_set('America/Sao_Paulo');
         $ano = date("Y");
         $mes = $this->verificaMesNumerico();
-        $stmt = $this->db->prepare("SELECT pgag.id_pgto_agendado AS 'idpgag', pgag.data_pagamento AS 'data', pgag.movimentacao "
-              . "AS 'mov', pgag.valor AS 'valor', pgag.pago AS 'pago' FROM tb_pgto_agendado AS pgag WHERE pgag.fk_id_conta = ? "
-              . "AND pgag.data_pagamento >= '{$ano}-{$mes}-01' AND pgag.data_pagamento <= '{$ano}-{$mes}-31' ORDER BY data_pagamento ASC");
+        $stmt = $this->db->prepare("SELECT pgag.id_pgto_agendado AS idpgag, pgag.data_pagamento AS data, pgag.movimentacao "
+              . "AS mov, pgag.valor AS valor, pgag.pago AS pago FROM tb_pgto_agendado AS pgag WHERE pgag.fk_id_conta = ? "
+              . "AND pgag.data_pagamento >= '{$ano}-{$mes}-01' AND pgag.data_pagamento <= '{$ano}-{$mes}-31' ORDER BY "
+              . "data_pagamento ASC");
         $stmt->bindValue(1, $idConta, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

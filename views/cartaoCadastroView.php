@@ -1,5 +1,5 @@
 
-<aside class="container col-sm-12 col-lg-12">
+<aside class="container col-sm-12 col-md-12 col-lg-12">
     <div class="row-fluid" id="div_row_form_cad_carta_credito">
         <form method="POST" action="" id="form_cadastro_cartao_credito" >
             <div class="panel panel-primary" id="div_panel_form_cad_carta_credito">

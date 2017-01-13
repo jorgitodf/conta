@@ -261,23 +261,40 @@ class contaController extends Controller {
         unset($_SESSION['conta']);
         header("Location: /home");
     }
-
-    public function pagar($idConta) {
-        if (isset($idConta) && !empty($idConta) && is_numeric($idConta)) {
+    
+    public function trazerTabela (){
+        if ($_POST['idConta']) {
             date_default_timezone_set('America/Sao_Paulo');
+            $idConta = (int) filter_input(INPUT_POST, 'idConta', FILTER_SANITIZE_NUMBER_INT); 
+            $ano = date("Y");
+            $mes = $this->contaModel->verificaMes();
+            $contas_agendadas = $this->contaModel->getContasAgendadas($idConta);
+            $tabela = ConstructHelper::monta_tabela_grupos($mes, $ano, $contas_agendadas);
+            $json = array('status'=>'sucess', 'message'=>'Não há nenhum pagamento agendado pagamento hoje!', 'tabela'=>$tabela);
+            echo json_encode($json);
+        } 
+    }
+
+    public function pagar() {
+        if ($_POST['idConta']) {
+            date_default_timezone_set('America/Sao_Paulo');
+            $idConta = (int) filter_input(INPUT_POST, 'idConta', FILTER_SANITIZE_NUMBER_INT);
             $resultado = $this->contaModel->verificaPagamentoAgendado();
             if ($resultado == 0) {
-                $data['ano'] = date("Y");
-                $data['mes'] = $this->contaModel->verificaMes();
-                $data['contas_agendadas'] = $this->contaModel->getContasAgendadas($_SESSION['conta']['idConta']);
-                $data['mensagem'] = "<span class='alert alert-danger' role='alert' id='msg_ret_sem_pgto'>Não há nenhum pagamento agendado pagamento hoje.</span>";
+                $ano = date("Y");
+                $mes = $this->contaModel->verificaMes();
+                $contas_agendadas = $this->contaModel->getContasAgendadas($idConta);
+                $tabela = ConstructHelper::monta_tabela_grupos($mes, $ano, $contas_agendadas);
+                $json = array('status'=>'error', 'message'=>'Não há nenhum pagamento agendado para hoje!', 'tabela'=>$tabela);
             } else {
-                $data['ano'] = date("Y");
-                $data['mes'] = $this->contaModel->verificaMes();
-                $data['contas_agendadas'] = $this->contaModel->getContasAgendadas($_SESSION['conta']['idConta']);
-                $data['mensagem'] = "<span class='alert alert-danger' role='alert'>Pagamento(s) realizado(s) com Sucesso.</span>";
+                $ano = date("Y");
+                $mes = $this->contaModel->verificaMes();
+                $contas_agendadas = $this->contaModel->getContasAgendadas($idConta);
+                $tabela = ConstructHelper::monta_tabela_grupos($mes, $ano, $contas_agendadas);
+                $json = array('status'=>'success', 'message'=>'Pagamento(s) realizado(s) com Sucesso!', 'tabela'=>$tabela);
             }
-            $this->loadTemplate('homePrincipalContaView', $data);
+            echo json_encode($json);
+            //$this->loadTemplate('homePrincipalContaView', $data);
         }
     }
 

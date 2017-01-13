@@ -11,43 +11,27 @@ class extratoController extends Controller {
     }
 
     public function index() {
-        $dados = array();
-
         if ($_POST) {
-            $status = true;
-            if (empty($_POST['data_inicio'])) {
-                $dados['erroDataInicial'] = "<span class='erro_data_inicial'>Data Inicial Obrigatória!!</span><br/>";
-                $status = false;
+            $id_conta = (int) $_SESSION['conta']['idConta'];
+            $data_inicial = trim(addslashes(filter_input(INPUT_POST, 'data_inicio', FILTER_SANITIZE_STRING)));
+            $data_final = trim(addslashes(filter_input(INPUT_POST, 'data_final', FILTER_SANITIZE_STRING)));
+            if (ValidacoesHelper::validarData($data_inicial) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Preencha o campo Data Inicial!');
+            } else if (ValidacoesHelper::validarData($data_final) == TRUE) {
+                $json = array('status'=>'error', 'message'=>'Preencha o campo Data Final!');
             } else {
-                $dados['data_inicio'] = $_POST['data_inicio'];
-            }
-            if (empty($_POST['data_final'])) {
-                $dados['erroDataFinal'] = "<span class='erro_data_final'>Data Final Obrigatória!!</span>";
-                $status = false;
-            } else {
-                $dados['data_final'] = $_POST['data_final'];
-            }
-            if ((!empty($_POST['data_inicio']) && !empty($_POST['data_final'])) && ($_POST['data_inicio'] > $_POST['data_final'])) {
-                $dados['erroDataFinal'] = "<span class='erro_data_final'>Data Inicial maioir que Data Final!!</span>";
-                $status = false;
-            }
-
-            if ($status == true) {
-                $id_conta = (int) $_SESSION['conta']['idConta'];
-                $data_inicial = trim(addslashes($_POST['data_inicio']));
-                $data_final = trim(addslashes($_POST['data_final']));
-
-                if ($this->extratoModel->verExtratoPeriodo($id_conta, $data_inicial, $data_final) == true) {
-                    $dados['extrato'] = $this->extratoModel->verExtratoPeriodo($id_conta, $data_inicial, $data_final);
-                    $dados['data_inicial'] = $data_inicial;
-                    $dados['data_final'] = $data_final;
-                    $this->loadTemplate('extratoView', $dados);
-                    die();
+                if ($this->extratoModel->verExtratoPeriodo($id_conta, $data_inicial, $data_final)) {
+                    $extrato = $this->extratoModel->verExtratoPeriodo($id_conta, $data_inicial, $data_final);
+                    $divTabela = ConstructHelper::monta_panel_tabela_extrato_periodo($data_inicial, $data_final, $extrato);
+                    $json = array('status'=>'success', 'message'=>'Sucesso', 'divtabela'=>$divTabela);
                 }
             }
+            echo json_encode($json);
+        } else {
+            $this->loadTemplate('extratoPeriodoView');
         }
 
-        $this->loadTemplate('extratoPeriodoView', $dados);
+        
     }
 
 }

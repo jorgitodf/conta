@@ -595,23 +595,14 @@
     }
 
     /*PÁGINA EXTRATO PERÍODO*/
-    .body_extrato_periodo {
-        margin-top: 9%;
+    #div_row_form_extrato_periodo {
+        margin-top: 8%;
     }
     #panel_extrato_periodo {
         width: 100%;
         border: solid 0 white;
         width: 50%;
         margin-left: 25%;
-        height: 230px;
-    }
-    .div_data_final {
-        float: left;
-        margin-left: 28%;
-    }
-    .div_data_inicial {
-        float: left;
-        margin-left: 10%;
     }
     .btn_extrato {
         margin-left: 12%;
@@ -710,6 +701,10 @@
     #msg_ret_sem_pgto {
         font-weight: bold;
         background-color: #FFDEAD;
+    }
+    #msg_ret_com_pgto {
+        font-weight: bold;
+        background-color: #98FB98;
     }
     .div_coint {
         margin-top: 5%;
