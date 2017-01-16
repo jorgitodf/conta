@@ -139,10 +139,10 @@ class contaController extends Controller {
                 $json = array('status'=>'error', 'message'=>'Preencha o Valor', 'error'=>'erroVal');
             } else {
                 try {
-                    if ($this->contaModel->debitarValor($idConta,$dtDebito,$movimentacao,$nome_categoria,$valor) == "Saldo Insuficiente") {
-                        $json = array('status'=>'error', 'message'=>'Saldo Insuficiente para Realiazar a Transação!');
-                    } elseif ($this->contaModel->debitarValor($idConta,$dtDebito,$movimentacao,$nome_categoria,$valor) == "OK") {
+                    if ($this->contaModel->debitarValor($idConta,$dtDebito,$movimentacao,$nome_categoria,$valor) == true) {
                         $json = array('status'=>'success', 'message'=>'Débito Realizado com Sucesso!');
+                    } elseif ($this->contaModel->debitarValor($idConta,$dtDebito,$movimentacao,$nome_categoria,$valor) == 2) {
+                        $json = array('status'=>'error', 'message'=>'Saldo Insuficiente para Realiazar a Transação!');
                     } else {
                         $json = array('status'=>'error', 'message'=>'Falha ao Debitar a Transação.');
                     }

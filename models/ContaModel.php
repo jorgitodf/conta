@@ -148,14 +148,14 @@ class ContaModel extends Model {
                     $stmt->bindValue(10, $despFixa, PDO::PARAM_STR);
                     $stmt->execute();
                     $this->db->commit();
-                    return "OK";
+                    return true;
                 } catch (PDOException $exc) {
                     $this->db->rollback();
                     throw new Exception('ERRO: '.$exc->getMessage());
                     return false;
                 }
             } else {
-                return "Saldo Insuficiente";
+                return 2;
             }
         } else {
             throw new Exception("ERRO: Possui dados vazios.");
