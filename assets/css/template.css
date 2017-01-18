@@ -66,24 +66,20 @@
     }
 
     /*LOGIN PAGE*/
-
     .login-body {
         background-color: #DCDCDC;
     }
-
     .container-login {
         margin-left: 0;
     }	
-
     .form-login {
         max-width: 36%;
-        height: 390px;
+        height: 330px;
         margin: 7% auto 0;
         background: #fff;
         border-radius: 5px;
         -webkit-border-radius: 5px;
     }
-
     .form-login h2.form-login-heading {
         margin: 0;
         padding:20px 15px;
@@ -97,7 +93,6 @@
         font-weight: 300;
         font-family: 'Open Sans', sans-serif;
     }
-
     .form-login .form-control {
         position: relative;
         font-size: 16px;
@@ -107,9 +102,6 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
-    .form-login .form-control:focus {
-        z-index: 2;
-    }
     .form-login input[type="text"], .form-login input[type="password"] {
         margin-bottom: 15px;
         border-radius: 5px;
@@ -118,54 +110,27 @@
         box-shadow: none;
         font-size: 12px;
     }
-
-    .form-login .btn-login {
-        background: #f67a6e;
-        color: #fff;
-        text-transform: uppercase;
-        font-weight: 200;
-        font-family: 'Open Sans', sans-serif;
-        box-shadow: 0 4px #e56b60;
-        margin-bottom: 15px;
-        padding: 1.5%;
+    #btn_cadastro {
+        color: white;
+        width: 49.5%;
     }
-    .form-login .btn-cadastro {
-        background: #6767fe;
-        color: #fff;
-        text-transform: uppercase;
-        font-weight: 200;
-        font-family: 'Open Sans', sans-serif;
-        box-shadow: 0 4px #4545fe;
-        margin-bottom: 15px;
-        padding: 2%;
+    #btn_acessar {
+        width: 49.5%;
     }
-
-    .btn-cadastro {
-        width: 700px;		
-    }
-
     .form-login p {
         text-align: center;
         color: #b6b6b6;
         font-size: 16px;
         font-weight: 300;
     }
-
-    .form-login a {
-        color: #41cac0;
-    }
-
-    .form-login a:hover {
-        color: #b6b6b6;
-    }
-
     .login-wrap {
         padding: 20px;
     }
-
-    #erro_login {
-        margin-left: 23%;
-        padding: 2%;
+    #msg_ret_login {
+        margin-left: 1%; 
+        width: 98%;
+        text-align: center;
+        padding: 8px;
     }
     .erro_email, .erro_senha {
         color: red;
@@ -174,29 +139,26 @@
     }
 
     /*CADASTRO DE USUÁRIO*/
-
-    .container_cadastro_usuario {
-        margin-left: 38%;
-        margin-top: 10%;
+    #row_cadastro_usuario {
+        margin-left: 30%;
+        margin-top: 7%;
     }
-    #nomeCompleto, #email, #senha {
-        width: 100%;
-    }
-    #form_cadastro_usuario {
-        width: 40%;
+    #panel_cadastro {
+        width: 70%;
+        border: solid 0 white;
     }
     #panel_heading_cadastro {
         background-color: #3935ce;
         color: white;
     }
-    .erro_nome_completo, .erro_senha_cadastro, .erro_email_cadastro{
-        color: red;
-        font-size: 11px;
+    #div_msgs_error_cad_novo_user {
+        margin-left: 30%;
+        margin-top: -42px;
+        float: left;
     }
-    #panel_cadastro {
-        width: 100%;
-        border: solid 0 white;
-    }
+    
+
+
     #msg_sucesso {
         margin-left: 14%;
         padding: 2%;
@@ -603,6 +565,9 @@
         border: solid 0 white;
         width: 50%;
         margin-left: 25%;
+    }
+    #div_panel_tabela_extrato {
+        margin-left: 16%;
     }
     .btn_extrato {
         margin-left: 12%;

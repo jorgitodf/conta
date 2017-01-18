@@ -32,6 +32,9 @@ class ConstructHelper {
                 } else {
                     if ($linha['Dp'] == 'S') {
                         $divPanel .= "<td class='td_extrato_deb_fixa'>".ucwords(strtolower(mb_convert_case($linha['Mov'], MB_CASE_TITLE)))."</td>";
+                        $divPanel .= "<td>".ucwords(strtolower(mb_convert_case($linha['Cat'], MB_CASE_TITLE)))."</td>";
+                        $divPanel .= "<td align='center' class='td_extrato_deb'>".number_format($linha['Val'], 2, ',', '.')."</td>";
+                        $divPanel .= "<td align='center' class='td_extrato_deb_saldo'>".number_format($linha['Sal'], 2, ',', '.')."</td>";
                     } else {
                         $divPanel .= "<td>".ucwords(strtolower(mb_convert_case($linha['Mov'], MB_CASE_TITLE)))."</td>";
                         $divPanel .= "<td>".ucwords(strtolower(mb_convert_case($linha['Cat'], MB_CASE_TITLE)))."</td>";
@@ -43,10 +46,13 @@ class ConstructHelper {
             }
             $divPanel .= "</tbody>";
             $divPanel .= "</table>";
+            $divPanel .= "<div>";
+            $divPanel .= "<a href='/extrato' class='btn btn-primary'>Voltar</a>";
+            $divPanel .= "</div>";
             $divPanel .= "</div>";
             $divPanel .= "</div>";
         }
-        return $divPanel;;
+        return $divPanel;
     }
 
     public static function monta_tabela_grupos($mes, $ano, $contas_agendadas = null) {

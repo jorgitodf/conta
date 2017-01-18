@@ -1,5 +1,37 @@
 $(document).ready(function () {
-    
+
+    //CADASTRO DE NOVO USUÁRIO
+    $(function () {
+        $("#form_cadastro_usuario").submit(function (e) {
+            $(".msgError").html("");
+            $(".msgError").css("display", "none");
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: $(this).attr("action"),
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (retorno) {
+                    if (retorno.status == 'error' ){
+                        $('.retorno').html('<span class="msgError" id="dataMsgError">' + retorno.message + '</span>');
+                    } else if (retorno.status == 'success'){
+                        $('.retorno').html('<span class="alert alert-success" id="msgUserCadSucesso">' + retorno.message + '</span>');
+                    }
+                    else {
+                        alert(retorno);
+                    }
+                },
+                fail: function(){
+                    alert('ERRO: Falha ao carregar o script.');
+                }
+            });
+        });
+    });
+   
+   
+   
+   
+   
     var idConta = $("#idConta").val();
         $.ajax({
             type: "POST",
@@ -564,6 +596,7 @@ $(document).ready(function () {
                     if (retorno.status === 'error' ){
                         $('.retorno').html('<span class="msgError" id="">' + retorno.message + '</span>');
                     } else if (retorno.status === 'success'){
+                        $('#panel_extrato_periodo').remove();
                         $('#div_panel_tabela_extrato').html(retorno.divtabela);
                     }
                     else {

@@ -19,6 +19,8 @@ class extratoController extends Controller {
                 $json = array('status'=>'error', 'message'=>'Preencha o campo Data Inicial!');
             } else if (ValidacoesHelper::validarData($data_final) == TRUE) {
                 $json = array('status'=>'error', 'message'=>'Preencha o campo Data Final!');
+            } else if ($data_final < $data_inicial) {
+                $json = array('status'=>'error', 'message'=>'Data Final menor que a Data Inicial!');
             } else {
                 if ($this->extratoModel->verExtratoPeriodo($id_conta, $data_inicial, $data_final)) {
                     $extrato = $this->extratoModel->verExtratoPeriodo($id_conta, $data_inicial, $data_final);

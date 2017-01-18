@@ -11,7 +11,7 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a href="/conta/extrato/<?php echo isset($_SESSION['conta']) ? $_SESSION['conta']['idConta'] : "" ?>">Extrato Mês Atual</a></li>
-                        <li><a href="#">Extrato Por Período</a></li>
+                        <li><a href="/extrato">Extrato Por Período</a></li>
                     </ul>
                 </div>
                 <div class="btn-group">

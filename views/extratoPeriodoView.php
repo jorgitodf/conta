@@ -1,6 +1,7 @@
 
 <aside class="container col-sm-12 col-md-12 col-lg-12">
     <div class="row-fluid" id="div_row_form_extrato_periodo">
+        <div id="div_panel_tabela_extrato"></div>
         <form method="POST" action="/extrato" id="form_extrato_periodo" >
             <div class="panel panel-primary" id="panel_extrato_periodo">
                 <div class="panel-heading" id="panel_heading_cadastro">
@@ -24,7 +25,6 @@
                         </div>  
                         <div class="form-group form-group-sm col-sm-6 col-lg-6" id="">
                             <div class="retorno"></div>
-                            <div id="div_panel_tabela_extrato"></div>
                         </div>
                     </div>      
                 </div>    

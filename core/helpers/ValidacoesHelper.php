@@ -1,6 +1,14 @@
 <?php
 
 class ValidacoesHelper {
+    
+    public static function validarEmail($email) {
+        $er = "/^(([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}){0,1}$/";
+	if (!preg_match($er, $email)) {
+            $erro = 'O E-mail Está Inválido!';
+            return $erro;
+        }
+    }
 
     public static function validarData($data) {
         if (empty($data) || $data = "") {
