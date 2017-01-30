@@ -19,7 +19,7 @@ class cartaoController extends Controller {
                 $res = $resFatAnt[0]['valtotal'] - $resFatAnt[0]['valpgo'];
                 $json = array('status'=>'success', 'message'=>$res);
             } else {
-                $json = array('status'=>'error', 'message'=>'Calcular o valor da Fatura Anterior somente na Data de Vencimento');
+                $json = array('status'=>'error', 'message'=>'Calcular o valor da Fatura Anterior na Data de Vencimento');
             }
             echo json_encode($json);
         }
@@ -172,6 +172,7 @@ class cartaoController extends Controller {
               || isset($_POST['protecao_prem']) || isset($_POST['restante']) || isset($_POST['juros_fat']) || 
               isset($_POST['valor_pagar']) || isset($_POST['valor_total'])) {
             $idUser = (int) $_SESSION['userLogin']['idUser'];
+            $idConta = (int) $_SESSION['conta']['idConta'];
             $idFaturaCartao = (int) filter_input(INPUT_POST, 'id_cartao_fat', FILTER_SANITIZE_NUMBER_INT);
             $encargos = addslashes($_POST['encargos']);
             $iof = addslashes($_POST['iof']);
@@ -199,6 +200,7 @@ class cartaoController extends Controller {
             } else {
                 try {
                     if ($this->cartaoModel->pagarFatura($dados['valoresSalvar'], $idFaturaCartao) == true) {
+                        //$this->cartaoModel->agendarPagamento($idFaturaCartao, $idConta);
                         $json = array('status'=>'success', 'message'=>'Fatura Paga com Sucesso!');
                     } else {
                         $json = array('status'=>'error', 'message'=>'Falha ao Pagar a Fatura.');

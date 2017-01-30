@@ -172,7 +172,6 @@ class CartaoModel extends Model {
         } 
     }
     
-    
     public function cadastrarFaturaCartao($cartao, $data_pagto) {
         if (!empty($cartao) && !empty($data_pagto)) {
             $anoMes = ConstructHelper::transformaAnoMes($data_pagto);
@@ -230,6 +229,48 @@ class CartaoModel extends Model {
         }
     }
     
+    public function agendarPagamento($idFaturaCartao, $idConta) {
+        if (!empty($idFaturaCartao) && !empty($idConta)) {
+            $dados = array();
+            date_default_timezone_set('America/Sao_Paulo');
+            $ano = date("Y");
+            $mes = date("m");
+            $dataPagamento = "{$ano}-{$mes}-08";
+                $stmt = $this->db->prepare("SELECT valor_pago, fk_id_cartao_credito FROM tb_fatura_cartao WHERE id_fatura_cartao = ?");
+                $stmt->bindValue(1, $idFaturaCartao, PDO::PARAM_INT);
+                $stmt->execute();
+                $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($dados['fk_id_cartao_credito'] == 1) {
+                $movPgto = 'CARTÃO CEF';
+            } elseif ($dados['fk_id_cartao_credito'] == 2) {
+                $movPgto = 'CARTÃO VOTORANTIM';
+            }
+            try {
+                $this->db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
+                $this->db->beginTransaction();
+                $stmt = $this->db->prepare("INSERT INTO tb_pgto_agendado (data_pagamento, movimentacao, valor, pago, "
+                    ."fk_id_categoria, fk_id_conta) VALUES (?, ?, ?, ?, ?, ?)");
+                $stmt->bindValue(1, $dataPagamento, PDO::PARAM_STR);
+                $stmt->bindValue(2, $movPgto, PDO::PARAM_STR);
+                $stmt->bindValue(3, $dados['valor_pago'], PDO::PARAM_STR);
+                $stmt->bindValue(4, 'Não', PDO::PARAM_STR);
+                $stmt->bindValue(5, 6, PDO::PARAM_INT);
+                $stmt->bindValue(6, $idConta, PDO::PARAM_INT);
+                $stmt->execute();
+                $this->db->commit();
+                return true;
+            } catch (PDOException $exc) {
+                $this->db->rollback();
+                throw new Exception('ERRO: '.$exc->getMessage());
+                return false;
+            }
+        } else {
+            throw new Exception("ERRO: Possui dados vazios.");
+            return false;
+        }  
+    }
+
+
     public function verificaMesNumerico() {
         date_default_timezone_set('America/Sao_Paulo');
         $mesAtual = date("m");
