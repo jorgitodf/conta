@@ -1,37 +1,32 @@
 
-<aside class="body_relatorio_movimentacao col-sm-12 col-lg-12">
-    <div id="div_form_debito">
-        <form method="POST" action="/relatorio" id="" >
+<aside class="container col-sm-12 col-md-12 col-lg-12" id="aside_consulta">
+    <div class="row-fluid col-sm-6 col-md-6 col-lg-6" id="div_row_relatorio_periodo">
+        <form method="POST" action="/relatorio/consultar" id="form_relatorio_periodo" >
             <div class="panel panel-primary" id="">
                 <div class="panel-heading">
                     <h3 class="panel-title" align="center">Relatório de Movimentação por Período</h3>
                 </div>
                 <div class="panel-body">
-                    <input type="hidden" name="idConta" value="<?php echo $idConta; ?>"/>
-                    <input type="hidden" name="idUser" value="<?php echo $idUser; ?>"/>
-                    <div class="form-group form-group-sm div_data_inicial_relatorio">
-                        <label for="data_inicial" class="control-label">Data Inicial:</label>
-                        <input type="date" name="data_inicial" id="data_inicial" class="form-control input-sm" value="<?php echo !empty($data_inicial) ? $data_inicial : ""; ?>"/>
-                    </div> 
-                    <div class="form-group form-group-sm div_data_inicial_relatorio_erro">
-                        <?php echo !empty($erroDataInicial) ? $erroDataInicial : ""; ?>
+                    <div class="row-fluid">
+                        <div class="form-group form-group-sm col-sm-6 col-md-6 col-lg-6" id="">
+                            <label for="data_inicial" class="control-label">Data Inicial:</label>
+                            <input type="date" name="data_inicial" id="data_inicial" class="form-control input-sm"/>
+                        </div>
                     </div>
-                    <div class="form-group form-group-sm div_data_final_relatorio">
-                        <label for="data_final" class="control-label">Data Final:</label>
-                        <input type="date" name="data_final" id="data_final" class="form-control input-sm" value="<?php echo !empty($data_final) ? $data_final : ""; ?>"/>
-                    </div>   
-                    <div class="form-group form-group-sm div_data_inicial_relatorio_erro">
-                        <?php echo !empty($erroDataFinal) ? $erroDataFinal : ""; ?>
-                    </div> 
-                    <div class="form-group form-group-sm div_movimentacao_relatorio">
-                        <label for="movimentacao_relatorio" class="control-label">Movimentação:</label>
-                        <input type="text" name="movimentacao_relatorio" id="movimentacao_relatorio" class="form-control input-sm" value="<?php echo !empty($movimentacao_relatorio) ? $movimentacao_relatorio : ""; ?>"/>
+                    <div class="row-fluid">
+                        <div class="form-group form-group-sm col-sm-6 col-md-6 col-lg-6" id="">
+                            <label for="data_final" class="control-label">Data Final:</label>
+                            <input type="date" name="data_final" id="data_final" class="form-control input-sm"/>
+                        </div>
                     </div>
-                    <div class="form-group form-group-sm div_movimentacao_relatorio_erro">
-                        <?php echo !empty($erroMovimentacao) ? $erroMovimentacao : ""; ?>
-                    </div> 
-                    <div class="form-group div_button_relatorio_movimentacao">
-                        <button type="submit" class="btn btn-primary">Verificar</button>
+                    <div class="both"></div><br/>
+                    <div class="row-fluid">
+                        <div class="form-group form-group-sm col-sm-12 col-md-12 col-lg-12" id="">
+                            <button type="submit" id="btn_consultar_rel_preiodo" class="btn btn-primary">Consultar</button>
+                        </div>
+                        <div class="form-group form-group-sm col-sm-12 col-md-12 col-lg-12" id="div_msgs_error_cad_fatura">
+                            <div class="retorno"></div>
+                        </div>
                     </div>
                 </div>
             </div>       

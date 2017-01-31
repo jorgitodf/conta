@@ -29,7 +29,34 @@ $(document).ready(function () {
     });
    
    
-   
+    //CONSULTA DE MOVIMENTAÇÃO POR PERÍODO
+    $(function () {
+        $("#form_relatorio_periodo").submit(function (e) {
+            $(".msgError").html("");
+            $(".msgError").css("display", "none");
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: $(this).attr("action"),
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (retorno) {
+                    if (retorno.status === 'error'){
+                        $('.retorno').html('<span class="msgError" id="dataMsgError">' + retorno.message + '</span>');
+                    } else if (retorno.status === 'success'){
+                        $('#div_row_relatorio_periodo').remove();
+                        $(retorno.tabela).insertAfter('#aside_consulta');
+                    }
+                    else {
+                        alert(retorno);
+                    }
+                },
+                fail: function(){
+                    alert('ERRO: Falha ao carregar o script.');
+                }
+            });
+        });
+    });
    
    
     var idConta = $("#idConta").val();

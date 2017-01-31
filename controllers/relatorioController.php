@@ -13,45 +13,26 @@ class relatorioController extends Controller {
     }
 
     public function index() {
-        $dados = array();
-        if (isset($_SESSION['conta']) && $_SESSION['userLogin'] && !$_POST) {
-            $dados['idConta'] = $_SESSION['conta']['idConta'];
-            $dados['idUser'] = $_SESSION['userLogin']['idUser'];
-            $this->loadTemplate('relatorioMovimentacaoView', $dados);
-        }
-        if ($_POST) {
-            $status = true;
-            if (isset($_POST['data_inicial']) && empty($_POST['data_inicial'])) {
-                $dados['erroDataInicial'] = "<span class='alert alert-danger' role='alert' id='msg_data_inicial_relatorio_erro'>Data Inicial Obrigatória!</span>";
-                $status = false;
+        $this->loadTemplate('relatorioMovimentacaoView');
+    }
+    
+    public function consultar() {
+        if (isset($_POST['data_inicial']) && isset($_POST['data_final']) && isset($_SESSION['conta']) && isset($_SESSION['userLogin'])) {
+            $idConta = $_SESSION['conta']['idConta'];
+            $dataInicial = trim(addslashes(filter_input(INPUT_POST, 'data_inicial', FILTER_SANITIZE_STRING)));
+            $dataFinal = trim(addslashes(filter_input(INPUT_POST, 'data_final', FILTER_SANITIZE_STRING)));
+            if (ValidacoesHelper::validarCampoVazio($dataInicial) == true) {
+                $json = array('status'=>'error', 'message'=>'Preencha a Data Inicial!');
+            } else if (ValidacoesHelper::validarCampoVazio($dataFinal) == true) {
+                $json = array('status'=>'error', 'message'=>'Preencha a Data Final!');
+            } else if (ValidacoesHelper::validarIntervaloData($dataInicial, $dataFinal)) {
+                $json = array('status'=>'error', 'message'=>'Data Inicial maior que Data Final!');
             } else {
-                $dados['data_inicial'] = $_POST['data_inicial'];
+                $table = $this->extratoModel->listarConsultaGastosPorPeriodo($dataInicial, $dataFinal, $idConta);
+                $tabela = ConstructHelper::geraTabelaComTotal($table);
+                $json = array('status'=>'success', 'message'=>'Consulta Realizada com Sucesso!', 'tabela'=>$tabela);
             }
-            if (isset($_POST['data_final']) && empty($_POST['data_final'])) {
-                $dados['erroDataFinal'] = "<span class='alert alert-danger' role='alert' id='msg_data_final_relatorio_erro'>Data Final Obrigatória!</span>";
-                $status = false;
-            } else {
-                $dados['data_final'] = $_POST['data_final'];
-            }
-            if (isset($_POST['movimentacao_relatorio']) && empty($_POST['movimentacao_relatorio'])) {
-                $dados['erroMovimentacao'] = "<span class='alert alert-danger' role='alert' id='msg_movimentacao_relatorio_erro'>Movimentação Obrigatória!</span>";
-                $status = false;
-            } else {
-                $dados['movimentacao_relatorio'] = $_POST['movimentacao_relatorio'];
-            }
-
-            if ($status == true) {
-                $data = array('idConta' => (int) $_POST['idConta'], 'dataInicial' => trim(addslashes($_POST['data_inicial'])),
-                    'dataFinal' => trim(addslashes($_POST['data_final'])), 'movimentacao' => trim(addslashes($_POST['movimentacao_relatorio'])));
-                if ($this->extratoModel->listarMovimentacaoPeriodo($data) == true) {
-                    $dados['extrato_relatorio'] = $this->extratoModel->listarMovimentacaoPeriodo($data);
-                    $this->loadTemplate('relatorioMovimentacaoListagemView', $dados);
-                    die();
-                }
-            }
-
-            $dados['idConta'] = $_SESSION['conta']['idConta'];
-            $this->loadTemplate('relatorioMovimentacaoView', $dados);
+            echo json_encode($json);
         }
     }
     

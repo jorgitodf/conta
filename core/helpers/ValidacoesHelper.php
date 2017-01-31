@@ -16,6 +16,12 @@ class ValidacoesHelper {
         }
     }
     
+    public static function validarIntervaloData($data1, $data2) {
+        if ($data1 > $data2) {
+            return true;
+        }
+    }
+    
     public static function validarCampoVazio($campo) {
         if (empty($campo) || $campo = "") {
             return true;

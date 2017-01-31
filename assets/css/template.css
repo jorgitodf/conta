@@ -591,46 +591,27 @@
     }
     
     /*PÁGINA RELATÓRIO MOVIMENTAÇÃO*/
-    .body_relatorio_movimentacao {
+    #div_row_relatorio_periodo {
         margin-top: 7%;
+        margin-left: 25%;
     }
-    .div_data_inicial_relatorio {
-        float: left;
+    #div_row_tabela_consulta_mov_per {
+        margin-top: 7%;
+        margin-left: 16%;
     }
-    .div_data_inicial_relatorio_erro {
-        float: left;
-        margin-left: 28%;
-        margin-top: 6%;
+    #table_cons_mov_periodo {
+        background-color: white;
     }
-    #msg_data_inicial_relatorio_erro {
-        padding: 6px;
+    #table_cons_mov_periodo > thead > tr >  td {
+        background-color: blue;
+        color: white;
+        font-weight: bold;
     }
-    .div_data_final_relatorio {
-        clear: both;
-        float: left;
+    #btn_voltar_cons_mov_per {
+        float: right;
     }
-    .div_data_final_relatorio_erro {
-        float: left;
-        margin-left: 30%;
-        margin-top: 6%;
-    }
-    #msg_data_final_relatorio_erro, #msg_movimentacao_relatorio_erro {
-        padding: 6px;
-    }
-    .div_movimentacao_relatorio {
-        clear: both;
-        float: left; 
-    }
-    #movimentacao_relatorio {
-        width: 250px;
-    }
-    .div_movimentacao_relatorio_erro {
-        float: left;
-        margin-left: 5%;
-        margin-top: 6%;  
-    }
-    .div_button_relatorio_movimentacao {
-        clear: both;
+    #btn_consultar_rel_preiodo {
+        
     }
     
     /*PÁGINA RELATÓRIO GERAL*/

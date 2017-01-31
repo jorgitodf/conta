@@ -18,6 +18,30 @@ class ExtratoModel extends Model {
         }
     }
     
+    public function listarConsultaGastosPorPeriodo($dataInicial, $dataFinal, $idConta) {
+        if (!empty($dataInicial) && !empty($dataFinal) && !empty($idConta)) {
+            try {
+                $stmt = $this->db->prepare("SELECT DATE_FORMAT(data_movimentacao,'%d/%m/%Y') as data, "
+                      . "fncTraduzDiaSemana(DATE_FORMAT(data_movimentacao,'%W')) as dia, movimentacao as mov, valor as val "
+                      . "FROM tb_extrato WHERE data_movimentacao BETWEEN ? AND ? AND fk_id_conta = ?");
+                $stmt->bindValue(1, $dataInicial, PDO::PARAM_STR);
+                $stmt->bindValue(2, $dataFinal, PDO::PARAM_STR);
+                $stmt->bindValue(3, $idConta, PDO::PARAM_INT);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt->closeCursor();
+                return $result;
+            } catch (PDOException $exc) {
+                throw new Exception('ERRO: '.$exc->getMessage());
+                return false;
+            }
+        } else {
+            throw new Exception("ERRO: Possui dados vazios.");
+            return false;
+        }
+    }
+          
+    
     public function listarMovimentacaoPeriodo($data) {
         if (isset($data) && !empty($data)) {
             $stmt = $this->db->prepare("SELECT ext.movimentacao AS 'mov', ext.mes AS 'mes', extract(year from ext.data_movimentacao) "

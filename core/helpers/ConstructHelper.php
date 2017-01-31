@@ -55,6 +55,41 @@ class ConstructHelper {
         return $divPanel;
     }
 
+    public static function geraTabelaComTotal($tabela) {
+        $total = "" ;
+        $table = "<div class='row col-sm-8 col-md-8 col-lg-8' id='div_row_tabela_consulta_mov_per'>";
+        $table .= "<table class='table table-hover table-condensed bordasimples' id='table_cons_mov_periodo' cellspacing=1 cellpadding=1>";
+        $table .= "<thead>";
+        $table .= "<tr>";
+        $table .= "<td>Data</td>";
+        $table .= "<td>Dia</td>";
+        $table .= "<td>Movimentação</td>";
+        $table .= "<td>Valor</td>";
+        $table .= "</tr>";
+        $table .= "</thead>";
+        $table .= "<body>";
+        foreach ($tabela as $linha) {
+            $table .= "<tr>";
+            $table .= "<td class=''>".$linha['data']."</td>";    
+            $table .= "<td align='left' class=''>".$linha['dia']."</td>";    
+            $table .= "<td class=''>".ucwords(strtolower(mb_convert_case($linha['mov'], MB_CASE_TITLE)))."</td>";   
+            $table .= "<td align='left' class=''>R$ ".number_format($linha['val'], 2, ',', '.')."</td>";    
+            $table .= "</tr>";
+            $total += $linha['val'];
+        }
+        $table .= "</body>";
+        $table .= "<tfoot>";
+        $table .= "<tr>";
+        $table .= "<td colspan='3' align='center'>Total de Gastos</td>";
+        $table .= "<td colspan='1' align='center'>R$ ".number_format($total, 2, ',', '.')."</td>";
+        $table .= "</tr>";
+        $table .= "<tfoot>";
+        $table .= "</table>";
+        $table .= "<div><p><a id='btn_voltar_cons_mov_per' class='btn btn-primary' href='/relatorio'>Voltar</a></p></div>";
+        $table .= "</div>";
+        return $table;
+    }
+    
     public static function monta_tabela_grupos($mes, $ano, $contas_agendadas = null) {
         $total = "" ;
         if (!empty($contas_agendadas) || $contas_agendadas != null) {
@@ -131,6 +166,4 @@ class ConstructHelper {
         return $anoMes;
     }
     
-    
-
 }
