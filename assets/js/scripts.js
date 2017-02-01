@@ -464,6 +464,8 @@ $(document).ready(function () {
         });
     });
     
+    
+    //FECHAMENTO DE FATURA DE CARTÃO DE CRÉDITO PARA PAGAMENTO
     $('#btn_limpar_pgto_fatura').click(function () {
         $("#encargos").val("");
         $("#iof").val("");
@@ -569,7 +571,8 @@ $(document).ready(function () {
         if (subtotal > 0) {
             total = (parseFloat(subtotal) + parseFloat(encargos) + parseFloat(iof) + parseFloat(anuidade) + parseFloat(protecao_prem)
                 + parseFloat(juros_fat) + parseFloat(restante));
-            var n = total.toString();
+            var num = arred(total, 2);    
+            var n = num.toString();   
             var tot = n.replace('.',',');
         }
         $(".msgError").html("");
@@ -583,8 +586,7 @@ $(document).ready(function () {
                 if (retorno.status === 'error' ){
                     $('.retorno').html('<span class="msgError" id="">' + retorno.message + '</span>');
                 } else if (retorno.status === 'success'){
-                    var r = arred(retorno.message,2);
-                    var val = r.toString();
+                    var val = retorno.message.toString();
                     var res = val.replace('.',',');
                     $('#restante').val('R$ ' + res);
                 } else {
@@ -638,4 +640,8 @@ $(document).ready(function () {
         });
     });
     
+    function arred(d,casas) { 
+       var aux = Math.pow(10,casas);
+       return Math.floor(d * aux) / aux;
+    }
 });

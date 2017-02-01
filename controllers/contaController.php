@@ -194,7 +194,7 @@ class contaController extends Controller {
         }
     }
 
-    public function agendar($idConta = null) {
+    /* public function agendar($idConta = null) {
         $dados = array();
 
         if ($_POST) {
@@ -255,7 +255,7 @@ class contaController extends Controller {
                 $this->loadTemplate('agendaPgtoView', $dados);
             }
         }
-    }
+    } */
 
     public function trocar() {
         unset($_SESSION['conta']);
@@ -294,7 +294,6 @@ class contaController extends Controller {
                 $json = array('status'=>'success', 'message'=>'Pagamento(s) realizado(s) com Sucesso!', 'tabela'=>$tabela);
             }
             echo json_encode($json);
-            //$this->loadTemplate('homePrincipalContaView', $data);
         }
     }
 
@@ -303,10 +302,6 @@ class contaController extends Controller {
         $d = $data[0];
         $m = $data[1];
         $y = $data[2];
-
-        // verifica se a data é válida!
-        // 1 = true (válida)
-        // 0 = false (inválida)
         $res = checkdate($m, $d, $y);
         if ($res == 1) {
             return true;

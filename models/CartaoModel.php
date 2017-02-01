@@ -37,7 +37,7 @@ class CartaoModel extends Model {
             try {
                 $this->db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
                 $this->db->beginTransaction();
-                $stmt = $this->db->prepare("UPDATE tb_fatura_cartao SET encargos = ?, protecao_premiada = ?,"
+                $stmt = $this->db->prepare("UPDATE conta.tb_fatura_cartao SET encargos = ?, protecao_premiada = ?,"
                     . " iof = ?, anuidade = ?, restante_fatura_anterior = ?, pago = ?, juros = ?, valor_total_fatura = ?,"
                     . "valor_pago = ? WHERE id_fatura_cartao = ?");
                 $stmt->bindValue(1, !empty($array['encargos']) ? $array['encargos'] : 0.00, PDO::PARAM_INT);
@@ -97,8 +97,9 @@ class CartaoModel extends Model {
                 $mesAnterior = $mesAtual - 1;
             }
             $anoMes = "2017-$mesAnterior";
-            $stmt = $this->db->prepare("SELECT valor_total_fatura as valtotal, valor_pago as valpgo FROM tb_fatura_cartao "
-                . "WHERE fk_id_cartao_credito = ? AND ano_mes_ref = ?");
+            
+            $stmt = $this->db->prepare("SELECT valor_total_fatura as valtotal, valor_pago as valpgo FROM conta.tb_fatura_cartao "
+                  . "WHERE fk_id_cartao_credito = ? AND ano_mes_ref = ?");
             $stmt->bindValue(1, $idCart, PDO::PARAM_INT);
             $stmt->bindValue(2, $anoMes, PDO::PARAM_STR);
             $stmt->execute();
@@ -121,12 +122,13 @@ class CartaoModel extends Model {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } elseif (isset($idFaturaCartao) && is_numeric($idFaturaCartao)) {
             $stmt = $this->db->prepare("SELECT fat.id_fatura_cartao as id, car.numero_cartao as num, "
-                  . "DATE_FORMAT(fat.data_vencimento_fatura,'%d/%m/%Y') as data, band.bandeira as bandeira, "
-                  . "ban.nome_banco as nome, fat.encargos as encargos, fat.protecao_premiada as protecao, fat.anuidade as anuidade,"
-                  . "fat.restante_fatura_anterior as restante, fat.valor_total_fatura as valor_total, fat.valor_pago as val_pgo FROM tb_fatura_cartao as fat "
-                  . "JOIN tb_cartao_credito as car ON (fat.fk_id_cartao_credito = car.id_cartao_credito) JOIN tb_banco as ban ON "
-                  . "(ban.cod_banco = car.fk_cod_banco) JOIN tb_bandeira_cartao as band ON (band.id_bandeira_cartao = "
-                  . "car.fk_id_bandeira_cartao) WHERE fat.id_fatura_cartao = ?");
+                  . "DATE_FORMAT(fat.data_vencimento_fatura,'%d/%m/%Y') as data, band.bandeira as bandeira, ban.nome_banco "
+                  . "as nome, fat.encargos as encargos, fat.iof as iof, fat.protecao_premiada as protecao, fat.juros as juros, "
+                  . "fat.anuidade as anuidade, fat.restante_fatura_anterior as restante, fat.valor_total_fatura as valor_total, "
+                  . "fat.valor_pago as val_pgo FROM tb_fatura_cartao as fat JOIN tb_cartao_credito as car ON "
+                  . "(fat.fk_id_cartao_credito = car.id_cartao_credito) JOIN tb_banco as ban ON (ban.cod_banco = "
+                  . "car.fk_cod_banco) JOIN tb_bandeira_cartao as band ON (band.id_bandeira_cartao = car.fk_id_bandeira_cartao) "
+                  . "WHERE fat.id_fatura_cartao = ?");
             $stmt->bindValue(1, $idFaturaCartao, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -240,10 +242,10 @@ class CartaoModel extends Model {
                 $stmt->bindValue(1, $idFaturaCartao, PDO::PARAM_INT);
                 $stmt->execute();
                 $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if ($dados['fk_id_cartao_credito'] == 1) {
-                $movPgto = 'CARTÃO CEF';
-            } elseif ($dados['fk_id_cartao_credito'] == 2) {
+            if ($dados[0]['fk_id_cartao_credito'] == 1) {
                 $movPgto = 'CARTÃO VOTORANTIM';
+            } elseif ($dados[0]['fk_id_cartao_credito'] == 2) {
+                $movPgto = 'CARTÃO CEF';
             }
             try {
                 $this->db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
@@ -252,7 +254,7 @@ class CartaoModel extends Model {
                     ."fk_id_categoria, fk_id_conta) VALUES (?, ?, ?, ?, ?, ?)");
                 $stmt->bindValue(1, $dataPagamento, PDO::PARAM_STR);
                 $stmt->bindValue(2, $movPgto, PDO::PARAM_STR);
-                $stmt->bindValue(3, $dados['valor_pago'], PDO::PARAM_STR);
+                $stmt->bindValue(3, $dados[0]['valor_pago'], PDO::PARAM_STR);
                 $stmt->bindValue(4, 'Não', PDO::PARAM_STR);
                 $stmt->bindValue(5, 6, PDO::PARAM_INT);
                 $stmt->bindValue(6, $idConta, PDO::PARAM_INT);

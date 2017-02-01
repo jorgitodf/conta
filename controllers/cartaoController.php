@@ -16,8 +16,10 @@ class cartaoController extends Controller {
             $idCart = (int) filter_input(INPUT_POST, 'id_cartao_cre', FILTER_SANITIZE_NUMBER_INT);
             $resFatAnt = $this->cartaoModel->getValorFaturaMesAnterior($idCart);
             if (!empty($resFatAnt)) {
-                $res = $resFatAnt[0]['valtotal'] - $resFatAnt[0]['valpgo'];
-                $json = array('status'=>'success', 'message'=>$res);
+                $valorTotal = (float)$resFatAnt[0]['valtotal'];
+                $valorPago = (float)$resFatAnt[0]['valpgo'];
+                $res = $valorTotal - $valorPago;
+                $json = array('status'=>'success', 'message'=>number_format($res, 2, '.', '.' ));
             } else {
                 $json = array('status'=>'error', 'message'=>'Calcular o valor da Fatura Anterior na Data de Vencimento');
             }
@@ -200,7 +202,7 @@ class cartaoController extends Controller {
             } else {
                 try {
                     if ($this->cartaoModel->pagarFatura($dados['valoresSalvar'], $idFaturaCartao) == true) {
-                        //$this->cartaoModel->agendarPagamento($idFaturaCartao, $idConta);
+                        $this->cartaoModel->agendarPagamento($idFaturaCartao, $idConta);
                         $json = array('status'=>'success', 'message'=>'Fatura Paga com Sucesso!');
                     } else {
                         $json = array('status'=>'error', 'message'=>'Falha ao Pagar a Fatura.');
