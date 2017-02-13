@@ -22,7 +22,7 @@ class cadastroController extends Controller {
                 $erro = ValidacoesHelper::validarEmail($email);
                 $json = array('status'=>'error', 'message'=>$erro);
             } else if (!empty($this->usuarioModel->getEmail($email))) {
-                    $json = array('status'=>'error', 'message'=>'O E-mail informado já está cadastrado!');
+                $json = array('status'=>'error', 'message'=>'O E-mail informado já está cadastrado!');
             } else if (ValidacoesHelper::validarCampoVazio($senha) == TRUE) {
                 $json = array('status'=>'error', 'message'=>'Preencha o campo Senha!');
             } else {
