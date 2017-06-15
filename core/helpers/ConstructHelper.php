@@ -115,12 +115,15 @@ class ConstructHelper {
                         $table .= "<td class='td_color_pgto'>".ucwords(strtolower(mb_convert_case($linha['pago'], MB_CASE_TITLE)))."</td>";
                     } else {
                         $table .= "<td class='td_color_pgto_sim'>".ucwords(strtolower(mb_convert_case($linha['mov'], MB_CASE_TITLE)))."</td>";    
-                        $table .= "<td align='left' class='td_color_pgto_sim'>R$ ".number_format($linha['valor'], 2, ',', '.')."</td>";    
+                        $table .= "<td align='left' class='td_color_pgto_sim'>R$ ".number_format($linha['valor'], 2, ',', '.')."</td>";
                         $table .= "<td class='td_color_pgto_sim'>".date("d/m/Y", strtotime($linha['data']))."</td>";   
                         $table .= "<td class='td_color_pgto_sim'>".ucwords(strtolower(mb_convert_case($linha['pago'], MB_CASE_TITLE)))."</td>"; 
                     }
                     $table .= "</tr>";
-                        $total += $linha['valor'];
+                        $total = null;
+                        if (is_numeric($linha['valor'])) {
+                            $total += $linha['valor'];
+                        }
                     }
                 $table .= "</body>";
                 $table .= "<tfoot>";

@@ -11,7 +11,7 @@ if (ENVIRONMENT == 'development' && $hostname == 'Jorgito') {
     $config['dbname'] = 'conta';
     $config['host'] = 'localhost';
     $config['dbuser'] = 'root';
-    $config['dbpass'] = 'root';
+    $config['dbpass'] = 'Camelo69';
 	$config['ambiente'] = ENVIRONMENT;
 	$config['hostname'] = $hostname;
 } elseif (ENVIRONMENT == 'development' && $hostname == 'JORGITO-PC') {
