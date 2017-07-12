@@ -20,3 +20,14 @@ BEGIN
 RETURN dia_semana;
 END$$
 DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `fncSubtracao`(valor1 DECIMAL(10,2), valor2 DECIMAL(10,2)) RETURNS decimal(10,2)
+BEGIN
+	DECLARE total DECIMAL(10,2);
+    SET total = 0;
+	SET total = valor1 - valor2;
+	RETURN total;
+END$$
+DELIMITER ;
+
