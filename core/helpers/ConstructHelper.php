@@ -1,7 +1,7 @@
 <?php
 
 class ConstructHelper {
-    
+
     public static function monta_panel_tabela_extrato_periodo($dataInicial, $datFinal, $extrato = null, $extrato_erro = null) {
         if (!empty($extrato) || $extrato != null) {
             $divPanel = "<div class='panel panel-primary' id='table_extrato'>";
@@ -22,7 +22,7 @@ class ConstructHelper {
             $divPanel .= "</thead>";
             $divPanel .= "<tbody>";
             foreach ($extrato as $linha) {
-                $divPanel .= "<tr>";  
+                $divPanel .= "<tr>";
                 $divPanel .= "<td class='td_extrato_deb_data'>".date('d/m/Y', strtotime($linha['DatMov']))."</td>";
                 if ($linha['Op'] == 'Crédito') {
                     $divPanel .= "<td class='td_extrato_cre'>".ucwords(strtolower(mb_convert_case($linha['Mov'], MB_CASE_TITLE)))."</td>";
@@ -70,10 +70,10 @@ class ConstructHelper {
         $table .= "<body>";
         foreach ($tabela as $linha) {
             $table .= "<tr>";
-            $table .= "<td class=''>".$linha['data']."</td>";    
-            $table .= "<td align='left' class=''>".$linha['dia']."</td>";    
-            $table .= "<td class=''>".ucwords(strtolower(mb_convert_case($linha['mov'], MB_CASE_TITLE)))."</td>";   
-            $table .= "<td align='left' class=''>R$ ".number_format($linha['val'], 2, ',', '.')."</td>";    
+            $table .= "<td class=''>".$linha['data']."</td>";
+            $table .= "<td align='left' class=''>".$linha['dia']."</td>";
+            $table .= "<td class=''>".ucwords(strtolower(mb_convert_case($linha['mov'], MB_CASE_TITLE)))."</td>";
+            $table .= "<td align='left' class=''>R$ ".number_format($linha['val'], 2, ',', '.')."</td>";
             $table .= "</tr>";
             $total += $linha['val'];
         }
@@ -89,7 +89,7 @@ class ConstructHelper {
         $table .= "</div>";
         return $table;
     }
-    
+
     public static function monta_tabela_grupos($mes, $ano, $contas_agendadas = null) {
         $total = "" ;
         if (!empty($contas_agendadas) || $contas_agendadas != null) {
@@ -109,18 +109,17 @@ class ConstructHelper {
                     foreach ($contas_agendadas as $linha) {
                     $table .= "<tr>";
                     if ($linha['pago'] == 'Não') {
-                        $table .= "<td class='td_color_pgto'>".ucwords(strtolower(mb_convert_case($linha['mov'], MB_CASE_TITLE)))."</td>";    
-                        $table .= "<td align='left' class='td_color_pgto'>R$ ".number_format($linha['valor'], 2, ',', '.')."</td>";    
-                        $table .= "<td class='td_color_pgto'>".date("d/m/Y", strtotime($linha['data']))."</td>";   
+                        $table .= "<td class='td_color_pgto'>".ucwords(strtolower(mb_convert_case($linha['mov'], MB_CASE_TITLE)))."</td>";
+                        $table .= "<td align='left' class='td_color_pgto'>R$ ".number_format($linha['valor'], 2, ',', '.')."</td>";
+                        $table .= "<td class='td_color_pgto'>".date("d/m/Y", strtotime($linha['data']))."</td>";
                         $table .= "<td class='td_color_pgto'>".ucwords(strtolower(mb_convert_case($linha['pago'], MB_CASE_TITLE)))."</td>";
                     } else {
-                        $table .= "<td class='td_color_pgto_sim'>".ucwords(strtolower(mb_convert_case($linha['mov'], MB_CASE_TITLE)))."</td>";    
+                        $table .= "<td class='td_color_pgto_sim'>".ucwords(strtolower(mb_convert_case($linha['mov'], MB_CASE_TITLE)))."</td>";
                         $table .= "<td align='left' class='td_color_pgto_sim'>R$ ".number_format($linha['valor'], 2, ',', '.')."</td>";
-                        $table .= "<td class='td_color_pgto_sim'>".date("d/m/Y", strtotime($linha['data']))."</td>";   
-                        $table .= "<td class='td_color_pgto_sim'>".ucwords(strtolower(mb_convert_case($linha['pago'], MB_CASE_TITLE)))."</td>"; 
+                        $table .= "<td class='td_color_pgto_sim'>".date("d/m/Y", strtotime($linha['data']))."</td>";
+                        $table .= "<td class='td_color_pgto_sim'>".ucwords(strtolower(mb_convert_case($linha['pago'], MB_CASE_TITLE)))."</td>";
                     }
                     $table .= "</tr>";
-                        $total = null;
                         if (is_numeric($linha['valor'])) {
                             $total += $linha['valor'];
                         }
@@ -161,12 +160,12 @@ class ConstructHelper {
         }
         return $table;
     }
-    
+
     public static function transformaAnoMes($data) {
         $ano = substr($data, 0, 5);
         $mes = substr($data, 6, 1);
-        $anoMes = $ano.$mes; 
+        $anoMes = $ano.$mes;
         return $anoMes;
     }
-    
+
 }
