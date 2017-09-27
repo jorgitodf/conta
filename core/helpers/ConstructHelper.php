@@ -106,6 +106,7 @@ class ConstructHelper {
                     $table .= "</tr>";
                 $table .= "</thead>";
                 $table .= "<body>";
+					$total = 0;
                     foreach ($contas_agendadas as $linha) {
                     $table .= "<tr>";
                     if ($linha['pago'] == 'Não') {
