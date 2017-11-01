@@ -10,17 +10,17 @@ class CartaoModel extends Model {
     public $data_validade;
     public $fk_id_bandeira_cartao;
     public $fk_id_usuario;
-    
+
     public function getBandeiras() {
         $stmt = $this->db->query("SELECT * FROM tb_bandeira_cartao ORDER BY bandeira ASC");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public function getBancos() {
         $stmt = $this->db->query("SELECT * FROM tb_banco ORDER BY nome_banco ASC");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public function getCartaoByIdUser($idUser) {
         if (!empty($idUser) && is_numeric($idUser)) {
             $stmt = $this->db->prepare("SELECT cc.id_cartao_credito as id, cc.numero_cartao as num, ban.nome_banco as nome, "
@@ -31,7 +31,7 @@ class CartaoModel extends Model {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
-    
+
     public function pagarFatura($array, $idFaturaCartao = null) {
         if (isset($array) && $idFaturaCartao != null) {
             try {
@@ -63,7 +63,7 @@ class CartaoModel extends Model {
             return false;
         }
     }
-    
+
     public function getCartaoByDataPgtoFatura() {
         $stmt = $this->db->query("SELECT fat.id_fatura_cartao as id, DATE_FORMAT(fat.data_vencimento_fatura,'%d/%m/%Y') as data,"
             . " car.numero_cartao as num, band.bandeira as bandeira, ban.nome_banco as nome, fat.fk_id_cartao_credito as cardid"
@@ -73,7 +73,7 @@ class CartaoModel extends Model {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public function getFaturaByIdConsulta($idUser) {
         if (!empty($idUser) && is_numeric($idUser)) {
             $stmt = $this->db->prepare("SELECT fat.id_fatura_cartao as id, cc.numero_cartao as num, DATE_FORMAT"
@@ -97,8 +97,8 @@ class CartaoModel extends Model {
                 $mesAnterior = $mesAtual - 1;
             }
             $anoMes = "2017-$mesAnterior";
-            
-            $stmt = $this->db->prepare("SELECT valor_total_fatura as valtotal, valor_pago as valpgo FROM conta.tb_fatura_cartao "
+
+            $stmt = $this->db->prepare("SELECT valor_total_fatura as valtotal, valor_pago as valpgo FROM tb_fatura_cartao "
                   . "WHERE fk_id_cartao_credito = ? AND ano_mes_ref = ?");
             $stmt->bindValue(1, $idCart, PDO::PARAM_INT);
             $stmt->bindValue(2, $anoMes, PDO::PARAM_STR);
@@ -133,14 +133,14 @@ class CartaoModel extends Model {
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        
+
     }
-    
+
     public function getItensDespesaFaturaByIdFaturaCartao($idFaturaCartao) {
         if (!empty($idFaturaCartao)) {
-            $stmt = $this->db->prepare("SELECT idf.data_compra as data, df.descricao as descricao, idf.parcela as parcela, 
-                idf.valor_compra as valor FROM tb_item_despesa_fatura as idf JOIN tb_despesa_fatura as df ON 
-                (idf.fk_id_despesa_fatura = df.id_despesa_fatura) JOIN tb_fatura_cartao as fc ON 
+            $stmt = $this->db->prepare("SELECT idf.data_compra as data, df.descricao as descricao, idf.parcela as parcela,
+                idf.valor_compra as valor FROM tb_item_despesa_fatura as idf JOIN tb_despesa_fatura as df ON
+                (idf.fk_id_despesa_fatura = df.id_despesa_fatura) JOIN tb_fatura_cartao as fc ON
                 (idf.fk_id_fatura_cartao = fc.id_fatura_cartao) AND idf.fk_id_fatura_cartao = ?");
             $stmt->bindValue(1, $idFaturaCartao, PDO::PARAM_INT);
             $stmt->execute();
@@ -171,9 +171,9 @@ class CartaoModel extends Model {
         } else {
             throw new Exception("ERRO: Possui dados vazios.");
             return false;
-        } 
+        }
     }
-    
+
     public function cadastrarFaturaCartao($cartao, $data_pagto) {
         if (!empty($cartao) && !empty($data_pagto)) {
             $anoMes = ConstructHelper::transformaAnoMes($data_pagto);
@@ -198,8 +198,8 @@ class CartaoModel extends Model {
             throw new Exception("ERRO: Possui dados vazios.");
             return false;
         }
-    }    
-    
+    }
+
     public function cadastrarDespesaFaturaCartaoCredito($idFaturaCartao,$descricao,$dtCompra,$valor,$parcela) {
         if (!empty($idFaturaCartao) && !empty($descricao) && !empty($dtCompra) && !empty($valor) && isset($parcela)) {
             try {
@@ -209,7 +209,7 @@ class CartaoModel extends Model {
                 $stmt->bindValue(1, $descricao, PDO::PARAM_STR);
                 $stmt->execute();
                 $idDespesa = $this->db->lastInsertId();
-                
+
                 $stmt = $this->db->prepare("INSERT INTO tb_item_despesa_fatura (data_compra, valor_compra, parcela, fk_id_despesa_fatura,"
                     . " fk_id_fatura_cartao) VALUES (?, ?, ?, ?, ?)");
                 $stmt->bindValue(1, $dtCompra, PDO::PARAM_STR);
@@ -230,7 +230,7 @@ class CartaoModel extends Model {
             return false;
         }
     }
-    
+
     public function agendarPagamento($idFaturaCartao, $idConta) {
         if (!empty($idFaturaCartao) && !empty($idConta)) {
             $dados = array();
@@ -269,7 +269,7 @@ class CartaoModel extends Model {
         } else {
             throw new Exception("ERRO: Possui dados vazios.");
             return false;
-        }  
+        }
     }
 
 
